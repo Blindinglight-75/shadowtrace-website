@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Terms of Service | ShadowTrace</title>
+    <meta name="description" content="ShadowTrace Terms of Service. Read the terms and conditions governing your use of our blockchain intelligence platform and services.">
+    <link rel="canonical" href="https://shadowtrace.ai/terms">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --font-serif: 'Newsreader', serif;
+            --font-sans: 'Inter', sans-serif;
+        }
+        body {
+            font-family: var(--font-sans);
+            background-color: #020205;
+            color: white;
+            overflow-x: hidden;
+        }
+        .font-newsreader {
+            font-family: var(--font-serif);
+        }
+
+        @keyframes enter {
+            0% { opacity: 0; transform: translateY(20px) scale(0.98); filter: blur(4px); }
+            100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+        }
+
+        .animate-in {
+            animation: enter 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+
+        .delay-100 { animation-delay: 100ms; }
+        .delay-200 { animation-delay: 200ms; }
+        .delay-300 { animation-delay: 300ms; }
+
+        .grid-lines {
+            position: absolute;
+            inset: 0;
+            max-width: 80rem;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            pointer-events: none;
+            z-index: 0;
+            padding: 0 1.5rem;
+        }
+        .grid-line {
+            width: 1px;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.05) 10%, rgba(255,255,255,0.05) 90%, transparent);
+        }
+
+        .btn-beam {
+            position: absolute;
+            inset: -1px;
+            border-radius: 9999px;
+            pointer-events: none;
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            padding: 1px;
+        }
+        .btn-beam::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: conic-gradient(from 0deg, transparent 0deg, transparent 80deg, #a855f7 100deg, transparent 180deg);
+            animation: rotate 3s linear infinite;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .group:hover .btn-beam::before {
+            opacity: 1;
+        }
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .legal-content h2 {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: white;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        .legal-content h3 {
+            font-size: 1.125rem;
+            font-weight: 500;
+            color: white;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+        .legal-content p {
+            color: rgb(148 163 184);
+            font-weight: 300;
+            line-height: 1.75;
+            margin-bottom: 1rem;
+        }
+        .legal-content ul {
+            color: rgb(148 163 184);
+            font-weight: 300;
+            line-height: 1.75;
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+            list-style-type: disc;
+        }
+        .legal-content ol {
+            color: rgb(148 163 184);
+            font-weight: 300;
+            line-height: 1.75;
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+            list-style-type: decimal;
+        }
+        .legal-content li {
+            margin-bottom: 0.5rem;
+        }
+        .legal-content a {
+            color: rgb(192 132 252);
+            text-decoration: underline;
+        }
+        .legal-content a:hover {
+            color: rgb(216 180 254);
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-purple-500/30">
+
+    <!-- Background -->
+    <div class="fixed top-0 w-full h-screen -z-10 bg-[#020205]">
+        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-purple-900/20 via-[#020205] to-[#020205]"></div>
+    </div>
+
+    <!-- Vertical Grid Lines -->
+    <div class="grid-lines animate-in duration-1000">
+        <div class="grid-line"></div>
+        <div class="grid-line"></div>
+        <div class="grid-line"></div>
+        <div class="grid-line"></div>
+        <div class="grid-line"></div>
+    </div>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="fixed inset-0 z-[60] bg-[#020205]/95 backdrop-blur-xl hidden opacity-0 transition-opacity duration-300 flex-col items-center justify-center space-y-8">
+        <button id="close-menu" class="absolute top-6 right-6 text-white/60 hover:text-white">
+            <iconify-icon icon="solar:close-circle-linear" width="32" height="32"></iconify-icon>
+        </button>
+        <a href="platform.html" class="text-2xl font-newsreader italic text-white hover:text-purple-400 transition-colors">Platform</a>
+        <a href="solutions.html" class="text-2xl font-newsreader italic text-white hover:text-purple-400 transition-colors">Solutions</a>
+        <a href="pricing.html" class="text-2xl font-newsreader italic text-white hover:text-purple-400 transition-colors">Pricing</a>
+        <a href="about.html" class="text-2xl font-newsreader italic text-white hover:text-purple-400 transition-colors">About</a>
+        <a href="https://portal.shadowtrace.ai" class="text-2xl font-newsreader italic text-white hover:text-purple-400 transition-colors">Portal</a>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="fixed top-0 left-0 right-0 z-50 border-b border-white/[0.06] bg-[#020205]/60 backdrop-blur-md animate-in">
+        <div class="flex h-20 max-w-7xl mr-auto ml-auto pr-6 pl-6 items-center justify-between">
+            <div class="flex group cursor-pointer gap-x-2 gap-y-2 items-center" onclick="window.location.href='index.html'" role="button">
+                <img src="assets/ShadowTraceLogo.svg" alt="ShadowTrace" style="height: 22.4px;">
+            </div>
+
+            <div class="hidden md:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
+                <a href="platform.html" class="hover:text-white transition-colors text-xs font-medium text-white/60">Platform</a>
+                <a href="solutions.html" class="hover:text-white transition-colors text-xs font-medium text-white/60">Solutions</a>
+                <a href="pricing.html" class="hover:text-white transition-colors text-xs font-medium text-white/60">Pricing</a>
+                <a href="resources.html" class="hover:text-white transition-colors text-xs font-medium text-white/60">Resources</a>
+            </div>
+
+            <div class="flex gap-4 gap-x-4 gap-y-4 items-center">
+                <a href="https://portal.shadowtrace.ai" class="hidden md:block hover:text-white transition-colors text-xs font-medium text-white/60">Portal</a>
+                <button class="hidden md:block group hover:bg-white/10 transition-all text-xs font-medium text-white bg-white/5 border-white/10 border rounded-full pt-2 pr-4 pb-2 pl-4 relative" onclick="window.location.href='contact.html'" role="button">
+                    <span class="z-10 relative">Request Demo</span>
+                    <div class="btn-beam"></div>
+                </button>
+                <button id="open-menu" class="md:hidden text-white/60 hover:text-white transition-colors">
+                    <iconify-icon icon="solar:hamburger-menu-linear" width="24" height="24"></iconify-icon>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="pt-32 pb-20 px-6 relative z-10">
+        <div class="max-w-3xl mx-auto">
+
+            <!-- Header -->
+            <div class="text-center mb-16 animate-in">
+                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/10 bg-white/5 mb-6">
+                    <iconify-icon icon="solar:document-text-linear" class="text-purple-400 text-sm"></iconify-icon>
+                    <span class="text-xs font-medium text-white/70">Legal</span>
+                </div>
+
+                <h1 class="text-4xl md:text-5xl font-newsreader font-medium italic text-white mb-6 tracking-tight leading-[1.1]">
+                    Terms of Service
+                </h1>
+
+                <p class="text-slate-400 font-light">
+                    Last updated: January 2026
+                </p>
+            </div>
+
+            <!-- Content -->
+            <div class="legal-content animate-in delay-100">
+
+                <p>These Terms of Service ("Terms") govern your access to and use of the ShadowTrace platform, website, and related services (collectively, the "Services") provided by ShadowTrace Ltd ("ShadowTrace", "we", "us", or "our"), a company registered in England and Wales.</p>
+
+                <p>By accessing or using our Services, you agree to be bound by these Terms. If you are using the Services on behalf of an organisation, you represent that you have the authority to bind that organisation to these Terms.</p>
+
+                <h2>1. Definitions</h2>
+
+                <p>In these Terms:</p>
+                <ul>
+                    <li><strong>"Account"</strong> means the account you create to access and use the Services.</li>
+                    <li><strong>"Customer Data"</strong> means any data, information, or content you submit to or through the Services.</li>
+                    <li><strong>"Platform"</strong> means the ShadowTrace blockchain intelligence platform and associated tools.</li>
+                    <li><strong>"Subscription"</strong> means your agreement to access the Services for a specified term under a pricing plan.</li>
+                    <li><strong>"User"</strong> means any individual authorised by you to access the Services through your Account.</li>
+                </ul>
+
+                <h2>2. Account Registration and Security</h2>
+
+                <h3>2.1 Account Creation</h3>
+                <p>To access certain features of the Services, you must create an Account. You agree to provide accurate, complete, and current information during registration and to update such information as necessary.</p>
+
+                <h3>2.2 Account Security</h3>
+                <p>You are responsible for maintaining the confidentiality of your Account credentials and for all activities that occur under your Account. You agree to:</p>
+                <ul>
+                    <li>Use strong, unique passwords and enable multi-factor authentication where available</li>
+                    <li>Notify us immediately of any unauthorised access or security breach</li>
+                    <li>Ensure that Users comply with these Terms</li>
+                </ul>
+
+                <h3>2.3 User Management</h3>
+                <p>You are responsible for managing access to your Account, including adding and removing Users. You agree that each User account is for a single individual and may not be shared.</p>
+
+                <h2>3. Use of the Services</h2>
+
+                <h3>3.1 Permitted Use</h3>
+                <p>Subject to these Terms and your Subscription, we grant you a limited, non-exclusive, non-transferable right to access and use the Services for your internal business purposes, including:</p>
+                <ul>
+                    <li>Blockchain transaction analysis and investigation</li>
+                    <li>Risk assessment and compliance monitoring</li>
+                    <li>Generating reports for lawful purposes</li>
+                </ul>
+
+                <h3>3.2 Restrictions</h3>
+                <p>You agree not to:</p>
+                <ul>
+                    <li>Use the Services for any unlawful purpose or in violation of any applicable laws</li>
+                    <li>Reverse engineer, decompile, or disassemble any part of the Services</li>
+                    <li>Attempt to gain unauthorised access to the Services or related systems</li>
+                    <li>Use the Services to harass, abuse, or harm others</li>
+                    <li>Resell, sublicense, or provide access to the Services to third parties without authorisation</li>
+                    <li>Use automated tools to access the Services except through our provided APIs</li>
+                    <li>Interfere with or disrupt the integrity or performance of the Services</li>
+                    <li>Circumvent any security measures or access controls</li>
+                </ul>
+
+                <h3>3.3 Compliance</h3>
+                <p>You agree to use the Services in compliance with all applicable laws, regulations, and industry standards, including but not limited to anti-money laundering (AML) regulations, data protection laws, and export control laws.</p>
+
+                <h2>4. Subscriptions and Payment</h2>
+
+                <h3>4.1 Subscription Plans</h3>
+                <p>Access to the Services requires a paid Subscription. Details of available plans, features, and pricing are set out on our website or in a separate agreement.</p>
+
+                <h3>4.2 Payment Terms</h3>
+                <p>You agree to pay all fees associated with your Subscription in accordance with the payment terms specified. Unless otherwise agreed:</p>
+                <ul>
+                    <li>Fees are payable in advance for the Subscription term</li>
+                    <li>All fees are non-refundable except as expressly stated</li>
+                    <li>We may adjust pricing with 30 days' notice before the next renewal period</li>
+                </ul>
+
+                <h3>4.3 Taxes</h3>
+                <p>Fees are exclusive of taxes. You are responsible for paying all applicable taxes, except for taxes based on our net income.</p>
+
+                <h3>4.4 Late Payment</h3>
+                <p>If payment is not received when due, we may suspend access to the Services until payment is received. We reserve the right to charge interest on overdue amounts at the rate of 4% above the Bank of England base rate.</p>
+
+                <h2>5. Intellectual Property</h2>
+
+                <h3>5.1 Our Intellectual Property</h3>
+                <p>The Services, including all software, algorithms, designs, documentation, and content (excluding Customer Data), are owned by ShadowTrace or our licensors. These Terms do not grant you any ownership rights in the Services.</p>
+
+                <h3>5.2 Your Data</h3>
+                <p>You retain all rights to your Customer Data. By submitting Customer Data to the Services, you grant us a limited licence to use, process, and store such data solely to provide the Services to you.</p>
+
+                <h3>5.3 Feedback</h3>
+                <p>If you provide feedback, suggestions, or ideas about the Services, you grant us a perpetual, royalty-free licence to use such feedback for any purpose without obligation to you.</p>
+
+                <h2>6. Data Protection</h2>
+
+                <p>Our processing of personal data is governed by our <a href="privacy.html">Privacy Policy</a>. Where we process personal data on your behalf, we will enter into a Data Processing Agreement as required by applicable data protection laws.</p>
+
+                <h2>7. Confidentiality</h2>
+
+                <h3>7.1 Confidential Information</h3>
+                <p>Each party agrees to keep confidential any non-public information disclosed by the other party that is designated as confidential or that reasonably should be understood to be confidential.</p>
+
+                <h3>7.2 Exceptions</h3>
+                <p>Confidentiality obligations do not apply to information that:</p>
+                <ul>
+                    <li>Is or becomes publicly available without breach of these Terms</li>
+                    <li>Was known to the receiving party prior to disclosure</li>
+                    <li>Is independently developed without use of confidential information</li>
+                    <li>Is lawfully obtained from a third party without restriction</li>
+                </ul>
+
+                <h2>8. Warranties and Disclaimers</h2>
+
+                <h3>8.1 Our Warranties</h3>
+                <p>We warrant that:</p>
+                <ul>
+                    <li>The Services will perform substantially in accordance with the documentation</li>
+                    <li>We will provide the Services with reasonable skill and care</li>
+                    <li>We have the right to provide the Services to you</li>
+                </ul>
+
+                <h3>8.2 Disclaimers</h3>
+                <p>Except as expressly stated, the Services are provided "as is" and "as available". To the maximum extent permitted by law, we disclaim all other warranties, whether express, implied, or statutory, including warranties of merchantability, fitness for a particular purpose, and non-infringement.</p>
+
+                <p>We do not warrant that:</p>
+                <ul>
+                    <li>The Services will be uninterrupted or error-free</li>
+                    <li>The Services will meet all your requirements</li>
+                    <li>Any data or analysis provided is complete, accurate, or suitable for any particular purpose</li>
+                </ul>
+
+                <h3>8.3 Blockchain Data</h3>
+                <p>The Services analyse publicly available blockchain data. We do not guarantee the accuracy, completeness, or reliability of blockchain data or any analysis derived from it. You acknowledge that blockchain data may be incomplete or inaccurate, and you are responsible for independently verifying any information before taking action based on it.</p>
+
+                <h2>9. Limitation of Liability</h2>
+
+                <h3>9.1 Exclusions</h3>
+                <p>To the maximum extent permitted by law, neither party shall be liable for any indirect, incidental, special, consequential, or punitive damages, or any loss of profits, revenue, data, or business opportunities, arising out of or related to these Terms.</p>
+
+                <h3>9.2 Cap on Liability</h3>
+                <p>Our total aggregate liability arising out of or related to these Terms shall not exceed the greater of: (a) the fees paid by you in the twelve (12) months preceding the claim; or (b) £10,000.</p>
+
+                <h3>9.3 Exceptions</h3>
+                <p>Nothing in these Terms limits liability for: (a) death or personal injury caused by negligence; (b) fraud or fraudulent misrepresentation; (c) any liability that cannot be excluded by law; or (d) breach of confidentiality obligations.</p>
+
+                <h2>10. Indemnification</h2>
+
+                <p>You agree to indemnify and hold harmless ShadowTrace and its officers, directors, employees, and agents from any claims, damages, losses, or expenses (including reasonable legal fees) arising from:</p>
+                <ul>
+                    <li>Your use of the Services in violation of these Terms</li>
+                    <li>Your violation of any applicable laws or third-party rights</li>
+                    <li>Your Customer Data</li>
+                </ul>
+
+                <h2>11. Term and Termination</h2>
+
+                <h3>11.1 Term</h3>
+                <p>These Terms are effective when you first access the Services and continue until terminated. Your Subscription term is specified in your order or agreement.</p>
+
+                <h3>11.2 Termination for Convenience</h3>
+                <p>Either party may terminate a Subscription by providing written notice at least 30 days before the end of the then-current Subscription term.</p>
+
+                <h3>11.3 Termination for Cause</h3>
+                <p>Either party may terminate these Terms immediately upon written notice if the other party:</p>
+                <ul>
+                    <li>Materially breaches these Terms and fails to cure the breach within 30 days of notice</li>
+                    <li>Becomes insolvent or subject to bankruptcy proceedings</li>
+                </ul>
+
+                <h3>11.4 Effect of Termination</h3>
+                <p>Upon termination:</p>
+                <ul>
+                    <li>Your right to access the Services will cease immediately</li>
+                    <li>You must pay any outstanding fees</li>
+                    <li>We will delete your Customer Data within 90 days, unless retention is required by law</li>
+                    <li>Provisions that by their nature should survive termination will survive</li>
+                </ul>
+
+                <h2>12. Changes to Terms</h2>
+
+                <p>We may modify these Terms from time to time. We will provide notice of material changes by posting the updated Terms on our website or by other reasonable means. Your continued use of the Services after the effective date of any changes constitutes acceptance of the modified Terms.</p>
+
+                <h2>13. General Provisions</h2>
+
+                <h3>13.1 Governing Law</h3>
+                <p>These Terms are governed by the laws of England and Wales. Any disputes shall be subject to the exclusive jurisdiction of the courts of England and Wales.</p>
+
+                <h3>13.2 Assignment</h3>
+                <p>You may not assign these Terms without our prior written consent. We may assign these Terms in connection with a merger, acquisition, or sale of assets.</p>
+
+                <h3>13.3 Entire Agreement</h3>
+                <p>These Terms, together with any applicable order or agreement, constitute the entire agreement between the parties regarding the subject matter hereof and supersede all prior agreements and understandings.</p>
+
+                <h3>13.4 Severability</h3>
+                <p>If any provision of these Terms is found to be unenforceable, the remaining provisions will continue in effect.</p>
+
+                <h3>13.5 Waiver</h3>
+                <p>No failure or delay in exercising any right under these Terms shall constitute a waiver of that right.</p>
+
+                <h3>13.6 Force Majeure</h3>
+                <p>Neither party shall be liable for any failure or delay in performance due to causes beyond its reasonable control, including natural disasters, war, terrorism, or internet outages.</p>
+
+                <h2>14. Contact Us</h2>
+
+                <p>If you have any questions about these Terms, please contact us:</p>
+
+                <p>
+                    <strong>ShadowTrace Ltd</strong><br>
+                    Email: <a href="mailto:legal@shadowtrace.ai">legal@shadowtrace.ai</a><br>
+                    Address: [Registered Address]
+                </p>
+
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/5 bg-[#020205] relative z-20">
+        <div class="max-w-7xl mx-auto pt-20 px-6 pb-12 relative">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20 relative z-10">
+                <div class="space-y-6">
+                    <div class="flex items-center gap-2 mb-6">
+                        <img src="assets/ShadowTraceLogo.svg" alt="ShadowTrace" style="height: 22.4px;">
+                    </div>
+                    <p class="text-sm text-slate-500 font-light leading-relaxed">
+                        Blockchain intelligence for financial crime investigators.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-sm text-white font-medium mb-6">Product</h4>
+                    <ul class="space-y-4 text-sm text-slate-400 font-light">
+                        <li><a href="platform.html" class="hover:text-purple-400 transition-colors">Platform Overview</a></li>
+                        <li><a href="solutions.html" class="hover:text-purple-400 transition-colors">Solutions by Sector</a></li>
+                        <li><a href="pricing.html" class="hover:text-purple-400 transition-colors">Pricing</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-sm text-white font-medium mb-6">Company</h4>
+                    <ul class="space-y-4 text-sm text-slate-400 font-light">
+                        <li><a href="about.html" class="hover:text-purple-400 transition-colors">About Us</a></li>
+                        <li><a href="resources.html" class="hover:text-purple-400 transition-colors">Resources</a></li>
+                        <li><a href="contact.html" class="hover:text-purple-400 transition-colors">Request Demo</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-sm text-white font-medium mb-6">Legal</h4>
+                    <ul class="space-y-4 text-sm text-slate-400 font-light">
+                        <li><a href="privacy.html" class="hover:text-purple-400 transition-colors">Privacy Policy</a></li>
+                        <li><a href="terms.html" class="hover:text-purple-400 transition-colors">Terms of Service</a></li>
+                        <li><a href="cookies.html" class="hover:text-purple-400 transition-colors">Cookie Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6 mt-16 pt-8 border-t border-white/5 text-[10px] text-slate-600 uppercase tracking-widest relative z-10">
+                <span>© 2026 ShadowTrace Ltd. All rights reserved.</span>
+                <div class="flex gap-6">
+                    <a href="privacy.html" class="hover:text-slate-400 transition-colors">Privacy Policy</a>
+                    <a href="terms.html" class="hover:text-slate-400 transition-colors">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cookie Consent Banner -->
+    <div id="cookie-banner" class="fixed bottom-0 left-0 right-0 z-[70] p-4 bg-[#0A0A0F]/95 backdrop-blur-md border-t border-white/10 hidden">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-3 text-sm text-slate-300 font-light">
+                <iconify-icon icon="solar:cookie-linear" class="text-purple-400 text-xl flex-shrink-0"></iconify-icon>
+                <p>We use cookies to enhance your experience. By continuing to visit this site you agree to our use of cookies. <a href="cookies.html" class="text-purple-400 hover:underline">Learn more</a></p>
+            </div>
+            <div class="flex gap-3 flex-shrink-0">
+                <button id="cookie-decline" class="px-4 py-2 text-xs font-medium text-white/60 hover:text-white transition-colors">Decline</button>
+                <button id="cookie-accept" class="px-4 py-2 bg-purple-600 hover:bg-purple-500 text-white text-xs font-medium rounded-full transition-colors">Accept</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mobile Menu Logic
+        const menuBtn = document.getElementById('open-menu');
+        const closeBtn = document.getElementById('close-menu');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        function toggleMenu() {
+            if (mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.remove('hidden');
+                mobileMenu.classList.add('flex');
+                setTimeout(() => mobileMenu.classList.remove('opacity-0'), 10);
+            } else {
+                mobileMenu.classList.add('opacity-0');
+                setTimeout(() => {
+                    mobileMenu.classList.remove('flex');
+                    mobileMenu.classList.add('hidden');
+                }, 300);
+            }
+        }
+
+        menuBtn.addEventListener('click', toggleMenu);
+        closeBtn.addEventListener('click', toggleMenu);
+
+        // Cookie Consent Logic
+        const cookieBanner = document.getElementById('cookie-banner');
+        const cookieAccept = document.getElementById('cookie-accept');
+        const cookieDecline = document.getElementById('cookie-decline');
+
+        function setCookieConsent(value) {
+            localStorage.setItem('shadowtrace-cookie-consent', value);
+            cookieBanner.classList.add('hidden');
+        }
+
+        function checkCookieConsent() {
+            const consent = localStorage.getItem('shadowtrace-cookie-consent');
+            if (!consent) {
+                cookieBanner.classList.remove('hidden');
+            }
+        }
+
+        cookieAccept.addEventListener('click', () => setCookieConsent('accepted'));
+        cookieDecline.addEventListener('click', () => setCookieConsent('declined'));
+
+        // Check consent on page load
+        checkCookieConsent();
+    </script>
+
+</body>
+</html>

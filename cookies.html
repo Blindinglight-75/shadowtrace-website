@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookie Policy | ShadowTrace</title>
+    <meta name="description" content="ShadowTrace Cookie Policy. Learn about the cookies we use, why we use them, and how you can manage your cookie preferences.">
+    <link rel="canonical" href="https://shadowtrace.ai/cookies">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --font-serif: 'Newsreader', serif;
+            --font-sans: 'Inter', sans-serif;
+        }
+        body {
+            font-family: var(--font-sans);
+            background-color: #020205;
+            color: white;
+            overflow-x: hidden;
+        }
+        .font-newsreader {
+            font-family: var(--font-serif);
+        }
+
+        @keyframes enter {
+            0% { opacity: 0; transform: translateY(20px) scale(0.98); filter: blur(4px); }
+            100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+        }
+
+        .animate-in {
+            animation: enter 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+
+        .delay-100 { animation-delay: 100ms; }
+        .delay-200 { animation-delay: 200ms; }
+        .delay-300 { animation-delay: 300ms; }
+
+        .grid-lines {
+            position: absolute;
+            inset: 0;
+            max-width: 80rem;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            pointer-events: none;
+            z-index: 0;
+            padding: 0 1.5rem;
+        }
+        .grid-line {
+            width: 1px;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.05) 10%, rgba(255,255,255,0.05) 90%, transparent);
+        }
+
+        .btn-beam {
+            position: absolute;
+            inset: -1px;
+            border-radius: 9999px;
+            pointer-events: none;
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            padding: 1px;
+        }
+        .btn-beam::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: conic-gradient(from 0deg, transparent 0deg, transparent 80deg, #a855f7 100deg, transparent 180deg);
+            animation: rotate 3s linear infinite;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .group:hover .btn-beam::before {
+            opacity: 1;
+        }
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .legal-content h2 {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: white;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        .legal-content h3 {
+            font-size: 1.125rem;
+            font-weight: 500;
+            color: white;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+        .legal-content p {
+            color: rgb(148 163 184);
+            font-weight: 300;
+            line-height: 1.75;
+            margin-bottom: 1rem;
+        }
+        .legal-content ul {
+            color: rgb(148 163 184);
+            font-weight: 300;
+            line-height: 1.75;
+            margin-bottom: 1rem;
+            padding-left: 1.5rem;
+            list-style-type: disc;
+        }
+        .legal-content li {
+            margin-bottom: 0.5rem;
+        }
+        .legal-content a {
+            color: rgb(192 132 252);
+            text-decoration: underline;
+        }
+        .legal-content a:hover {
+            color: rgb(216 180 254);
+        }
+        .legal-content table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 1.5rem;
+        }
+        .legal-content th {
+            text-align: left;
+            padding: 0.75rem;
+            background: rgba(255, 255, 255, 0.02);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+            font-weight: 500;
+            font-size: 0.875rem;
+        }
+        .legal-content td {
+            padding: 0.75rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            color: rgb(148 163 184);
+            font-weight: 300;
+            font-size: 0.875rem;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-purple-500/30">
+
+    <!-- Background -->
+    <div class="fixed top-0 w-full h-screen -z-10 bg-[#020205]">
+        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-purple-900/20 via-[#020205] to-[#020205]"></div>
+    </div>
+
+    <!-- Vertical Grid Lines -->
+    <div class="grid-lines animate-in duration-1000">
+        <div class="grid-line"></div>
+        <div class="grid-line"></div>
+        <div class="grid-line"></div>
+        <div class="grid-line"></div>
+        <div class="grid-line"></div>
+    </div>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="fixed inset-0 z-[60] bg-[#020205]/95 backdrop-blur-xl hidden opacity-0 transition-opacity duration-300 flex-col items-center justify-center space-y-8">
+        <button id="close-menu" class="absolute top-6 right-6 text-white/60 hover:text-white">
+            <iconify-icon icon="solar:close-circle-linear" width="32" height="32"></iconify-icon>
+        </button>
+        <a href="platform.html" class="text-2xl font-newsreader italic text-white hover:text-purple-400 transition-colors">Platform</a>
+        <a href="solutions.html" class="text-2xl font-newsreader italic text-white hover:text-purple-400 transition-colors">Solutions</a>
+        <a href="pricing.html" class="text-2xl font-newsreader italic text-white hover:text-purple-400 transition-colors">Pricing</a>
+        <a href="about.html" class="text-2xl font-newsreader italic text-white hover:text-purple-400 transition-colors">About</a>
+        <a href="https://portal.shadowtrace.ai" class="text-2xl font-newsreader italic text-white hover:text-purple-400 transition-colors">Portal</a>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="fixed top-0 left-0 right-0 z-50 border-b border-white/[0.06] bg-[#020205]/60 backdrop-blur-md animate-in">
+        <div class="flex h-20 max-w-7xl mr-auto ml-auto pr-6 pl-6 items-center justify-between">
+            <div class="flex group cursor-pointer gap-x-2 gap-y-2 items-center" onclick="window.location.href='index.html'" role="button">
+                <img src="assets/ShadowTraceLogo.svg" alt="ShadowTrace" style="height: 22.4px;">
+            </div>
+
+            <div class="hidden md:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
+                <a href="platform.html" class="hover:text-white transition-colors text-xs font-medium text-white/60">Platform</a>
+                <a href="solutions.html" class="hover:text-white transition-colors text-xs font-medium text-white/60">Solutions</a>
+                <a href="pricing.html" class="hover:text-white transition-colors text-xs font-medium text-white/60">Pricing</a>
+                <a href="resources.html" class="hover:text-white transition-colors text-xs font-medium text-white/60">Resources</a>
+            </div>
+
+            <div class="flex gap-4 gap-x-4 gap-y-4 items-center">
+                <a href="https://portal.shadowtrace.ai" class="hidden md:block hover:text-white transition-colors text-xs font-medium text-white/60">Portal</a>
+                <button class="hidden md:block group hover:bg-white/10 transition-all text-xs font-medium text-white bg-white/5 border-white/10 border rounded-full pt-2 pr-4 pb-2 pl-4 relative" onclick="window.location.href='contact.html'" role="button">
+                    <span class="z-10 relative">Request Demo</span>
+                    <div class="btn-beam"></div>
+                </button>
+                <button id="open-menu" class="md:hidden text-white/60 hover:text-white transition-colors">
+                    <iconify-icon icon="solar:hamburger-menu-linear" width="24" height="24"></iconify-icon>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="pt-32 pb-20 px-6 relative z-10">
+        <div class="max-w-3xl mx-auto">
+
+            <!-- Header -->
+            <div class="text-center mb-16 animate-in">
+                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/10 bg-white/5 mb-6">
+                    <iconify-icon icon="solar:cookie-linear" class="text-purple-400 text-sm"></iconify-icon>
+                    <span class="text-xs font-medium text-white/70">Legal</span>
+                </div>
+
+                <h1 class="text-4xl md:text-5xl font-newsreader font-medium italic text-white mb-6 tracking-tight leading-[1.1]">
+                    Cookie Policy
+                </h1>
+
+                <p class="text-slate-400 font-light">
+                    Last updated: January 2026
+                </p>
+            </div>
+
+            <!-- Content -->
+            <div class="legal-content animate-in delay-100">
+
+                <p>This Cookie Policy explains how ShadowTrace Ltd ("ShadowTrace", "we", "us", or "our") uses cookies and similar tracking technologies when you visit our website at shadowtrace.ai or use our platform.</p>
+
+                <h2>1. What Are Cookies?</h2>
+
+                <p>Cookies are small text files that are placed on your device (computer, tablet, or mobile phone) when you visit a website. Cookies are widely used to make websites work more efficiently, provide a better user experience, and give website owners information about how their sites are used.</p>
+
+                <p>Cookies can be "persistent" or "session" cookies. Persistent cookies remain on your device for a set period of time or until you delete them, while session cookies are deleted when you close your browser.</p>
+
+                <h2>2. How We Use Cookies</h2>
+
+                <p>We use cookies and similar technologies for several purposes:</p>
+
+                <h3>2.1 Strictly Necessary Cookies</h3>
+                <p>These cookies are essential for the website to function properly. They enable core features such as security, account authentication, and remembering your preferences. Without these cookies, services you have requested cannot be provided.</p>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Cookie Name</th>
+                            <th>Purpose</th>
+                            <th>Duration</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>shadowtrace-session</td>
+                            <td>Maintains your authenticated session</td>
+                            <td>Session</td>
+                        </tr>
+                        <tr>
+                            <td>shadowtrace-cookie-consent</td>
+                            <td>Stores your cookie consent preferences</td>
+                            <td>1 year</td>
+                        </tr>
+                        <tr>
+                            <td>csrf-token</td>
+                            <td>Security token to prevent cross-site request forgery</td>
+                            <td>Session</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>2.2 Performance and Analytics Cookies</h3>
+                <p>These cookies help us understand how visitors interact with our website by collecting and reporting information anonymously. This helps us improve our website and services.</p>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Cookie Name</th>
+                            <th>Purpose</th>
+                            <th>Duration</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>_ga</td>
+                            <td>Google Analytics - distinguishes users</td>
+                            <td>2 years</td>
+                        </tr>
+                        <tr>
+                            <td>_ga_[ID]</td>
+                            <td>Google Analytics - maintains session state</td>
+                            <td>2 years</td>
+                        </tr>
+                        <tr>
+                            <td>_gid</td>
+                            <td>Google Analytics - distinguishes users</td>
+                            <td>24 hours</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>2.3 Functional Cookies</h3>
+                <p>These cookies enable enhanced functionality and personalisation, such as remembering your preferences and settings. They may be set by us or by third-party providers whose services we have added to our pages.</p>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Cookie Name</th>
+                            <th>Purpose</th>
+                            <th>Duration</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>shadowtrace-preferences</td>
+                            <td>Stores user interface preferences</td>
+                            <td>1 year</td>
+                        </tr>
+                        <tr>
+                            <td>shadowtrace-locale</td>
+                            <td>Remembers your language/region preference</td>
+                            <td>1 year</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3>2.4 Marketing Cookies</h3>
+                <p>These cookies may be set through our site by our advertising partners. They may be used to build a profile of your interests and show you relevant advertisements on other sites. We currently do not use marketing cookies on our website.</p>
+
+                <h2>3. Third-Party Cookies</h2>
+
+                <p>Some cookies are placed by third-party services that appear on our pages. We do not control these third-party cookies. The third-party providers are responsible for their own cookie practices, and you should refer to their privacy policies for more information.</p>
+
+                <p>Third parties that may set cookies on our website include:</p>
+                <ul>
+                    <li><strong>Google Analytics:</strong> For website analytics and performance measurement</li>
+                    <li><strong>Intercom:</strong> For customer support chat functionality (if enabled)</li>
+                    <li><strong>HubSpot:</strong> For marketing automation and lead tracking (if enabled)</li>
+                </ul>
+
+                <h2>4. Similar Technologies</h2>
+
+                <p>In addition to cookies, we may use other similar technologies:</p>
+
+                <ul>
+                    <li><strong>Local Storage:</strong> We use browser local storage to store your preferences and consent choices. Unlike cookies, data stored in local storage does not expire automatically.</li>
+                    <li><strong>Session Storage:</strong> Similar to local storage but cleared when you close your browser tab.</li>
+                    <li><strong>Pixel Tags:</strong> Small transparent images that may be used to track user behaviour and measure the effectiveness of our communications.</li>
+                </ul>
+
+                <h2>5. Managing Your Cookie Preferences</h2>
+
+                <h3>5.1 Cookie Consent</h3>
+                <p>When you first visit our website, you will see a cookie consent banner. You can choose to accept or decline non-essential cookies. Your choice will be stored and remembered for future visits.</p>
+
+                <h3>5.2 Changing Your Preferences</h3>
+                <p>You can change your cookie preferences at any time by:</p>
+                <ul>
+                    <li>Clearing your browser's local storage and cookies, which will cause the consent banner to reappear on your next visit</li>
+                    <li>Using your browser's cookie settings (see below)</li>
+                </ul>
+
+                <h3>5.3 Browser Settings</h3>
+                <p>Most web browsers allow you to control cookies through their settings. You can usually find these settings in the "Options" or "Preferences" menu of your browser. The following links provide information on how to manage cookies in common browsers:</p>
+
+                <ul>
+                    <li><a href="https://support.google.com/chrome/answer/95647" target="_blank" rel="noopener">Google Chrome</a></li>
+                    <li><a href="https://support.mozilla.org/en-US/kb/cookies-information-websites-store-on-your-computer" target="_blank" rel="noopener">Mozilla Firefox</a></li>
+                    <li><a href="https://support.apple.com/en-gb/guide/safari/sfri11471/mac" target="_blank" rel="noopener">Safari</a></li>
+                    <li><a href="https://support.microsoft.com/en-us/microsoft-edge/delete-cookies-in-microsoft-edge-63947406-40ac-c3b8-57b9-2a946a29ae09" target="_blank" rel="noopener">Microsoft Edge</a></li>
+                </ul>
+
+                <p>Please note that if you choose to block or delete cookies, some features of our website may not function properly.</p>
+
+                <h3>5.4 Do Not Track</h3>
+                <p>Some browsers offer a "Do Not Track" feature that sends a signal to websites you visit indicating that you do not wish to be tracked. Our website does not currently respond to "Do Not Track" signals, as there is no industry standard for how to respond to such signals.</p>
+
+                <h2>6. Updates to This Policy</h2>
+
+                <p>We may update this Cookie Policy from time to time to reflect changes in our practices or for legal, operational, or regulatory reasons. When we make changes, we will update the "Last updated" date at the top of this page. We encourage you to review this policy periodically.</p>
+
+                <h2>7. Contact Us</h2>
+
+                <p>If you have any questions about our use of cookies or this Cookie Policy, please contact us:</p>
+
+                <p>
+                    <strong>ShadowTrace Ltd</strong><br>
+                    Email: <a href="mailto:privacy@shadowtrace.ai">privacy@shadowtrace.ai</a><br>
+                    Address: [Registered Address]
+                </p>
+
+                <p>For more information about how we handle your personal data, please see our <a href="privacy.html">Privacy Policy</a>.</p>
+
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/5 bg-[#020205] relative z-20">
+        <div class="max-w-7xl mx-auto pt-20 px-6 pb-12 relative">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20 relative z-10">
+                <div class="space-y-6">
+                    <div class="flex items-center gap-2 mb-6">
+                        <img src="assets/ShadowTraceLogo.svg" alt="ShadowTrace" style="height: 22.4px;">
+                    </div>
+                    <p class="text-sm text-slate-500 font-light leading-relaxed">
+                        Blockchain intelligence for financial crime investigators.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-sm text-white font-medium mb-6">Product</h4>
+                    <ul class="space-y-4 text-sm text-slate-400 font-light">
+                        <li><a href="platform.html" class="hover:text-purple-400 transition-colors">Platform Overview</a></li>
+                        <li><a href="solutions.html" class="hover:text-purple-400 transition-colors">Solutions by Sector</a></li>
+                        <li><a href="pricing.html" class="hover:text-purple-400 transition-colors">Pricing</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-sm text-white font-medium mb-6">Company</h4>
+                    <ul class="space-y-4 text-sm text-slate-400 font-light">
+                        <li><a href="about.html" class="hover:text-purple-400 transition-colors">About Us</a></li>
+                        <li><a href="resources.html" class="hover:text-purple-400 transition-colors">Resources</a></li>
+                        <li><a href="contact.html" class="hover:text-purple-400 transition-colors">Request Demo</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-sm text-white font-medium mb-6">Legal</h4>
+                    <ul class="space-y-4 text-sm text-slate-400 font-light">
+                        <li><a href="privacy.html" class="hover:text-purple-400 transition-colors">Privacy Policy</a></li>
+                        <li><a href="terms.html" class="hover:text-purple-400 transition-colors">Terms of Service</a></li>
+                        <li><a href="cookies.html" class="hover:text-purple-400 transition-colors">Cookie Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6 mt-16 pt-8 border-t border-white/5 text-[10px] text-slate-600 uppercase tracking-widest relative z-10">
+                <span>© 2026 ShadowTrace Ltd. All rights reserved.</span>
+                <div class="flex gap-6">
+                    <a href="privacy.html" class="hover:text-slate-400 transition-colors">Privacy Policy</a>
+                    <a href="terms.html" class="hover:text-slate-400 transition-colors">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cookie Consent Banner -->
+    <div id="cookie-banner" class="fixed bottom-0 left-0 right-0 z-[70] p-4 bg-[#0A0A0F]/95 backdrop-blur-md border-t border-white/10 hidden">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-3 text-sm text-slate-300 font-light">
+                <iconify-icon icon="solar:cookie-linear" class="text-purple-400 text-xl flex-shrink-0"></iconify-icon>
+                <p>We use cookies to enhance your experience. By continuing to visit this site you agree to our use of cookies. <a href="cookies.html" class="text-purple-400 hover:underline">Learn more</a></p>
+            </div>
+            <div class="flex gap-3 flex-shrink-0">
+                <button id="cookie-decline" class="px-4 py-2 text-xs font-medium text-white/60 hover:text-white transition-colors">Decline</button>
+                <button id="cookie-accept" class="px-4 py-2 bg-purple-600 hover:bg-purple-500 text-white text-xs font-medium rounded-full transition-colors">Accept</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mobile Menu Logic
+        const menuBtn = document.getElementById('open-menu');
+        const closeBtn = document.getElementById('close-menu');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        function toggleMenu() {
+            if (mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.remove('hidden');
+                mobileMenu.classList.add('flex');
+                setTimeout(() => mobileMenu.classList.remove('opacity-0'), 10);
+            } else {
+                mobileMenu.classList.add('opacity-0');
+                setTimeout(() => {
+                    mobileMenu.classList.remove('flex');
+                    mobileMenu.classList.add('hidden');
+                }, 300);
+            }
+        }
+
+        menuBtn.addEventListener('click', toggleMenu);
+        closeBtn.addEventListener('click', toggleMenu);
+
+        // Cookie Consent Logic
+        const cookieBanner = document.getElementById('cookie-banner');
+        const cookieAccept = document.getElementById('cookie-accept');
+        const cookieDecline = document.getElementById('cookie-decline');
+
+        function setCookieConsent(value) {
+            localStorage.setItem('shadowtrace-cookie-consent', value);
+            cookieBanner.classList.add('hidden');
+        }
+
+        function checkCookieConsent() {
+            const consent = localStorage.getItem('shadowtrace-cookie-consent');
+            if (!consent) {
+                cookieBanner.classList.remove('hidden');
+            }
+        }
+
+        cookieAccept.addEventListener('click', () => setCookieConsent('accepted'));
+        cookieDecline.addEventListener('click', () => setCookieConsent('declined'));
+
+        // Check consent on page load
+        checkCookieConsent();
+    </script>
+
+</body>
+</html>

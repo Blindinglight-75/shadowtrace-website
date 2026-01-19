@@ -297,9 +297,9 @@
 </head>
 <body class="antialiased selection:bg-purple-500/30">
 
-    <!-- Background (component) added by Aura -->
-    <div class="aura-background-component fixed top-0 w-full h-screen -z-10" data-alpha-mask="80" style="mask-image: linear-gradient(to bottom, transparent, black 0%, black 80%, transparent); -webkit-mask-image: linear-gradient(to bottom, transparent, black 0%, black 80%, transparent)">
-        <div class="aura-background-component top-0 w-full -z-10 absolute h-full">
+    <!-- Background Effect -->
+    <div class="background-component fixed top-0 w-full h-screen -z-10" data-alpha-mask="80" style="mask-image: linear-gradient(to bottom, transparent, black 0%, black 80%, transparent); -webkit-mask-image: linear-gradient(to bottom, transparent, black 0%, black 80%, transparent)">
+        <div class="background-component top-0 w-full -z-10 absolute h-full">
             <div data-us-project="8dH3WnYdxsenOolYGHB0" class="absolute w-full h-full left-0 top-0 -z-10"></div>
             <script type="text/javascript">
                 !function(){if(!window.UnicornStudio){window.UnicornStudio={isInitialized:!1};var i=document.createElement("script");i.src="https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v1.4.29/dist/unicornStudio.umd.js",i.onload=function(){window.UnicornStudio.isInitialized||(UnicornStudio.init(),window.UnicornStudio.isInitialized=!0)},(document.head || document.body).appendChild(i)}}();
@@ -1219,7 +1219,7 @@
                         <ul class="space-y-4 text-sm text-slate-400 font-light">
                             <li class=""><a href="privacy.html" class="hover:text-purple-400 transition-colors">Privacy Policy</a></li>
                             <li class=""><a href="terms.html" class="hover:text-purple-400 transition-colors">Terms of Service</a></li>
-                            <li class=""><a href="security.html" class="hover:text-purple-400 transition-colors">Security</a></li>
+                            <li class=""><a href="cookies.html" class="hover:text-purple-400 transition-colors">Cookie Policy</a></li>
                         </ul>
                     </div>
                 </div>
@@ -1490,6 +1490,45 @@
                 closeModal();
             }
         });
+    </script>
+
+    <!-- Cookie Consent Banner -->
+    <div id="cookie-banner" class="fixed bottom-0 left-0 right-0 z-[70] p-4 bg-[#0A0A0F]/95 backdrop-blur-md border-t border-white/10 hidden">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-3 text-sm text-slate-300 font-light">
+                <iconify-icon icon="solar:cookie-linear" class="text-purple-400 text-xl flex-shrink-0"></iconify-icon>
+                <p>We use cookies to enhance your experience. By continuing to visit this site you agree to our use of cookies. <a href="cookies.html" class="text-purple-400 hover:underline">Learn more</a></p>
+            </div>
+            <div class="flex gap-3 flex-shrink-0">
+                <button id="cookie-decline" class="px-4 py-2 text-xs font-medium text-white/60 hover:text-white transition-colors">Decline</button>
+                <button id="cookie-accept" class="px-4 py-2 bg-purple-600 hover:bg-purple-500 text-white text-xs font-medium rounded-full transition-colors">Accept</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Cookie Consent Logic
+        const cookieBanner = document.getElementById('cookie-banner');
+        const cookieAccept = document.getElementById('cookie-accept');
+        const cookieDecline = document.getElementById('cookie-decline');
+
+        function setCookieConsent(value) {
+            localStorage.setItem('shadowtrace-cookie-consent', value);
+            cookieBanner.classList.add('hidden');
+        }
+
+        function checkCookieConsent() {
+            const consent = localStorage.getItem('shadowtrace-cookie-consent');
+            if (!consent) {
+                cookieBanner.classList.remove('hidden');
+            }
+        }
+
+        cookieAccept.addEventListener('click', () => setCookieConsent('accepted'));
+        cookieDecline.addEventListener('click', () => setCookieConsent('declined'));
+
+        // Check consent on page load
+        checkCookieConsent();
     </script>
 
 </body>

@@ -1,93 +1,64 @@
-# Crypto Trading Platform Landing Page Template
+# ShadowTrace Website
 
-A high-converting dark-mode landing page template for a DeFi crypto trading platform, showcasing advanced trading infrastructure, mobile app, and institutional features.
+Marketing website for ShadowTrace - a blockchain intelligence and crypto-forensics platform.
 
-## Features
+## Overview
 
-- **Modern Dark Mode Design**: Sleek, futuristic dark theme with purple/indigo gradients
-- **Interactive Components**: Spotlight cards, animated charts, mobile menu
-- **Responsive Layout**: Fully responsive design that works on all devices
-- **D3.js Charts**: Interactive portfolio performance charts
-- **Smooth Animations**: CSS animations and transitions throughout
-- **Iconify Icons**: Beautiful icon system using Iconify
+ShadowTrace provides blockchain investigation tools for:
+- Law enforcement and investigative units
+- Financial crime / AML / compliance teams
+- Crypto exchanges and VASPs
+- Regulators and oversight bodies
 
-## Dependencies
+## Pages
 
-This template uses the following CDN resources (no npm install needed for basic usage):
+- `index.html` - Homepage
+- `platform.html` - Platform overview and features
+- `solutions.html` - Solutions by sector
+- `pricing.html` - Pricing plans
+- `resources.html` - Resources and documentation
+- `about.html` - About the company
+- `contact.html` - Contact and demo request
+- `login.html` - Portal login
+- `privacy.html` - Privacy Policy
+- `terms.html` - Terms of Service
+- `cookies.html` - Cookie Policy
 
-- **Tailwind CSS**: Utility-first CSS framework (via CDN)
-- **Iconify Icons**: Icon library (via CDN)
-- **D3.js**: Data visualization library (via CDN)
-- **Google Fonts**: Inter and Newsreader fonts
+## Tech Stack
 
-## Getting Started
+- **HTML5** - Static HTML pages
+- **Tailwind CSS** - Utility-first CSS framework (via CDN)
+- **Iconify Icons** - Icon library (via CDN)
+- **Google Fonts** - Inter and Newsreader fonts
 
-### Option 1: Simple Static Server (Recommended)
+## Development
+
+### Local Development
+
+Simply open any HTML file in your browser, or use a local server:
 
 ```bash
 npm install
 npm run dev
 ```
 
-This will start a local server at `http://localhost:3000` (or similar port).
+### Deployment
 
-### Option 2: Open Directly
+The site is deployed on Railway and accessible at https://shadowtrace.ai
 
-Simply open `index.html` in your browser. Note that some features may not work due to CORS restrictions when opening files directly.
+## Brand Guidelines
 
-### Option 3: Use Live Server (VS Code)
+- **Fonts**: Newsreader (headings, italic) + Inter (body text)
+- **Primary Colour**: Purple (#a855f7)
+- **Background**: Dark (#020205)
+- **Language**: UK English
+- **Tone**: Enterprise-credible, procurement-friendly, clear
 
-If you're using VS Code, install the "Live Server" extension and right-click on `index.html` → "Open with Live Server"
+## External Services
 
-## Project Structure
+- **Unicorn Studio** - Background visual effects on homepage
+- **Portal**: https://portal.shadowtrace.ai
 
-```
-.
-├── index.html          # Main HTML file with all content
-├── package.json        # npm configuration
-├── README.md          # This file
-└── assets/            # (Optional) For custom assets
-```
+## Licence
 
-## Customization
-
-### Colors
-
-The template uses a dark theme with purple/indigo accents. Main colors:
-- Background: `#020205`
-- Primary Purple: `#a855f7`
-- Text: White with various opacities
-
-### Fonts
-
-- **Sans-serif**: Inter (for body text)
-- **Serif**: Newsreader (for headings, italic style)
-
-### Sections
-
-The template includes:
-1. Hero section with CTAs
-2. Interface showcase (market list, chart, swap UI)
-3. Testimonials carousel
-4. Technology features
-5. Mobile app showcase
-6. Scale/stats section
-7. FAQ/Support section
-8. Footer
-
-## Browser Support
-
-- Chrome (latest)
-- Firefox (latest)
-- Safari (latest)
-- Edge (latest)
-
-## Notes
-
-- The template uses CDN resources, so an internet connection is required
-- The Unicorn Studio background component requires their service
-- All images use Unsplash placeholders - replace with your own images
-
-## License
-
-This template is from Aura.build. Please check their licensing terms for usage.
+Copyright 2026 ShadowTrace Ltd. All rights reserved.

@@ -378,7 +378,7 @@
                     <ul class="space-y-4 text-sm text-slate-400 font-light">
                         <li><a href="privacy.html" class="hover:text-purple-400 transition-colors">Privacy Policy</a></li>
                         <li><a href="terms.html" class="hover:text-purple-400 transition-colors">Terms of Service</a></li>
-                        <li><a href="security.html" class="hover:text-purple-400 transition-colors">Security</a></li>
+                        <li><a href="cookies.html" class="hover:text-purple-400 transition-colors">Cookie Policy</a></li>
                     </ul>
                 </div>
             </div>
@@ -391,6 +391,45 @@
             </div>
         </div>
     </footer>
+
+    <!-- Cookie Consent Banner -->
+    <div id="cookie-banner" class="fixed bottom-0 left-0 right-0 z-[70] p-4 bg-[#0A0A0F]/95 backdrop-blur-md border-t border-white/10 hidden">
+        <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-3 text-sm text-slate-300 font-light">
+                <iconify-icon icon="solar:cookie-linear" class="text-purple-400 text-xl flex-shrink-0"></iconify-icon>
+                <p>We use cookies to enhance your experience. By continuing to visit this site you agree to our use of cookies. <a href="cookies.html" class="text-purple-400 hover:underline">Learn more</a></p>
+            </div>
+            <div class="flex gap-3 flex-shrink-0">
+                <button id="cookie-decline" class="px-4 py-2 text-xs font-medium text-white/60 hover:text-white transition-colors">Decline</button>
+                <button id="cookie-accept" class="px-4 py-2 bg-purple-600 hover:bg-purple-500 text-white text-xs font-medium rounded-full transition-colors">Accept</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Cookie Consent Logic
+        const cookieBanner = document.getElementById('cookie-banner');
+        const cookieAccept = document.getElementById('cookie-accept');
+        const cookieDecline = document.getElementById('cookie-decline');
+
+        function setCookieConsent(value) {
+            localStorage.setItem('shadowtrace-cookie-consent', value);
+            cookieBanner.classList.add('hidden');
+        }
+
+        function checkCookieConsent() {
+            const consent = localStorage.getItem('shadowtrace-cookie-consent');
+            if (!consent) {
+                cookieBanner.classList.remove('hidden');
+            }
+        }
+
+        cookieAccept.addEventListener('click', () => setCookieConsent('accepted'));
+        cookieDecline.addEventListener('click', () => setCookieConsent('declined'));
+
+        // Check consent on page load
+        checkCookieConsent();
+    </script>
 
 </body>
 </html>

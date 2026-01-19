@@ -1,7 +1,7 @@
 {
-  "name": "crypto-trading-template",
+  "name": "shadowtrace-website",
   "version": "1.0.0",
-  "description": "Crypto Trading Platform Landing Page Template from Aura",
+  "description": "ShadowTrace marketing website - blockchain intelligence platform",
   "main": "index.html",
   "scripts": {
     "dev": "npx serve .",
@@ -9,14 +9,15 @@
     "build": "echo 'No build step required - static HTML site'"
   },
   "keywords": [
-    "crypto",
-    "trading",
-    "landing-page",
-    "template",
-    "aura"
+    "shadowtrace",
+    "blockchain",
+    "crypto-forensics",
+    "investigation",
+    "compliance"
   ],
-  "author": "",
-  "license": "MIT",
+  "author": "ShadowTrace Ltd",
+  "license": "UNLICENSED",
+  "private": true,
   "devDependencies": {
     "serve": "^14.2.1"
   },

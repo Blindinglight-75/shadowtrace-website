@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resources | ShadowTrace - Guides, Reports & Insights</title>
-    <meta name="description" content="Explore guides, research reports, and insights on blockchain investigations, crypto compliance, and financial crime prevention.">
-    <meta name="keywords" content="blockchain investigation guides, crypto compliance resources, AML cryptocurrency, financial crime prevention">
-    <link rel="canonical" href="https://shadowtrace.com/resources">
+    <title>Understanding Chain-Hopping: How Criminals Use Bridges to Obscure Funds | ShadowTrace</title>
+    <meta name="description" content="Cross-chain bridges have become a key tool for laundering cryptocurrency. Here's how investigators can trace funds across chains.">
+    <meta name="keywords" content="chain-hopping, cross-chain bridges, cryptocurrency laundering, blockchain investigation, crypto forensics">
+    <link rel="canonical" href="https://shadowtrace.ai/blog-chain-hopping">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -40,7 +40,6 @@
         .delay-100 { animation-delay: 100ms; }
         .delay-200 { animation-delay: 200ms; }
         .delay-300 { animation-delay: 300ms; }
-        .delay-400 { animation-delay: 400ms; }
 
         .grid-lines {
             position: absolute;
@@ -84,6 +83,65 @@
         @keyframes rotate {
             from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
+        }
+
+        /* Article content styling */
+        .article-content h2 {
+            font-family: var(--font-serif);
+            font-style: italic;
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: white;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        .article-content h3 {
+            font-size: 1.125rem;
+            font-weight: 500;
+            color: white;
+            margin-top: 2rem;
+            margin-bottom: 0.75rem;
+        }
+        .article-content p {
+            color: #94a3b8;
+            font-weight: 300;
+            line-height: 1.8;
+            margin-bottom: 1.25rem;
+        }
+        .article-content ul, .article-content ol {
+            color: #94a3b8;
+            font-weight: 300;
+            line-height: 1.8;
+            margin-bottom: 1.25rem;
+            padding-left: 1.5rem;
+        }
+        .article-content li {
+            margin-bottom: 0.5rem;
+        }
+        .article-content blockquote {
+            border-left: 2px solid #a855f7;
+            padding-left: 1.5rem;
+            margin: 1.5rem 0;
+            font-style: italic;
+            color: #cbd5e1;
+        }
+        .article-content a {
+            color: #a855f7;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+        .article-content a:hover {
+            color: #c084fc;
+        }
+        .article-content strong {
+            color: white;
+            font-weight: 500;
+        }
+        .article-content code {
+            background: rgba(255,255,255,0.1);
+            padding: 0.125rem 0.375rem;
+            border-radius: 0.25rem;
+            font-size: 0.875rem;
         }
 
         .resource-card {
@@ -137,152 +195,169 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="pt-32 pb-16 px-6 relative z-10">
-        <div class="max-w-4xl mx-auto text-center animate-in">
-            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/10 bg-white/5 mb-6">
-                <iconify-icon icon="solar:library-linear" class="text-purple-400 text-sm"></iconify-icon>
-                <span class="text-xs font-medium text-white/70">Resources</span>
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden fixed inset-0 z-[60] bg-[#020205]">
+        <div class="flex flex-col h-full">
+            <div class="flex h-20 px-6 items-center justify-between border-b border-white/[0.06]">
+                <div class="flex items-center gap-2">
+                    <img src="assets/ShadowTraceLogo.svg" alt="ShadowTrace" style="height: 22.4px;">
+                </div>
+                <button id="close-menu" class="text-white/60 hover:text-white transition-colors">
+                    <iconify-icon icon="solar:close-circle-linear" width="24" height="24"></iconify-icon>
+                </button>
+            </div>
+            <div class="flex flex-col p-6 gap-6">
+                <a href="platform.html" class="text-lg font-medium text-white/80 hover:text-white transition-colors">Platform</a>
+                <a href="solutions.html" class="text-lg font-medium text-white/80 hover:text-white transition-colors">Solutions</a>
+                <a href="pricing.html" class="text-lg font-medium text-white/80 hover:text-white transition-colors">Pricing</a>
+                <a href="resources.html" class="text-lg font-medium text-white hover:text-white transition-colors">Resources</a>
+                <hr class="border-white/10">
+                <a href="https://portal.shadowtrace.ai" class="text-lg font-medium text-white/80 hover:text-white transition-colors">Portal</a>
+                <a href="contact.html" class="text-lg font-medium text-purple-400 hover:text-purple-300 transition-colors">Request Demo</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Article Header -->
+    <section class="pt-32 pb-8 px-6 relative z-10">
+        <div class="max-w-3xl mx-auto animate-in">
+            <!-- Breadcrumb -->
+            <div class="flex items-center gap-2 text-sm text-slate-500 mb-6">
+                <a href="resources.html" class="hover:text-purple-400 transition-colors">Resources</a>
+                <iconify-icon icon="solar:arrow-right-linear" class="text-xs"></iconify-icon>
+                <span class="text-slate-400">Blog</span>
             </div>
 
-            <h1 class="text-4xl md:text-5xl lg:text-6xl font-newsreader font-medium italic text-white mb-6 tracking-tight leading-[1.1]">
-                Guides, reports & <span class="text-purple-400">insights</span>
+            <!-- Category & Reading Time -->
+            <div class="flex items-center gap-3 mb-4">
+                <span class="px-2 py-1 rounded border border-purple-500/20 bg-purple-500/10 text-[10px] font-medium text-purple-400">
+                    INVESTIGATIONS
+                </span>
+                <span class="text-[10px] text-slate-600">8 min read</span>
+            </div>
+
+            <!-- Title -->
+            <h1 class="text-3xl md:text-4xl lg:text-5xl font-newsreader font-medium italic text-white mb-6 tracking-tight leading-[1.15]">
+                Understanding Chain-Hopping: How Criminals Use Bridges to Obscure Funds
             </h1>
 
-            <p class="text-lg text-slate-400 font-light leading-relaxed max-w-2xl mx-auto">
-                Practical resources to help you stay ahead of blockchain-enabled financial crime.
+            <!-- Subtitle -->
+            <p class="text-lg text-slate-400 font-light leading-relaxed mb-8">
+                Cross-chain bridges have become a key tool for laundering cryptocurrency. Here's how investigators can trace funds across chains.
             </p>
+
+            <!-- Author & Date -->
+            <div class="flex items-center gap-4 pb-8 border-b border-white/10">
+                <div class="w-10 h-10 rounded-full bg-gradient-to-br from-purple-500/30 to-indigo-500/30 flex items-center justify-center">
+                    <iconify-icon icon="solar:user-rounded-bold" class="text-purple-400"></iconify-icon>
+                </div>
+                <div>
+                    <div class="text-sm font-medium text-white">ShadowTrace Research</div>
+                    <div class="text-xs text-slate-500">Published 15 January 2026</div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Featured Downloads Section -->
-    <section class="py-16 px-6 relative z-10">
-        <div class="max-w-7xl mx-auto animate-in delay-100">
-            <div class="flex items-center justify-between mb-8">
-                <h2 class="text-2xl font-newsreader font-medium italic text-white">Featured Downloads</h2>
-                <span class="text-[10px] uppercase tracking-widest text-slate-600">Free Resources</span>
+    <!-- Featured Image -->
+    <section class="pb-8 px-6 relative z-10">
+        <div class="max-w-4xl mx-auto animate-in delay-100">
+            <div class="aspect-[21/9] bg-gradient-to-br from-purple-500/20 to-indigo-500/20 rounded-2xl flex items-center justify-center border border-white/5">
+                <iconify-icon icon="solar:graph-new-bold-duotone" class="text-purple-400 text-6xl opacity-50"></iconify-icon>
             </div>
+        </div>
+    </section>
+
+    <!-- Article Content -->
+    <section class="py-8 px-6 relative z-10">
+        <div class="max-w-3xl mx-auto animate-in delay-200">
+            <div class="article-content">
+                <!-- PLACEHOLDER: Replace with actual article content -->
+
+                <p><strong>Introduction paragraph goes here.</strong> This section should provide an overview of the topic and why it matters to investigators and compliance professionals.</p>
+
+                <h2>What is Chain-Hopping?</h2>
+
+                <p>Placeholder content for this section. Explain what chain-hopping means in the context of cryptocurrency laundering.</p>
+
+                <h2>How Cross-Chain Bridges Work</h2>
+
+                <p>Placeholder content explaining the technical basics of cross-chain bridges and why they're attractive to criminals.</p>
+
+                <h3>Popular Bridge Protocols</h3>
+
+                <ul>
+                    <li>Bridge protocol 1</li>
+                    <li>Bridge protocol 2</li>
+                    <li>Bridge protocol 3</li>
+                </ul>
+
+                <h2>Case Study: Tracing Funds Across Chains</h2>
+
+                <p>Placeholder for a real-world example or anonymised case study showing how investigators traced funds that moved across multiple blockchains.</p>
+
+                <blockquote>
+                    "Pull quote or key insight from the article goes here."
+                </blockquote>
+
+                <h2>Investigation Techniques</h2>
+
+                <p>Placeholder content describing techniques investigators can use to trace cross-chain transactions.</p>
+
+                <h3>Manual Tracing Methods</h3>
+
+                <p>Description of manual methods.</p>
+
+                <h3>Automated Tools</h3>
+
+                <p>Description of how tools like ShadowTrace can help automate cross-chain tracing.</p>
+
+                <h2>Key Takeaways</h2>
+
+                <ol>
+                    <li>Key takeaway 1</li>
+                    <li>Key takeaway 2</li>
+                    <li>Key takeaway 3</li>
+                </ol>
+
+                <h2>Conclusion</h2>
+
+                <p>Concluding paragraph summarising the key points and providing a call to action or next steps for readers.</p>
+
+                <!-- END PLACEHOLDER -->
+            </div>
+
+            <!-- Tags -->
+            <div class="flex flex-wrap gap-2 mt-12 pt-8 border-t border-white/10">
+                <span class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs text-slate-400">Chain-Hopping</span>
+                <span class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs text-slate-400">Cross-Chain</span>
+                <span class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs text-slate-400">Bridges</span>
+                <span class="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs text-slate-400">Investigation</span>
+            </div>
+
+            <!-- Share -->
+            <div class="flex items-center gap-4 mt-8">
+                <span class="text-xs text-slate-500">Share this article:</span>
+                <a href="#" class="text-slate-400 hover:text-purple-400 transition-colors">
+                    <iconify-icon icon="mdi:linkedin" width="20" height="20"></iconify-icon>
+                </a>
+                <a href="#" class="text-slate-400 hover:text-purple-400 transition-colors">
+                    <iconify-icon icon="mdi:twitter" width="20" height="20"></iconify-icon>
+                </a>
+                <a href="#" class="text-slate-400 hover:text-purple-400 transition-colors">
+                    <iconify-icon icon="solar:copy-linear" width="20" height="20"></iconify-icon>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Related Articles -->
+    <section class="py-16 px-6 relative z-10">
+        <div class="max-w-7xl mx-auto animate-in delay-300">
+            <h2 class="text-2xl font-newsreader font-medium italic text-white mb-8">Related Articles</h2>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- Guide 1 -->
-                <div class="resource-card bg-gradient-to-br from-purple-500/10 to-indigo-500/10 border border-white/5 rounded-2xl p-6 hover:border-purple-500/20">
-                    <div class="flex items-start justify-between mb-4">
-                        <div class="px-2 py-1 rounded border border-purple-500/20 bg-purple-500/10 text-[10px] font-medium text-purple-400">
-                            GUIDE
-                        </div>
-                        <iconify-icon icon="solar:download-minimalistic-linear" class="text-slate-500 text-xl"></iconify-icon>
-                    </div>
-                    <h3 class="text-lg font-medium text-white mb-2">The Investigator's Guide to Blockchain Tracing</h3>
-                    <p class="text-sm text-slate-400 font-light mb-4">
-                        A practical introduction to tracing cryptocurrency transactions, from basic concepts to advanced techniques. Includes worked examples and investigation workflows.
-                    </p>
-                    <div class="flex items-center justify-between">
-                        <span class="text-[10px] text-slate-600">PDF, 24 pages</span>
-                        <a href="#" class="text-sm text-purple-400 hover:text-purple-300 transition-colors flex items-center gap-1">
-                            Download
-                            <iconify-icon icon="solar:arrow-right-linear"></iconify-icon>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Guide 2 -->
-                <div class="resource-card bg-gradient-to-br from-emerald-500/10 to-teal-500/10 border border-white/5 rounded-2xl p-6 hover:border-emerald-500/20">
-                    <div class="flex items-start justify-between mb-4">
-                        <div class="px-2 py-1 rounded border border-emerald-500/20 bg-emerald-500/10 text-[10px] font-medium text-emerald-400">
-                            CHECKLIST
-                        </div>
-                        <iconify-icon icon="solar:download-minimalistic-linear" class="text-slate-500 text-xl"></iconify-icon>
-                    </div>
-                    <h3 class="text-lg font-medium text-white mb-2">Crypto AML Compliance Checklist</h3>
-                    <p class="text-sm text-slate-400 font-light mb-4">
-                        A comprehensive checklist for compliance teams to assess their cryptocurrency risk management framework against regulatory expectations.
-                    </p>
-                    <div class="flex items-center justify-between">
-                        <span class="text-[10px] text-slate-600">PDF, 8 pages</span>
-                        <a href="#" class="text-sm text-purple-400 hover:text-purple-300 transition-colors flex items-center gap-1">
-                            Download
-                            <iconify-icon icon="solar:arrow-right-linear"></iconify-icon>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Report 1 -->
-                <div class="resource-card bg-gradient-to-br from-amber-500/10 to-orange-500/10 border border-white/5 rounded-2xl p-6 hover:border-amber-500/20">
-                    <div class="flex items-start justify-between mb-4">
-                        <div class="px-2 py-1 rounded border border-amber-500/20 bg-amber-500/10 text-[10px] font-medium text-amber-400">
-                            REPORT
-                        </div>
-                        <iconify-icon icon="solar:download-minimalistic-linear" class="text-slate-500 text-xl"></iconify-icon>
-                    </div>
-                    <h3 class="text-lg font-medium text-white mb-2">Ransomware Payment Trends 2025</h3>
-                    <p class="text-sm text-slate-400 font-light mb-4">
-                        Analysis of ransomware payment flows, preferred cryptocurrencies, and common laundering techniques observed over the past year.
-                    </p>
-                    <div class="flex items-center justify-between">
-                        <span class="text-[10px] text-slate-600">PDF, 18 pages</span>
-                        <a href="#" class="text-sm text-purple-400 hover:text-purple-300 transition-colors flex items-center gap-1">
-                            Download
-                            <iconify-icon icon="solar:arrow-right-linear"></iconify-icon>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Template -->
-                <div class="resource-card bg-gradient-to-br from-blue-500/10 to-cyan-500/10 border border-white/5 rounded-2xl p-6 hover:border-blue-500/20">
-                    <div class="flex items-start justify-between mb-4">
-                        <div class="px-2 py-1 rounded border border-blue-500/20 bg-blue-500/10 text-[10px] font-medium text-blue-400">
-                            TEMPLATE
-                        </div>
-                        <iconify-icon icon="solar:download-minimalistic-linear" class="text-slate-500 text-xl"></iconify-icon>
-                    </div>
-                    <h3 class="text-lg font-medium text-white mb-2">SAR Documentation Template</h3>
-                    <p class="text-sm text-slate-400 font-light mb-4">
-                        A template for documenting cryptocurrency-related suspicious activity, including blockchain-specific fields and evidence requirements.
-                    </p>
-                    <div class="flex items-center justify-between">
-                        <span class="text-[10px] text-slate-600">DOCX, Editable</span>
-                        <a href="#" class="text-sm text-purple-400 hover:text-purple-300 transition-colors flex items-center gap-1">
-                            Download
-                            <iconify-icon icon="solar:arrow-right-linear"></iconify-icon>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Blog Section -->
-    <section class="py-16 px-6 relative z-10">
-        <div class="max-w-7xl mx-auto animate-in delay-200">
-            <div class="flex items-center justify-between mb-8">
-                <h2 class="text-2xl font-newsreader font-medium italic text-white">Latest Insights</h2>
-                <span class="text-[10px] uppercase tracking-widest text-slate-600">From Our Blog</span>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Blog Post 1 -->
-                <article class="resource-card bg-white/[0.02] border border-white/5 rounded-xl overflow-hidden hover:border-white/10">
-                    <div class="aspect-video bg-gradient-to-br from-purple-500/20 to-indigo-500/20 flex items-center justify-center">
-                        <iconify-icon icon="solar:graph-new-bold-duotone" class="text-purple-400 text-4xl opacity-50"></iconify-icon>
-                    </div>
-                    <div class="p-5">
-                        <div class="flex items-center gap-2 mb-3">
-                            <span class="text-[10px] text-purple-400 font-medium">INVESTIGATIONS</span>
-                            <span class="text-slate-700">|</span>
-                            <span class="text-[10px] text-slate-600">8 min read</span>
-                        </div>
-                        <h3 class="text-sm font-medium text-white mb-2 line-clamp-2">Understanding Chain-Hopping: How Criminals Use Bridges to Obscure Funds</h3>
-                        <p class="text-xs text-slate-500 line-clamp-2 mb-4">
-                            Cross-chain bridges have become a key tool for laundering cryptocurrency. Here's how investigators can trace funds across chains.
-                        </p>
-                        <a href="blog-chain-hopping.html" class="text-xs text-purple-400 hover:text-purple-300 transition-colors flex items-center gap-1">
-                            Read more
-                            <iconify-icon icon="solar:arrow-right-linear"></iconify-icon>
-                        </a>
-                    </div>
-                </article>
-
-                <!-- Blog Post 2 -->
+                <!-- Related Post 1 -->
                 <article class="resource-card bg-white/[0.02] border border-white/5 rounded-xl overflow-hidden hover:border-white/10">
                     <div class="aspect-video bg-gradient-to-br from-emerald-500/20 to-teal-500/20 flex items-center justify-center">
                         <iconify-icon icon="solar:shield-check-bold-duotone" class="text-emerald-400 text-4xl opacity-50"></iconify-icon>
@@ -304,7 +379,7 @@
                     </div>
                 </article>
 
-                <!-- Blog Post 3 -->
+                <!-- Related Post 2 -->
                 <article class="resource-card bg-white/[0.02] border border-white/5 rounded-xl overflow-hidden hover:border-white/10">
                     <div class="aspect-video bg-gradient-to-br from-amber-500/20 to-orange-500/20 flex items-center justify-center">
                         <iconify-icon icon="solar:danger-triangle-bold-duotone" class="text-amber-400 text-4xl opacity-50"></iconify-icon>
@@ -326,84 +401,24 @@
                     </div>
                 </article>
             </div>
-
-            <div class="text-center mt-10">
-                <a href="#" class="inline-flex items-center gap-2 px-5 py-2.5 border border-white/10 rounded-full text-sm font-medium text-white/80 hover:bg-white/5 transition-colors">
-                    View All Posts
-                    <iconify-icon icon="solar:arrow-right-linear"></iconify-icon>
-                </a>
-            </div>
         </div>
     </section>
 
-    <!-- Newsletter Section -->
+    <!-- CTA Section -->
     <section class="py-16 px-6 relative z-10">
-        <div class="max-w-3xl mx-auto animate-in delay-300">
+        <div class="max-w-3xl mx-auto">
             <div class="bg-gradient-to-br from-purple-500/10 to-indigo-500/10 border border-white/5 rounded-2xl p-8 md:p-12 text-center">
-                <iconify-icon icon="solar:letter-bold-duotone" class="text-purple-400 text-4xl mb-4"></iconify-icon>
+                <iconify-icon icon="solar:magnifer-bold-duotone" class="text-purple-400 text-4xl mb-4"></iconify-icon>
                 <h2 class="text-2xl md:text-3xl font-newsreader font-medium italic text-white mb-3">
-                    Stay informed
+                    Ready to trace cross-chain transactions?
                 </h2>
                 <p class="text-slate-400 font-light mb-6 max-w-md mx-auto">
-                    Get monthly insights on blockchain investigations, compliance updates, and product news.
+                    ShadowTrace automatically traces funds across 40+ blockchains. See how it works with a personalised demo.
                 </p>
-                <form class="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-                    <input type="email" placeholder="Enter your work email" class="flex-1 bg-[#0a0a0c] border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-600 focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/20 transition-all">
-                    <button type="submit" class="px-6 py-3 bg-white text-black rounded-xl text-sm font-semibold hover:bg-slate-200 transition-colors whitespace-nowrap">
-                        Subscribe
-                    </button>
-                </form>
-                <p class="text-[10px] text-slate-600 mt-4">
-                    No spam. Unsubscribe anytime.
-                </p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Webinars Section -->
-    <section class="py-16 px-6 relative z-10">
-        <div class="max-w-7xl mx-auto animate-in delay-400">
-            <div class="flex items-center justify-between mb-8">
-                <h2 class="text-2xl font-newsreader font-medium italic text-white">Upcoming Webinars</h2>
-                <span class="text-[10px] uppercase tracking-widest text-slate-600">Live Events</span>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <!-- Webinar 1 -->
-                <div class="bg-white/[0.02] border border-white/5 rounded-xl p-6 hover:border-white/10 transition-colors">
-                    <div class="flex items-start gap-4">
-                        <div class="bg-purple-500/10 rounded-lg p-3 text-center min-w-[60px]">
-                            <div class="text-lg font-medium text-purple-400">15</div>
-                            <div class="text-[10px] text-slate-500 uppercase">Feb</div>
-                        </div>
-                        <div class="flex-1">
-                            <h3 class="text-sm font-medium text-white mb-1">Introduction to Blockchain Investigation</h3>
-                            <p class="text-xs text-slate-500 mb-3">A beginner-friendly overview of blockchain tracing techniques for law enforcement and compliance professionals.</p>
-                            <div class="flex items-center gap-4">
-                                <span class="text-[10px] text-slate-600">2:00 PM GMT</span>
-                                <a href="#" class="text-xs text-purple-400 hover:text-purple-300 transition-colors">Register</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Webinar 2 -->
-                <div class="bg-white/[0.02] border border-white/5 rounded-xl p-6 hover:border-white/10 transition-colors">
-                    <div class="flex items-start gap-4">
-                        <div class="bg-purple-500/10 rounded-lg p-3 text-center min-w-[60px]">
-                            <div class="text-lg font-medium text-purple-400">28</div>
-                            <div class="text-[10px] text-slate-500 uppercase">Feb</div>
-                        </div>
-                        <div class="flex-1">
-                            <h3 class="text-sm font-medium text-white mb-1">Advanced Entity Resolution Techniques</h3>
-                            <p class="text-xs text-slate-500 mb-3">Learn how to link blockchain addresses to real-world entities using clustering and attribution methods.</p>
-                            <div class="flex items-center gap-4">
-                                <span class="text-[10px] text-slate-600">3:00 PM GMT</span>
-                                <a href="#" class="text-xs text-purple-400 hover:text-purple-300 transition-colors">Register</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <a href="contact.html" class="inline-flex items-center gap-2 px-6 py-3 bg-white text-black rounded-xl text-sm font-semibold hover:bg-slate-200 transition-colors">
+                    Request Demo
+                    <iconify-icon icon="solar:arrow-right-linear"></iconify-icon>
+                </a>
             </div>
         </div>
     </section>
@@ -470,6 +485,23 @@
     </div>
 
     <script>
+        // Mobile menu toggle
+        const openMenuBtn = document.getElementById('open-menu');
+        const closeMenuBtn = document.getElementById('close-menu');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        if (openMenuBtn && closeMenuBtn && mobileMenu) {
+            openMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+            });
+
+            closeMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                document.body.style.overflow = '';
+            });
+        }
+
         // Cookie Consent Logic
         const cookieBanner = document.getElementById('cookie-banner');
         const cookieAccept = document.getElementById('cookie-accept');
