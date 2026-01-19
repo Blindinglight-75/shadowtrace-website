@@ -244,16 +244,16 @@
 
             <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-purple-500/20 bg-purple-500/5 mb-8 animate-in delay-100 hover:border-purple-500/40 transition-colors cursor-pointer">
                 <span class="w-1.5 h-1.5 rounded-full bg-purple-400 animate-pulse"></span>
-                <span class="text-[10px] font-medium text-purple-200 tracking-wide uppercase">Investigation-First Design</span>
+                <span class="text-[10px] font-medium text-purple-200 tracking-wide uppercase">Blockchain Intelligence Platform</span>
             </div>
 
             <h1 class="text-5xl md:text-7xl font-newsreader font-medium italic text-white mb-6 leading-[1.1] animate-in delay-200 max-w-4xl tracking-tight">
-                One workspace for <br>
-                <span class="not-italic text-transparent bg-clip-text bg-gradient-to-r from-purple-300 via-white to-indigo-300">end-to-end crypto investigations.</span>
+                Trace. Analyse. <br>
+                <span class="not-italic text-transparent bg-clip-text bg-gradient-to-r from-purple-300 via-white to-indigo-300">Document.</span>
             </h1>
 
-            <p class="text-lg text-slate-400 font-light max-w-xl mx-auto mb-10 leading-relaxed animate-in delay-300">
-                ShadowTrace combines graph-based tracing, real-time monitoring, entity resolution, and evidence-grade reporting in a single platform designed for the rigour of financial crime work.
+            <p class="text-lg text-slate-400 font-light max-w-2xl mx-auto mb-10 leading-relaxed animate-in delay-300">
+                Crypto investigations demand precision—tracing complex fund flows, linking entities across chains, and producing evidence that holds up to scrutiny. ShadowTrace brings graph-based tracing, real-time monitoring, and court-ready reporting into a single workspace built for law enforcement, compliance teams, exchanges, and regulators.
             </p>
 
             <div class="flex flex-col sm:flex-row items-center justify-center gap-6 animate-in delay-400">
@@ -274,7 +274,7 @@
 
         <!-- SECTION 02: INVESTIGATION WORKFLOW -->
         <div class="border-white/5 border-t pt-24 pb-32 relative z-10 w-full max-w-7xl mx-auto">
-            <div class="text-[10px] animate-in delay-200 lg:left-0 lg:top-16 md:top-16 text-white/20 tracking-widest font-mono absolute top-16 left-6">02 // WORKFLOW</div>
+            <div class="text-[10px] animate-in delay-200 lg:left-0 lg:top-16 md:top-16 text-white/20 tracking-widest font-mono absolute top-16 left-6">02 // INVESTIGATION WORKFLOW</div>
 
             <div class="flex flex-col lg:flex-row gap-8 lg:gap-24 relative">
 
@@ -285,14 +285,14 @@
 
                         <!-- Visual Container -->
                         <div class="relative w-full h-full flex items-center justify-center">
-                            <!-- Visual 1: Ingest -->
+                            <!-- Visual 1: Discover -->
                             <div id="visual-1" class="step-visual active flex-col gap-6">
                                 <div class="w-24 h-24 rounded-2xl bg-gradient-to-br from-purple-500/20 to-blue-500/20 border border-white/20 flex items-center justify-center shadow-[0_0_50px_-10px_rgba(168,85,247,0.3)]">
-                                    <iconify-icon icon="solar:database-linear" class="text-5xl text-white"></iconify-icon>
+                                    <iconify-icon icon="solar:radar-2-linear" class="text-5xl text-white"></iconify-icon>
                                 </div>
                                 <div class="text-center">
-                                    <div class="text-sm font-mono text-white mb-1">Data Ingestion</div>
-                                    <div class="text-[10px] text-slate-500 font-mono">Multi-chain indexing</div>
+                                    <div class="text-sm font-mono text-white mb-1">Discover & Triage</div>
+                                    <div class="text-[10px] text-slate-500 font-mono">Alert queue prioritisation</div>
                                 </div>
                             </div>
 
@@ -346,7 +346,7 @@
                 <!-- Right: Scrolling Content -->
                 <div class="w-full lg:w-1/2 flex flex-col pt-12 pb-32">
                     <h2 class="text-4xl md:text-5xl font-newsreader font-medium italic text-white mb-16 tracking-tight sticky top-24 lg:static bg-[#020205]/90 lg:bg-transparent py-4 z-20 backdrop-blur-md">
-                        Investigation workflow
+                        Four steps to a defensible case
                     </h2>
 
                     <div class="relative border-l border-white/10 ml-6 pl-12 space-y-48">
@@ -354,9 +354,12 @@
                         <!-- Step 1 -->
                         <div class="step-content active relative" data-step="1">
                             <span class="absolute -left-[54px] top-1 w-3 h-3 rounded-full bg-purple-500 ring-4 ring-[#020205]"></span>
-                            <h3 class="text-xl font-medium text-white mb-4">1. Ingest &amp; Index</h3>
-                            <p class="text-slate-400 font-light leading-relaxed">
-                                Start with a wallet address, transaction hash, or entity name. ShadowTrace instantly retrieves on-chain data from our indexed database covering Bitcoin, Ethereum, and major EVM chains—with historical depth back to genesis blocks.
+                            <h3 class="text-xl font-medium text-white mb-4">1. Discover &amp; Triage</h3>
+                            <p class="text-slate-400 font-light leading-relaxed mb-4">
+                                Start with a wallet address, transaction hash, alert queue, or SAR reference. ShadowTrace pulls data instantly from our multi-chain index—Bitcoin, Ethereum, Tron, and major EVM networks—with full historical depth. Set up watchlists and receive alerts when addresses of interest transact.
+                            </p>
+                            <p class="text-xs text-purple-300 font-mono">
+                                <span class="text-white/40">Result:</span> Prioritised queue of addresses requiring investigation
                             </p>
                         </div>
 
@@ -364,8 +367,11 @@
                         <div class="step-content relative" data-step="2">
                             <span class="absolute -left-[54px] top-1 w-3 h-3 rounded-full bg-white/20 ring-4 ring-[#020205] transition-colors duration-500"></span>
                             <h3 class="text-xl font-medium text-white mb-4">2. Investigate &amp; Trace</h3>
-                            <p class="text-slate-400 font-light leading-relaxed">
-                                Use our interactive graph canvas to expand transaction paths, cluster related wallets, and identify fund flows. Annotate entities, tag addresses of interest, and collaborate with team members in shared case workspaces.
+                            <p class="text-slate-400 font-light leading-relaxed mb-4">
+                                Use our interactive graph canvas to expand transaction paths, cluster related wallets, and map fund flows across chains. Annotate entities, tag addresses, and collaborate with team members in shared case workspaces. Every action is logged for audit compliance.
+                            </p>
+                            <p class="text-xs text-purple-300 font-mono">
+                                <span class="text-white/40">Result:</span> Complete fund-flow map with entity attributions
                             </p>
                         </div>
 
@@ -373,8 +379,11 @@
                         <div class="step-content relative" data-step="3">
                             <span class="absolute -left-[54px] top-1 w-3 h-3 rounded-full bg-white/20 ring-4 ring-[#020205] transition-colors duration-500"></span>
                             <h3 class="text-xl font-medium text-white mb-4">3. Score &amp; Explain</h3>
-                            <p class="text-slate-400 font-light leading-relaxed">
-                                Every address and transaction receives an explainable risk score. Drill down to see exactly which factors contributed—direct exposure, behavioural patterns, counterparty risk—so you can justify findings to stakeholders.
+                            <p class="text-slate-400 font-light leading-relaxed mb-4">
+                                Every address and transaction receives an explainable risk score. Drill into contributing factors—direct exposure, behavioural patterns, counterparty risk, mixer usage—so you can justify findings to prosecutors, compliance committees, or regulators.
+                            </p>
+                            <p class="text-xs text-purple-300 font-mono">
+                                <span class="text-white/40">Result:</span> Defensible risk assessment with audit trail
                             </p>
                         </div>
 
@@ -382,8 +391,11 @@
                          <div class="step-content relative" data-step="4">
                             <span class="absolute -left-[54px] top-1 w-3 h-3 rounded-full bg-white/20 ring-4 ring-[#020205] transition-colors duration-500"></span>
                             <h3 class="text-xl font-medium text-white mb-4">4. Report &amp; Export</h3>
-                            <p class="text-slate-400 font-light leading-relaxed">
-                                Generate evidence-grade PDF reports with full methodology documentation, timestamped screenshots, and reproducible audit trails. Export data to CSV or JSON for integration with case management systems.
+                            <p class="text-slate-400 font-light leading-relaxed mb-4">
+                                Generate evidence-grade PDF reports with methodology documentation, timestamped screenshots, and reproducible audit trails. Export data to CSV or JSON for case management systems, or use our API to push findings directly to your SIEM or GRC platform.
+                            </p>
+                            <p class="text-xs text-purple-300 font-mono">
+                                <span class="text-white/40">Result:</span> Court-ready documentation package
                             </p>
                         </div>
 
@@ -393,103 +405,214 @@
         </div>
 
         <!-- SECTION 03: CORE CAPABILITIES -->
-        <div class="border-white/5 border-t pt-24 relative z-10 w-full max-w-7xl mx-auto">
+        <div class="border-white/5 border-t pt-24 pb-16 relative z-10 w-full max-w-7xl mx-auto">
              <div class="text-[10px] animate-in delay-200 lg:left-0 text-white/20 tracking-widest font-mono absolute top-16 left-6">03 // CAPABILITIES</div>
 
              <div class="mb-16 text-center animate-in delay-300">
-                <h2 class="text-3xl font-newsreader font-medium italic text-white">Core platform capabilities</h2>
-                <p class="text-slate-400 text-sm mt-2">Tools built for the demands of regulated investigations.</p>
+                <h2 class="text-3xl md:text-4xl font-newsreader font-medium italic text-white">Everything you need, nothing you don't</h2>
+                <p class="text-slate-400 text-sm mt-4 max-w-2xl mx-auto">Four integrated capability areas designed for the rigour of regulated investigations—from initial triage through to court-ready documentation.</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="p-8 rounded-2xl bg-white/[0.02] border border-white/10 hover:border-white/20 transition-colors">
-                    <div class="w-10 h-10 rounded-full bg-purple-500/10 flex items-center justify-center text-purple-400 mb-6">
-                        <iconify-icon icon="solar:graph-new-linear" class="text-xl"></iconify-icon>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Category 1: Investigation & Link Analysis -->
+                <div class="p-8 rounded-2xl bg-white/[0.02] border border-white/10 hover:border-purple-500/30 transition-colors">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-12 h-12 rounded-xl bg-purple-500/10 flex items-center justify-center text-purple-400">
+                            <iconify-icon icon="solar:graph-new-linear" class="text-2xl"></iconify-icon>
+                        </div>
+                        <h3 class="text-xl font-medium text-white">Investigation &amp; Link Analysis</h3>
                     </div>
-                    <h3 class="text-lg font-medium text-white mb-3">Graph Investigation</h3>
                     <p class="text-sm text-slate-400 font-light leading-relaxed mb-6">
-                        Visualise transaction flows with an interactive graph canvas. Expand paths, cluster wallets, and trace funds across multiple hops and chains in a single view.
+                        Trace funds across chains with an interactive graph canvas. Expand transaction paths, cluster related wallets, and visualise complex fund flows in a single view. Entity resolution links addresses to known exchanges, services, and flagged actors.
                     </p>
-                    <a href="solutions.html" class="text-xs text-white border-b border-white/20 hover:border-white pb-0.5 transition-colors">Learn more</a>
+                    <ul class="space-y-3 text-sm text-slate-300">
+                        <li class="flex items-center gap-3">
+                            <iconify-icon icon="solar:check-circle-linear" class="text-purple-400"></iconify-icon>
+                            Multi-chain transaction graph
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <iconify-icon icon="solar:check-circle-linear" class="text-purple-400"></iconify-icon>
+                            Automated wallet clustering
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <iconify-icon icon="solar:check-circle-linear" class="text-purple-400"></iconify-icon>
+                            Entity attribution database
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <iconify-icon icon="solar:check-circle-linear" class="text-purple-400"></iconify-icon>
+                            Cross-chain fund tracing
+                        </li>
+                    </ul>
                 </div>
 
-                <div class="p-8 rounded-2xl bg-white/[0.02] border border-white/10 hover:border-white/20 transition-colors">
-                    <div class="w-10 h-10 rounded-full bg-blue-500/10 flex items-center justify-center text-blue-400 mb-6">
-                        <iconify-icon icon="solar:bell-bing-linear" class="text-xl"></iconify-icon>
+                <!-- Category 2: Monitoring & Alerts -->
+                <div class="p-8 rounded-2xl bg-white/[0.02] border border-white/10 hover:border-blue-500/30 transition-colors">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-12 h-12 rounded-xl bg-blue-500/10 flex items-center justify-center text-blue-400">
+                            <iconify-icon icon="solar:bell-bing-linear" class="text-2xl"></iconify-icon>
+                        </div>
+                        <h3 class="text-xl font-medium text-white">Monitoring &amp; Alerts</h3>
                     </div>
-                    <h3 class="text-lg font-medium text-white mb-3">Real-Time Alerts</h3>
                     <p class="text-sm text-slate-400 font-light leading-relaxed mb-6">
-                        Monitor watchlist addresses and receive alerts within seconds of on-chain activity. Configure risk thresholds and notification channels to match your operational needs.
+                        Set up watchlists for addresses, entities, or transaction patterns. Receive alerts within seconds of on-chain activity. Configure risk thresholds, notification channels, and escalation workflows to match your operational requirements.
                     </p>
-                    <a href="solutions.html" class="text-xs text-white border-b border-white/20 hover:border-white pb-0.5 transition-colors">Learn more</a>
+                    <ul class="space-y-3 text-sm text-slate-300">
+                        <li class="flex items-center gap-3">
+                            <iconify-icon icon="solar:check-circle-linear" class="text-blue-400"></iconify-icon>
+                            Sub-second alert latency
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <iconify-icon icon="solar:check-circle-linear" class="text-blue-400"></iconify-icon>
+                            Custom watchlist rules
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <iconify-icon icon="solar:check-circle-linear" class="text-blue-400"></iconify-icon>
+                            Webhook &amp; email notifications
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <iconify-icon icon="solar:check-circle-linear" class="text-blue-400"></iconify-icon>
+                            Threshold-based escalation
+                        </li>
+                    </ul>
                 </div>
 
-                <div class="p-8 rounded-2xl bg-white/[0.02] border border-white/10 hover:border-white/20 transition-colors">
-                    <div class="w-10 h-10 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-400 mb-6">
-                        <iconify-icon icon="solar:document-text-linear" class="text-xl"></iconify-icon>
+                <!-- Category 3: Risk & Explainability -->
+                <div class="p-8 rounded-2xl bg-white/[0.02] border border-white/10 hover:border-amber-500/30 transition-colors">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-12 h-12 rounded-xl bg-amber-500/10 flex items-center justify-center text-amber-400">
+                            <iconify-icon icon="solar:shield-star-linear" class="text-2xl"></iconify-icon>
+                        </div>
+                        <h3 class="text-xl font-medium text-white">Risk &amp; Explainability</h3>
                     </div>
-                    <h3 class="text-lg font-medium text-white mb-3">Evidence Reporting</h3>
                     <p class="text-sm text-slate-400 font-light leading-relaxed mb-6">
-                        Generate comprehensive PDF reports with chain-of-custody documentation. Include annotated graphs, transaction timelines, and reproducible methodology for court proceedings.
+                        Every address and transaction receives an explainable risk score. Drill into contributing factors—direct exposure, behavioural patterns, counterparty risk—and document your reasoning for compliance records, prosecutors, or regulators.
                     </p>
-                    <a href="solutions.html" class="text-xs text-white border-b border-white/20 hover:border-white pb-0.5 transition-colors">Learn more</a>
-                </div>
-            </div>
-
-            <!-- Additional capabilities row -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
-                <div class="p-8 rounded-2xl bg-white/[0.02] border border-white/10 hover:border-white/20 transition-colors">
-                    <div class="w-10 h-10 rounded-full bg-amber-500/10 flex items-center justify-center text-amber-400 mb-6">
-                        <iconify-icon icon="solar:shield-star-linear" class="text-xl"></iconify-icon>
-                    </div>
-                    <h3 class="text-lg font-medium text-white mb-3">Explainable Risk Scores</h3>
-                    <p class="text-sm text-slate-400 font-light leading-relaxed mb-6">
-                        Every risk assessment includes a breakdown of contributing factors. Understand exactly why an address was flagged and document your reasoning for compliance records.
-                    </p>
-                    <a href="solutions.html" class="text-xs text-white border-b border-white/20 hover:border-white pb-0.5 transition-colors">Learn more</a>
-                </div>
-
-                <div class="p-8 rounded-2xl bg-white/[0.02] border border-white/10 hover:border-white/20 transition-colors">
-                    <div class="w-10 h-10 rounded-full bg-rose-500/10 flex items-center justify-center text-rose-400 mb-6">
-                        <iconify-icon icon="solar:users-group-rounded-linear" class="text-xl"></iconify-icon>
-                    </div>
-                    <h3 class="text-lg font-medium text-white mb-3">Entity Resolution</h3>
-                    <p class="text-sm text-slate-400 font-light leading-relaxed mb-6">
-                        Link wallet addresses to known entities including exchanges, services, and flagged actors. Leverage our continuously updated attribution database to accelerate investigations.
-                    </p>
-                    <a href="solutions.html" class="text-xs text-white border-b border-white/20 hover:border-white pb-0.5 transition-colors">Learn more</a>
+                    <ul class="space-y-3 text-sm text-slate-300">
+                        <li class="flex items-center gap-3">
+                            <iconify-icon icon="solar:check-circle-linear" class="text-amber-400"></iconify-icon>
+                            Factor-level explainability
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <iconify-icon icon="solar:check-circle-linear" class="text-amber-400"></iconify-icon>
+                            Configurable risk models
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <iconify-icon icon="solar:check-circle-linear" class="text-amber-400"></iconify-icon>
+                            Sanctions &amp; watchlist screening
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <iconify-icon icon="solar:check-circle-linear" class="text-amber-400"></iconify-icon>
+                            Mixer &amp; tumbler detection
+                        </li>
+                    </ul>
                 </div>
 
-                <div class="p-8 rounded-2xl bg-white/[0.02] border border-white/10 hover:border-white/20 transition-colors">
-                    <div class="w-10 h-10 rounded-full bg-indigo-500/10 flex items-center justify-center text-indigo-400 mb-6">
-                        <iconify-icon icon="solar:folder-with-files-linear" class="text-xl"></iconify-icon>
+                <!-- Category 4: Reporting & Collaboration -->
+                <div class="p-8 rounded-2xl bg-white/[0.02] border border-white/10 hover:border-emerald-500/30 transition-colors">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-400">
+                            <iconify-icon icon="solar:document-text-linear" class="text-2xl"></iconify-icon>
+                        </div>
+                        <h3 class="text-xl font-medium text-white">Reporting &amp; Collaboration</h3>
                     </div>
-                    <h3 class="text-lg font-medium text-white mb-3">Case Workspaces</h3>
                     <p class="text-sm text-slate-400 font-light leading-relaxed mb-6">
-                        Organise investigations in dedicated workspaces with notes, tags, and shared access controls. Maintain audit trails of all investigator actions for compliance and handover.
+                        Generate evidence-grade PDF reports with methodology documentation, timestamped screenshots, and reproducible audit trails. Organise investigations in shared case workspaces with notes, tags, and role-based access controls.
                     </p>
-                    <a href="solutions.html" class="text-xs text-white border-b border-white/20 hover:border-white pb-0.5 transition-colors">Learn more</a>
+                    <ul class="space-y-3 text-sm text-slate-300">
+                        <li class="flex items-center gap-3">
+                            <iconify-icon icon="solar:check-circle-linear" class="text-emerald-400"></iconify-icon>
+                            Court-ready PDF reports
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <iconify-icon icon="solar:check-circle-linear" class="text-emerald-400"></iconify-icon>
+                            Shared case workspaces
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <iconify-icon icon="solar:check-circle-linear" class="text-emerald-400"></iconify-icon>
+                            Full audit trail logging
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <iconify-icon icon="solar:check-circle-linear" class="text-emerald-400"></iconify-icon>
+                            CSV, JSON &amp; API export
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
 
-        <!-- SECTION 04: SECURITY & COMPLIANCE -->
-        <div class="border-white/5 border-t mt-32 pt-24 pb-32 relative z-10 w-full max-w-7xl mx-auto">
-            <div class="absolute left-6 lg:left-0 top-24 text-white/20 text-[10px] font-mono tracking-widest animate-in delay-200">04 // SECURITY</div>
+        <!-- SECTION 04: BUILT FOR -->
+        <div class="border-white/5 border-t pt-24 pb-16 relative z-10 w-full max-w-7xl mx-auto">
+            <div class="text-[10px] animate-in delay-200 lg:left-0 text-white/20 tracking-widest font-mono absolute top-16 left-6">04 // WHO WE SERVE</div>
+
+            <div class="mb-16 text-center animate-in delay-300">
+                <h2 class="text-3xl md:text-4xl font-newsreader font-medium italic text-white">Built for teams that can't afford to miss</h2>
+                <p class="text-slate-400 text-sm mt-4 max-w-2xl mx-auto">Whether you're building cases, managing compliance, or recovering assets, ShadowTrace adapts to your workflow.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Law Enforcement -->
+                <div class="p-6 rounded-2xl bg-gradient-to-b from-purple-500/5 to-transparent border border-purple-500/20 hover:border-purple-500/40 transition-colors group">
+                    <div class="w-12 h-12 rounded-xl bg-purple-500/10 flex items-center justify-center text-purple-400 mb-5 group-hover:scale-110 transition-transform">
+                        <iconify-icon icon="solar:shield-user-linear" class="text-2xl"></iconify-icon>
+                    </div>
+                    <h3 class="text-lg font-medium text-white mb-2">Law Enforcement</h3>
+                    <p class="text-sm text-slate-400 font-light leading-relaxed">
+                        Build evidence packages that hold up in court. Trace illicit funds, document methodology, and export reproducible findings for prosecution teams.
+                    </p>
+                </div>
+
+                <!-- Compliance Teams -->
+                <div class="p-6 rounded-2xl bg-gradient-to-b from-blue-500/5 to-transparent border border-blue-500/20 hover:border-blue-500/40 transition-colors group">
+                    <div class="w-12 h-12 rounded-xl bg-blue-500/10 flex items-center justify-center text-blue-400 mb-5 group-hover:scale-110 transition-transform">
+                        <iconify-icon icon="solar:clipboard-check-linear" class="text-2xl"></iconify-icon>
+                    </div>
+                    <h3 class="text-lg font-medium text-white mb-2">Compliance Teams</h3>
+                    <p class="text-sm text-slate-400 font-light leading-relaxed">
+                        Triage alerts, investigate suspicious activity, and document decisions with explainable risk scores. Meet regulatory deadlines with audit-ready reporting.
+                    </p>
+                </div>
+
+                <!-- Exchanges & VASPs -->
+                <div class="p-6 rounded-2xl bg-gradient-to-b from-emerald-500/5 to-transparent border border-emerald-500/20 hover:border-emerald-500/40 transition-colors group">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center text-emerald-400 mb-5 group-hover:scale-110 transition-transform">
+                        <iconify-icon icon="solar:chart-2-linear" class="text-2xl"></iconify-icon>
+                    </div>
+                    <h3 class="text-lg font-medium text-white mb-2">Exchanges &amp; VASPs</h3>
+                    <p class="text-sm text-slate-400 font-light leading-relaxed">
+                        Screen customers, monitor transactions, and respond to law enforcement requests. Maintain Travel Rule compliance with automated risk assessment.
+                    </p>
+                </div>
+
+                <!-- Regulators -->
+                <div class="p-6 rounded-2xl bg-gradient-to-b from-amber-500/5 to-transparent border border-amber-500/20 hover:border-amber-500/40 transition-colors group">
+                    <div class="w-12 h-12 rounded-xl bg-amber-500/10 flex items-center justify-center text-amber-400 mb-5 group-hover:scale-110 transition-transform">
+                        <iconify-icon icon="solar:buildings-2-linear" class="text-2xl"></iconify-icon>
+                    </div>
+                    <h3 class="text-lg font-medium text-white mb-2">Regulators</h3>
+                    <p class="text-sm text-slate-400 font-light leading-relaxed">
+                        Supervise market participants, investigate suspicious patterns, and understand cross-border fund flows. Independent verification for enforcement actions.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 05: SECURITY & COMPLIANCE -->
+        <div class="border-white/5 border-t pt-24 pb-32 relative z-10 w-full max-w-7xl mx-auto">
+            <div class="absolute left-6 lg:left-0 top-24 text-white/20 text-[10px] font-mono tracking-widest animate-in delay-200">05 // SECURITY & GOVERNANCE</div>
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                 <div class="flex flex-col justify-center h-full">
                     <h2 class="text-4xl md:text-5xl font-newsreader font-medium italic text-white mb-8 tracking-tight animate-in delay-300">
-                        Enterprise security for
-                        <span class="not-italic text-transparent bg-clip-text bg-gradient-to-r from-purple-300 via-white to-indigo-300">sensitive investigations.</span>
+                        Procurement-ready from
+                        <span class="not-italic text-transparent bg-clip-text bg-gradient-to-r from-purple-300 via-white to-indigo-300">day one.</span>
                     </h2>
 
                     <div class="space-y-6 text-lg text-slate-400 font-light leading-relaxed animate-in delay-400">
                         <p>
-                            ShadowTrace is built to meet the security requirements of law enforcement agencies and regulated financial institutions. We maintain SOC 2 Type II certification and operate in compliance with ISO 27001 standards.
+                            We know your security and compliance teams have questions. ShadowTrace is built to meet the standards required by law enforcement agencies, regulated financial institutions, and government procurement frameworks.
                         </p>
                         <p>
-                            All data is encrypted at rest and in transit. Access is controlled through role-based permissions with full audit logging. Enterprise clients can configure SSO/SAML integration, data retention policies, and custom deployment options.
+                            All data is encrypted at rest (AES-256) and in transit (TLS 1.3). Role-based access controls, comprehensive audit logging, and SSO/SAML integration are standard. We support custom data retention policies and provide deployment options to meet data residency requirements.
                         </p>
                     </div>
 
@@ -499,16 +622,24 @@
                             <span class="text-sm text-white">SOC 2 Type II</span>
                         </div>
                         <div class="flex items-center gap-3">
+                            <iconify-icon icon="solar:verified-check-linear" class="text-2xl text-purple-400"></iconify-icon>
+                            <span class="text-sm text-white">ISO 27001</span>
+                        </div>
+                        <div class="flex items-center gap-3">
                             <iconify-icon icon="solar:lock-keyhole-linear" class="text-2xl text-purple-400"></iconify-icon>
-                            <span class="text-sm text-white">AES-256 Encryption</span>
+                            <span class="text-sm text-white">AES-256 + TLS 1.3</span>
                         </div>
                         <div class="flex items-center gap-3">
                             <iconify-icon icon="solar:user-id-linear" class="text-2xl text-purple-400"></iconify-icon>
-                            <span class="text-sm text-white">SSO/SAML Support</span>
+                            <span class="text-sm text-white">SSO/SAML &amp; RBAC</span>
                         </div>
                         <div class="flex items-center gap-3">
                             <iconify-icon icon="solar:clipboard-list-linear" class="text-2xl text-purple-400"></iconify-icon>
-                            <span class="text-sm text-white">Full Audit Logs</span>
+                            <span class="text-sm text-white">Full Audit Logging</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <iconify-icon icon="solar:map-point-linear" class="text-2xl text-purple-400"></iconify-icon>
+                            <span class="text-sm text-white">Data Residency Options</span>
                         </div>
                     </div>
                 </div>
@@ -522,21 +653,21 @@
                                 <iconify-icon icon="solar:cloud-linear" class="text-2xl text-blue-400 mt-1"></iconify-icon>
                                 <div>
                                     <h5 class="text-sm font-medium text-white mb-1">Cloud SaaS</h5>
-                                    <p class="text-xs text-slate-400">Fully managed platform with automatic updates and global availability. Ideal for most organisations.</p>
+                                    <p class="text-xs text-slate-400">Fully managed platform with automatic updates and multi-region availability. Ideal for most organisations.</p>
                                 </div>
                             </div>
                             <div class="flex items-start gap-4 p-4 rounded-xl bg-white/5 border border-white/10">
                                 <iconify-icon icon="solar:server-square-linear" class="text-2xl text-purple-400 mt-1"></iconify-icon>
                                 <div>
-                                    <h5 class="text-sm font-medium text-white mb-1">Private Cloud</h5>
-                                    <p class="text-xs text-slate-400">Dedicated instance in your preferred cloud provider (AWS, Azure, GCP) with custom data residency.</p>
+                                    <h5 class="text-sm font-medium text-white mb-1">Private Cloud / VPC</h5>
+                                    <p class="text-xs text-slate-400">Dedicated instance in your preferred cloud provider (AWS, Azure, GCP) with custom data residency and network isolation.</p>
                                 </div>
                             </div>
                             <div class="flex items-start gap-4 p-4 rounded-xl bg-white/5 border border-white/10">
                                 <iconify-icon icon="solar:server-path-linear" class="text-2xl text-emerald-400 mt-1"></iconify-icon>
                                 <div>
-                                    <h5 class="text-sm font-medium text-white mb-1">On-Premises</h5>
-                                    <p class="text-xs text-slate-400">Air-gapped deployment for organisations with strict data sovereignty requirements. Contact us for details.</p>
+                                    <h5 class="text-sm font-medium text-white mb-1">On-Premises / Air-Gapped</h5>
+                                    <p class="text-xs text-slate-400">Full deployment within your infrastructure for organisations with strict data sovereignty or air-gap requirements.</p>
                                 </div>
                             </div>
                         </div>
@@ -545,18 +676,18 @@
             </div>
         </div>
 
-        <!-- SECTION 05: INTEGRATIONS -->
+        <!-- SECTION 06: INTEGRATIONS -->
         <div class="border-white/5 border-t pt-24 pb-32 relative z-10 w-full max-w-7xl mx-auto">
-            <div class="text-[10px] animate-in delay-200 lg:left-0 text-white/20 tracking-widest font-mono absolute top-16 left-6">05 // INTEGRATIONS</div>
+            <div class="text-[10px] animate-in delay-200 lg:left-0 text-white/20 tracking-widest font-mono absolute top-16 left-6">06 // INTEGRATIONS</div>
 
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center px-6 relative z-10">
                 <div class="lg:col-span-5 space-y-8">
                     <h2 class="text-4xl md:text-5xl font-newsreader font-medium italic text-white tracking-tight">
-                        API-first architecture for
-                        <span class="not-italic text-transparent bg-clip-text bg-gradient-to-r from-purple-300 via-white to-indigo-300">seamless integration.</span>
+                        Fits into your existing
+                        <span class="not-italic text-transparent bg-clip-text bg-gradient-to-r from-purple-300 via-white to-indigo-300">tech stack.</span>
                     </h2>
                     <p class="text-lg text-slate-400 font-light leading-relaxed">
-                        ShadowTrace integrates with your existing infrastructure through a comprehensive REST API. Connect to case management systems, SIEM/SOAR platforms, and internal databases.
+                        ShadowTrace integrates with your existing infrastructure through a comprehensive REST API. Push alerts to SIEM/SOAR platforms, export findings to case management systems, or build custom workflows with webhooks.
                     </p>
 
                     <div class="flex flex-col gap-4 mt-8">
@@ -565,8 +696,19 @@
                                 <iconify-icon icon="solar:book-2-linear" class="text-xl"></iconify-icon>
                             </div>
                             <div>
-                                <h4 class="text-sm font-medium text-white">API Documentation</h4>
-                                <p class="text-xs text-slate-400">Full REST API reference with examples.</p>
+                                <h4 class="text-sm font-medium text-white">REST API</h4>
+                                <p class="text-xs text-slate-400">Full programmatic access with comprehensive documentation.</p>
+                            </div>
+                            <iconify-icon icon="solar:arrow-right-linear" class="ml-auto text-white opacity-0 group-hover:opacity-100 transition-opacity"></iconify-icon>
+                        </a>
+
+                        <a href="#" class="group flex items-center gap-4 p-4 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition-colors">
+                            <div class="w-10 h-10 rounded bg-[#0f0f13] flex items-center justify-center text-white border border-white/10">
+                                <iconify-icon icon="solar:link-round-linear" class="text-xl"></iconify-icon>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-medium text-white">Webhooks</h4>
+                                <p class="text-xs text-slate-400">Real-time event notifications to your systems.</p>
                             </div>
                             <iconify-icon icon="solar:arrow-right-linear" class="ml-auto text-white opacity-0 group-hover:opacity-100 transition-opacity"></iconify-icon>
                         </a>
@@ -577,7 +719,7 @@
                             </div>
                             <div>
                                 <h4 class="text-sm font-medium text-white">Export Formats</h4>
-                                <p class="text-xs text-slate-400">JSON, CSV, and PDF output options.</p>
+                                <p class="text-xs text-slate-400">PDF, JSON, CSV for case management systems.</p>
                             </div>
                             <iconify-icon icon="solar:arrow-right-linear" class="ml-auto text-white opacity-0 group-hover:opacity-100 transition-opacity"></iconify-icon>
                         </a>
@@ -641,6 +783,60 @@
             </div>
         </div>
 
+        <!-- SECTION 07: FAQ -->
+        <div class="border-white/5 border-t pt-24 pb-16 relative z-10 w-full max-w-7xl mx-auto">
+            <div class="text-[10px] animate-in delay-200 lg:left-0 text-white/20 tracking-widest font-mono absolute top-16 left-6">07 // FAQ</div>
+
+            <div class="mb-16 text-center animate-in delay-300">
+                <h2 class="text-3xl md:text-4xl font-newsreader font-medium italic text-white">Questions from security and procurement</h2>
+                <p class="text-slate-400 text-sm mt-4 max-w-2xl mx-auto">We understand onboarding a new vendor requires rigour. Here are answers to the questions we hear most often.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+                <div class="p-6 rounded-2xl bg-white/[0.02] border border-white/10">
+                    <h3 class="text-sm font-medium text-white mb-3">Where is data stored?</h3>
+                    <p class="text-sm text-slate-400 font-light leading-relaxed">
+                        Cloud SaaS customers can choose between EU (Frankfurt), US (Virginia), or UK (London) data centres. Private cloud and on-premises deployments support any location you specify.
+                    </p>
+                </div>
+
+                <div class="p-6 rounded-2xl bg-white/[0.02] border border-white/10">
+                    <h3 class="text-sm font-medium text-white mb-3">Do you support SSO?</h3>
+                    <p class="text-sm text-slate-400 font-light leading-relaxed">
+                        Yes. We support SAML 2.0 and OIDC for enterprise SSO. Okta, Azure AD, and Google Workspace integrations are available out of the box. Custom IdP configurations are supported.
+                    </p>
+                </div>
+
+                <div class="p-6 rounded-2xl bg-white/[0.02] border border-white/10">
+                    <h3 class="text-sm font-medium text-white mb-3">What certifications do you hold?</h3>
+                    <p class="text-sm text-slate-400 font-light leading-relaxed">
+                        SOC 2 Type II and ISO 27001. We can provide audit reports and penetration test summaries under NDA as part of the procurement process.
+                    </p>
+                </div>
+
+                <div class="p-6 rounded-2xl bg-white/[0.02] border border-white/10">
+                    <h3 class="text-sm font-medium text-white mb-3">Can we run ShadowTrace on-premises?</h3>
+                    <p class="text-sm text-slate-400 font-light leading-relaxed">
+                        Yes. On-premises and air-gapped deployments are available for organisations with strict data sovereignty or security requirements. Contact us to discuss your infrastructure.
+                    </p>
+                </div>
+
+                <div class="p-6 rounded-2xl bg-white/[0.02] border border-white/10">
+                    <h3 class="text-sm font-medium text-white mb-3">How long does onboarding take?</h3>
+                    <p class="text-sm text-slate-400 font-light leading-relaxed">
+                        Cloud SaaS customers are typically operational within days of contract signature. Private cloud deployments vary based on your infrastructure requirements—we'll provide a timeline during scoping.
+                    </p>
+                </div>
+
+                <div class="p-6 rounded-2xl bg-white/[0.02] border border-white/10">
+                    <h3 class="text-sm font-medium text-white mb-3">Do you offer training?</h3>
+                    <p class="text-sm text-slate-400 font-light leading-relaxed">
+                        Yes. All plans include onboarding training. Enterprise customers receive dedicated account management, custom training sessions, and ongoing support from our investigations team.
+                    </p>
+                </div>
+            </div>
+        </div>
+
         <!-- CTA Section -->
         <div class="z-10 w-full max-w-7xl border-white/5 border-t mx-auto pt-12 pb-24 relative">
             <div class="relative w-full bg-[#6E40C9] rounded-[2rem] overflow-hidden px-8 py-16 md:p-16 flex flex-col lg:flex-row items-center justify-between gap-12 group">
@@ -648,10 +844,10 @@
 
                 <div class="relative z-10 max-w-2xl text-center lg:text-left">
                     <h2 class="text-4xl md:text-5xl font-newsreader font-medium text-white mb-6 tracking-tight leading-[1.1]">
-                        Ready to see ShadowTrace in action?
+                        See ShadowTrace in action.
                     </h2>
                     <p class="text-lg text-purple-100/80 font-light leading-relaxed max-w-lg mx-auto lg:mx-0">
-                        Schedule a demonstration with our team to explore the platform capabilities and discuss your investigation requirements.
+                        Schedule a demonstration with our team. We'll walk through the platform capabilities and answer your technical and procurement questions.
                     </p>
                 </div>
 
