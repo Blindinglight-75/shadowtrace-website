@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ShadowTrace pricing plans for blockchain intelligence and crypto forensics. Flexible options for law enforcement, financial institutions, and compliance teams.">
+    <meta property="og:title" content="ShadowTrace Pricing - Blockchain Intelligence Plans">
+    <meta property="og:description" content="Transparent pricing for investigation teams of all sizes. Start with a pilot or scale enterprise-wide.">
+    <title>ShadowTrace Pricing - Plans for Every Investigation Team</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --font-serif: 'Newsreader', serif;
+            --font-sans: 'Inter', sans-serif;
+        }
+        body {
+            font-family: var(--font-sans);
+            background-color: #020205;
+            color: white;
+            overflow-x: hidden;
+        }
+        .font-newsreader {
+            font-family: var(--font-serif);
+        }
+        /* Custom Animations */
+        @keyframes enter {
+            0% { opacity: 0; transform: translateY(20px) scale(0.98); filter: blur(4px); }
+            100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+        }
+        .animate-in {
+            animation: enter 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+        .delay-100 { animation-delay: 100ms; }
+        .delay-200 { animation-delay: 200ms; }
+        .delay-300 { animation-delay: 300ms; }
+        .delay-400 { animation-delay: 400ms; }
+        .delay-500 { animation-delay: 500ms; }
+        .delay-700 { animation-delay: 700ms; }
+        /* Grid Lines */
+        .grid-lines {
+            position: absolute;
+            inset: 0;
+            max-width: 80rem;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            pointer-events: none;
+            z-index: 0;
+            padding: 0 1.5rem;
+        }
+        .grid-line {
+            width: 1px;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.05) 10%, rgba(255,255,255,0.05) 90%, transparent);
+        }
+        /* Navbar Button Border Beam */
+        .btn-beam {
+            position: absolute;
+            inset: -1px;
+            border-radius: 9999px;
+            pointer-events: none;
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            padding: 1px;
+        }
+        .btn-beam::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: conic-gradient(from 0deg, transparent 0deg, transparent 80deg, #a855f7 100deg, transparent 180deg);
+            animation: rotate 3s linear infinite;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .group:hover .btn-beam::before {
+            opacity: 1;
+        }
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        /* FAQ Accordion Transitions */
+        .accordion-content {
+            display: grid;
+            grid-template-rows: 0fr;
+            transition: grid-template-rows 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
+            opacity: 0;
+        }
+        .accordion-content > div {
+            overflow: hidden;
+        }
+        .accordion-open .accordion-content {
+            grid-template-rows: 1fr;
+            opacity: 1;
+        }
+        .accordion-icon {
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .accordion-open .accordion-icon {
+            transform: rotate(45deg);
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-purple-500/30">
+
+    <!-- Background -->
+    <div class="fixed top-0 w-full h-screen -z-10 bg-[#020205]">
+        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-purple-900/20 via-[#020205] to-[#020205]"></div>
+    </div>
+
+    <!-- Vertical Grid Lines -->
+    <div class="grid-lines animate-in duration-1000">
+        <div class="grid-line"></div>
+        <div class="grid-line"></div>
+        <div class="grid-line"></div>
+        <div class="grid-line"></div>
+        <div class="grid-line"></div>
+    </div>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="fixed inset-0 z-[60] bg-[#020205]/95 backdrop-blur-xl hidden opacity-0 transition-opacity duration-300 flex-col items-center justify-center space-y-8">
+        <button id="close-menu" class="absolute top-6 right-6 text-white/60 hover:text-white">
+            <iconify-icon icon="solar:close-circle-linear" width="32" height="32"></iconify-icon>
+        </button>
+        <a href="platform.html" class="text-2xl font-newsreader italic text-white hover:text-purple-400 transition-colors">Platform</a>
+        <a href="solutions.html" class="text-2xl font-newsreader italic text-white hover:text-purple-400 transition-colors">Solutions</a>
+        <a href="pricing.html" class="text-2xl font-newsreader italic text-purple-400 transition-colors">Pricing</a>
+        <a href="about.html" class="text-2xl font-newsreader italic text-white hover:text-purple-400 transition-colors">About</a>
+        <a href="login.html" class="text-2xl font-newsreader italic text-white hover:text-purple-400 transition-colors">Sign In</a>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="fixed top-0 left-0 right-0 z-50 border-b border-white/[0.06] bg-[#020205]/60 backdrop-blur-md animate-in">
+        <div class="flex h-20 max-w-7xl mr-auto ml-auto pr-6 pl-6 items-center justify-between">
+            <div class="flex group cursor-pointer gap-x-2 gap-y-2 items-center" onclick="window.location.href='index.html'" role="button">
+                <img src="assets/ShadowTraceLogo.svg" alt="ShadowTrace" style="height: 22.4px;">
+            </div>
+
+            <div class="hidden md:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
+                <a href="platform.html" class="hover:text-white transition-colors text-xs font-medium text-white/60">Platform</a>
+                <a href="solutions.html" class="hover:text-white transition-colors text-xs font-medium text-white/60">Solutions</a>
+                <a href="pricing.html" class="hover:text-white transition-colors text-xs font-medium text-white">Pricing</a>
+                <a href="resources.html" class="hover:text-white transition-colors text-xs font-medium text-white/60">Resources</a>
+            </div>
+
+            <div class="flex gap-4 gap-x-4 gap-y-4 items-center">
+                <button class="hidden md:block group hover:bg-white/10 transition-all text-xs font-medium text-white bg-white/5 border-white/10 border rounded-full pt-2 pr-4 pb-2 pl-4 relative" onclick="window.location.href='login.html'" role="button">
+                    <span class="z-10 relative">Sign in</span>
+                    <div class="btn-beam"></div>
+                </button>
+                <!-- Hamburger Button -->
+                <button id="open-menu" class="md:hidden text-white/60 hover:text-white transition-colors">
+                    <iconify-icon icon="solar:hamburger-menu-linear" width="24" height="24"></iconify-icon>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="z-10 max-w-7xl mr-auto ml-auto pt-32 pr-6 pb-20 pl-6 relative">
+
+        <!-- HEADER -->
+        <div class="flex flex-col text-center mt-12 mb-20 relative items-center">
+            <div class="absolute left-0 top-0 text-white/20 text-[10px] font-mono tracking-widest animate-in delay-100 hidden md:block">01 // PRICING</div>
+
+            <h1 class="text-5xl md:text-7xl font-newsreader font-medium italic text-white mb-6 leading-[1.1] animate-in delay-200 max-w-4xl tracking-tight">
+                Pricing that scales <br>
+                <span class="not-italic text-transparent bg-clip-text bg-gradient-to-r from-purple-300 via-white to-indigo-300">with your team</span>
+            </h1>
+
+            <p class="text-lg text-slate-400 font-light max-w-xl mx-auto mb-10 leading-relaxed animate-in delay-300">
+                Transparent pricing for investigation teams of all sizes. Start with a pilot programme or deploy enterprise-wide with custom terms.
+            </p>
+
+            <!-- Procurement note -->
+            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/5 animate-in delay-400">
+                <iconify-icon icon="solar:document-text-linear" class="text-purple-400"></iconify-icon>
+                <span class="text-xs text-slate-400">Government and institutional procurement terms available</span>
+            </div>
+        </div>
+
+        <!-- PRICING CARDS -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-32 animate-in delay-500">
+
+            <!-- Card 1: Starter -->
+            <div class="relative bg-white/[0.02] border border-white/10 rounded-2xl p-8 hover:bg-white/[0.04] transition-all duration-300 group flex flex-col">
+                <div class="mb-6 flex-grow">
+                    <div class="text-lg font-newsreader italic text-white mb-2">Starter</div>
+                    <div class="flex items-baseline gap-1">
+                        <span class="text-4xl font-light text-white">Contact</span>
+                    </div>
+                    <p class="text-xs text-slate-400 mt-4 leading-relaxed">Ideal for small teams running a pilot programme or evaluating the platform for procurement.</p>
+                </div>
+
+                <div class="space-y-4 mb-8">
+                    <div class="text-[10px] uppercase tracking-widest text-slate-500 font-semibold mb-2">Includes</div>
+                    <div class="flex items-center gap-3 text-sm text-slate-300 font-light">
+                        <iconify-icon icon="solar:check-circle-bold" class="text-slate-500 min-w-[16px]"></iconify-icon>
+                        <span>Up to 3 investigator seats</span>
+                    </div>
+                    <div class="flex items-center gap-3 text-sm text-slate-300 font-light">
+                        <iconify-icon icon="solar:check-circle-bold" class="text-slate-500 min-w-[16px]"></iconify-icon>
+                        <span>Graph investigation tools</span>
+                    </div>
+                    <div class="flex items-center gap-3 text-sm text-slate-300 font-light">
+                        <iconify-icon icon="solar:check-circle-bold" class="text-slate-500 min-w-[16px]"></iconify-icon>
+                        <span>Basic risk scoring</span>
+                    </div>
+                    <div class="flex items-center gap-3 text-sm text-slate-300 font-light">
+                        <iconify-icon icon="solar:check-circle-bold" class="text-slate-500 min-w-[16px]"></iconify-icon>
+                        <span>PDF report export</span>
+                    </div>
+                    <div class="flex items-center gap-3 text-sm text-slate-300 font-light">
+                        <iconify-icon icon="solar:check-circle-bold" class="text-slate-500 min-w-[16px]"></iconify-icon>
+                        <span>Email support</span>
+                    </div>
+                </div>
+                <button class="w-full py-3 rounded-lg border border-white/10 text-xs font-medium text-white hover:bg-white/5 transition-colors mt-auto" onclick="window.location.href='contact.html'">Request Quote</button>
+            </div>
+
+            <!-- Card 2: Professional (Highlighted) -->
+            <div class="relative bg-[#0A0A0F] border border-purple-500/30 rounded-2xl p-8 shadow-[0_0_40px_-10px_rgba(168,85,247,0.15)] group transform md:-translate-y-4 flex flex-col z-10">
+                <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-gradient-to-r from-indigo-500 to-purple-500 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-lg whitespace-nowrap">Most Popular</div>
+
+                <div class="mb-6 flex-grow">
+                    <div class="text-lg font-newsreader italic text-white mb-2 flex items-center gap-2">
+                        Professional
+                        <iconify-icon icon="solar:shield-star-bold" class="text-purple-400"></iconify-icon>
+                    </div>
+                    <div class="flex items-baseline gap-1">
+                        <span class="text-4xl font-light text-transparent bg-clip-text bg-gradient-to-br from-white to-purple-200">Contact</span>
+                    </div>
+                    <p class="text-xs text-slate-400 mt-4 leading-relaxed">For growing investigation teams requiring advanced capabilities and real-time monitoring.</p>
+                </div>
+
+                <div class="space-y-4 mb-8">
+                    <div class="text-[10px] uppercase tracking-widest text-slate-500 font-semibold mb-2">Everything in Starter, plus:</div>
+                    <div class="flex items-center gap-3 text-sm text-white font-light">
+                        <iconify-icon icon="solar:check-circle-bold" class="text-purple-400 min-w-[16px]"></iconify-icon>
+                        <span>Up to <span class="font-medium text-white">15</span> investigator seats</span>
+                    </div>
+                    <div class="flex items-center gap-3 text-sm text-white font-light">
+                        <iconify-icon icon="solar:check-circle-bold" class="text-purple-400 min-w-[16px]"></iconify-icon>
+                        <span>Real-time alerts &amp; watchlists</span>
+                    </div>
+                    <div class="flex items-center gap-3 text-sm text-white font-light">
+                        <iconify-icon icon="solar:check-circle-bold" class="text-purple-400 min-w-[16px]"></iconify-icon>
+                        <span>Explainable risk scoring</span>
+                    </div>
+                    <div class="flex items-center gap-3 text-sm text-white font-light">
+                        <iconify-icon icon="solar:check-circle-bold" class="text-purple-400 min-w-[16px]"></iconify-icon>
+                        <span>Case workspaces &amp; collaboration</span>
+                    </div>
+                    <div class="flex items-center gap-3 text-sm text-white font-light">
+                        <iconify-icon icon="solar:check-circle-bold" class="text-purple-400 min-w-[16px]"></iconify-icon>
+                        <span>API access (read/write)</span>
+                    </div>
+                    <div class="flex items-center gap-3 text-sm text-white font-light">
+                        <iconify-icon icon="solar:check-circle-bold" class="text-purple-400 min-w-[16px]"></iconify-icon>
+                        <span>Priority support</span>
+                    </div>
+                </div>
+                <button class="w-full py-3 rounded-lg bg-white text-black text-xs font-bold hover:bg-purple-50 transition-colors mt-auto shadow-[0_0_20px_rgba(255,255,255,0.1)]" onclick="window.location.href='contact.html'">Request Quote</button>
+            </div>
+
+            <!-- Card 3: Enterprise -->
+            <div class="relative bg-white/[0.02] border border-white/10 rounded-2xl p-8 hover:bg-white/[0.04] transition-all duration-300 group flex flex-col">
+                <div class="mb-6 flex-grow">
+                    <div class="text-lg font-newsreader italic text-white mb-2">Enterprise</div>
+                    <div class="flex items-baseline gap-1">
+                        <span class="text-4xl font-light text-white">Custom</span>
+                    </div>
+                    <p class="text-xs text-slate-400 mt-4 leading-relaxed">For large organisations requiring custom deployment, dedicated support, and procurement flexibility.</p>
+                </div>
+
+                <div class="space-y-4 mb-8">
+                    <div class="text-[10px] uppercase tracking-widest text-slate-500 font-semibold mb-2">Everything in Professional, plus:</div>
+                    <div class="flex items-center gap-3 text-sm text-slate-300 font-light">
+                        <iconify-icon icon="solar:check-circle-bold" class="text-slate-500 min-w-[16px]"></iconify-icon>
+                        <span>Unlimited investigator seats</span>
+                    </div>
+                    <div class="flex items-center gap-3 text-sm text-slate-300 font-light">
+                        <iconify-icon icon="solar:check-circle-bold" class="text-slate-500 min-w-[16px]"></iconify-icon>
+                        <span>SSO/SAML integration</span>
+                    </div>
+                    <div class="flex items-center gap-3 text-sm text-slate-300 font-light">
+                        <iconify-icon icon="solar:check-circle-bold" class="text-slate-500 min-w-[16px]"></iconify-icon>
+                        <span>Private cloud or on-premises option</span>
+                    </div>
+                    <div class="flex items-center gap-3 text-sm text-slate-300 font-light">
+                        <iconify-icon icon="solar:check-circle-bold" class="text-slate-500 min-w-[16px]"></iconify-icon>
+                        <span>Custom data retention policies</span>
+                    </div>
+                    <div class="flex items-center gap-3 text-sm text-slate-300 font-light">
+                        <iconify-icon icon="solar:check-circle-bold" class="text-slate-500 min-w-[16px]"></iconify-icon>
+                        <span>Dedicated account manager</span>
+                    </div>
+                    <div class="flex items-center gap-3 text-sm text-slate-300 font-light">
+                        <iconify-icon icon="solar:check-circle-bold" class="text-slate-500 min-w-[16px]"></iconify-icon>
+                        <span>SLA guarantees</span>
+                    </div>
+                </div>
+                <button class="w-full py-3 rounded-lg border border-white/10 text-xs font-medium text-white hover:bg-white/5 transition-colors mt-auto" onclick="window.location.href='contact.html'">Contact Sales</button>
+            </div>
+        </div>
+
+        <!-- COMPARISON TABLE -->
+        <div class="mb-32">
+            <div class="text-[10px] text-white/20 font-mono tracking-widest mb-12 hidden md:block">02 // COMPARE</div>
+
+            <div class="overflow-x-auto -mx-6 px-6 md:mx-0 md:px-0">
+                <table class="w-full text-left border-collapse min-w-[600px]">
+                    <thead>
+                        <tr class="border-b border-white/10">
+                            <th class="py-4 px-4 text-sm font-newsreader italic text-white w-1/3 sticky left-0 bg-[#020205] md:bg-transparent z-10">Features</th>
+                            <th class="py-4 px-4 text-xs font-medium text-slate-400 text-center">Starter</th>
+                            <th class="py-4 px-4 text-xs font-medium text-purple-300 text-center">Professional</th>
+                            <th class="py-4 px-4 text-xs font-medium text-slate-400 text-center">Enterprise</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-sm font-light text-slate-300">
+                        <!-- Category: Investigation -->
+                        <tr class="bg-white/[0.02]">
+                            <td colspan="4" class="py-2 px-4 text-[10px] font-mono text-slate-500 uppercase tracking-widest pt-6 sticky left-0 bg-[#020205]/95 md:bg-transparent backdrop-blur-sm md:backdrop-blur-none z-10">Investigation Tools</td>
+                        </tr>
+                        <tr class="border-b border-white/5 hover:bg-white/[0.02] transition-colors">
+                            <td class="py-4 px-4 sticky left-0 bg-[#020205] md:bg-transparent z-10">Investigator Seats</td>
+                            <td class="py-4 px-4 text-center">Up to 3</td>
+                            <td class="py-4 px-4 text-center font-medium text-white">Up to 15</td>
+                            <td class="py-4 px-4 text-center">Unlimited</td>
+                        </tr>
+                        <tr class="border-b border-white/5 hover:bg-white/[0.02] transition-colors">
+                            <td class="py-4 px-4 sticky left-0 bg-[#020205] md:bg-transparent z-10">Graph Visualisation</td>
+                            <td class="py-4 px-4 text-center"><iconify-icon icon="solar:check-circle-bold" class="text-slate-500"></iconify-icon></td>
+                            <td class="py-4 px-4 text-center"><iconify-icon icon="solar:check-circle-bold" class="text-purple-400"></iconify-icon></td>
+                            <td class="py-4 px-4 text-center"><iconify-icon icon="solar:check-circle-bold" class="text-emerald-500"></iconify-icon></td>
+                        </tr>
+                        <tr class="border-b border-white/5 hover:bg-white/[0.02] transition-colors">
+                            <td class="py-4 px-4 sticky left-0 bg-[#020205] md:bg-transparent z-10">Real-Time Alerts</td>
+                            <td class="py-4 px-4 text-center"><iconify-icon icon="solar:close-circle-bold" class="text-slate-600"></iconify-icon></td>
+                            <td class="py-4 px-4 text-center"><iconify-icon icon="solar:check-circle-bold" class="text-purple-400"></iconify-icon></td>
+                            <td class="py-4 px-4 text-center"><iconify-icon icon="solar:check-circle-bold" class="text-emerald-500"></iconify-icon></td>
+                        </tr>
+                        <tr class="border-b border-white/5 hover:bg-white/[0.02] transition-colors">
+                            <td class="py-4 px-4 sticky left-0 bg-[#020205] md:bg-transparent z-10">Case Workspaces</td>
+                            <td class="py-4 px-4 text-center"><iconify-icon icon="solar:close-circle-bold" class="text-slate-600"></iconify-icon></td>
+                            <td class="py-4 px-4 text-center"><iconify-icon icon="solar:check-circle-bold" class="text-purple-400"></iconify-icon></td>
+                            <td class="py-4 px-4 text-center"><iconify-icon icon="solar:check-circle-bold" class="text-emerald-500"></iconify-icon></td>
+                        </tr>
+
+                        <!-- Category: Risk & Reporting -->
+                        <tr class="bg-white/[0.02]">
+                            <td colspan="4" class="py-2 px-4 text-[10px] font-mono text-slate-500 uppercase tracking-widest pt-6 sticky left-0 bg-[#020205]/95 md:bg-transparent backdrop-blur-sm md:backdrop-blur-none z-10">Risk &amp; Reporting</td>
+                        </tr>
+                        <tr class="border-b border-white/5 hover:bg-white/[0.02] transition-colors">
+                            <td class="py-4 px-4 sticky left-0 bg-[#020205] md:bg-transparent z-10">Risk Scoring</td>
+                            <td class="py-4 px-4 text-center">Basic</td>
+                            <td class="py-4 px-4 text-center font-medium text-white">Explainable</td>
+                            <td class="py-4 px-4 text-center">Explainable + Custom Rules</td>
+                        </tr>
+                        <tr class="border-b border-white/5 hover:bg-white/[0.02] transition-colors">
+                            <td class="py-4 px-4 sticky left-0 bg-[#020205] md:bg-transparent z-10">PDF Reports</td>
+                            <td class="py-4 px-4 text-center"><iconify-icon icon="solar:check-circle-bold" class="text-slate-500"></iconify-icon></td>
+                            <td class="py-4 px-4 text-center"><iconify-icon icon="solar:check-circle-bold" class="text-purple-400"></iconify-icon></td>
+                            <td class="py-4 px-4 text-center"><iconify-icon icon="solar:check-circle-bold" class="text-emerald-500"></iconify-icon></td>
+                        </tr>
+                        <tr class="border-b border-white/5 hover:bg-white/[0.02] transition-colors">
+                            <td class="py-4 px-4 sticky left-0 bg-[#020205] md:bg-transparent z-10">API Access</td>
+                            <td class="py-4 px-4 text-center">Read-only</td>
+                            <td class="py-4 px-4 text-center font-medium text-white">Read/Write</td>
+                            <td class="py-4 px-4 text-center">Full + Webhooks</td>
+                        </tr>
+
+                        <!-- Category: Security & Compliance -->
+                        <tr class="bg-white/[0.02]">
+                            <td colspan="4" class="py-2 px-4 text-[10px] font-mono text-slate-500 uppercase tracking-widest pt-6 sticky left-0 bg-[#020205]/95 md:bg-transparent backdrop-blur-sm md:backdrop-blur-none z-10">Security &amp; Compliance</td>
+                        </tr>
+                        <tr class="border-b border-white/5 hover:bg-white/[0.02] transition-colors">
+                            <td class="py-4 px-4 sticky left-0 bg-[#020205] md:bg-transparent z-10">SSO/SAML</td>
+                            <td class="py-4 px-4 text-center"><iconify-icon icon="solar:close-circle-bold" class="text-slate-600"></iconify-icon></td>
+                            <td class="py-4 px-4 text-center"><iconify-icon icon="solar:close-circle-bold" class="text-slate-600"></iconify-icon></td>
+                            <td class="py-4 px-4 text-center"><iconify-icon icon="solar:check-circle-bold" class="text-emerald-500"></iconify-icon></td>
+                        </tr>
+                        <tr class="border-b border-white/5 hover:bg-white/[0.02] transition-colors">
+                            <td class="py-4 px-4 sticky left-0 bg-[#020205] md:bg-transparent z-10">Audit Logs</td>
+                            <td class="py-4 px-4 text-center">90 days</td>
+                            <td class="py-4 px-4 text-center font-medium text-white">1 year</td>
+                            <td class="py-4 px-4 text-center">Custom retention</td>
+                        </tr>
+                        <tr class="border-b border-white/5 hover:bg-white/[0.02] transition-colors">
+                            <td class="py-4 px-4 sticky left-0 bg-[#020205] md:bg-transparent z-10">Deployment Options</td>
+                            <td class="py-4 px-4 text-center">Cloud SaaS</td>
+                            <td class="py-4 px-4 text-center">Cloud SaaS</td>
+                            <td class="py-4 px-4 text-center">Cloud, Private, On-Prem</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- ADD-ONS SECTION -->
+        <div class="mb-32 relative">
+            <div class="text-[10px] text-white/20 font-mono tracking-widest mb-12 absolute left-0 top-0 hidden md:block">03 // ADD-ONS</div>
+            <div class="text-center mb-16 pt-8">
+                <h2 class="text-3xl font-newsreader italic text-white mb-4">Optional add-ons</h2>
+                <p class="text-sm text-slate-400 font-light">Extend your plan with specialised capabilities.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+                <div class="p-6 rounded-xl bg-white/[0.02] border border-white/10 hover:border-white/20 transition-colors">
+                    <iconify-icon icon="solar:database-linear" class="text-2xl text-purple-400 mb-4"></iconify-icon>
+                    <h3 class="text-sm font-medium text-white mb-2">Historical Data Access</h3>
+                    <p class="text-xs text-slate-400 font-light leading-relaxed">Extended historical blockchain data beyond standard retention periods for deep-dive investigations.</p>
+                </div>
+                <div class="p-6 rounded-xl bg-white/[0.02] border border-white/10 hover:border-white/20 transition-colors">
+                    <iconify-icon icon="solar:users-group-rounded-linear" class="text-2xl text-blue-400 mb-4"></iconify-icon>
+                    <h3 class="text-sm font-medium text-white mb-2">Training &amp; Onboarding</h3>
+                    <p class="text-xs text-slate-400 font-light leading-relaxed">Dedicated training sessions for your team, including certification and ongoing education programmes.</p>
+                </div>
+                <div class="p-6 rounded-xl bg-white/[0.02] border border-white/10 hover:border-white/20 transition-colors">
+                    <iconify-icon icon="solar:link-minimalistic-linear" class="text-2xl text-emerald-400 mb-4"></iconify-icon>
+                    <h3 class="text-sm font-medium text-white mb-2">Custom Integrations</h3>
+                    <p class="text-xs text-slate-400 font-light leading-relaxed">Professional services to integrate ShadowTrace with your case management, SIEM, or internal systems.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQ (Accordion) -->
+        <div class="mb-20 border-t border-white/5 pt-16 relative">
+            <div class="text-[10px] text-white/20 font-mono tracking-widest mb-12 absolute left-0 top-16 hidden md:block">04 // FAQ</div>
+
+            <div class="max-w-3xl mx-auto space-y-[1px] pt-8">
+                <h2 class="text-3xl font-newsreader italic text-white mb-12 text-center">Frequently asked questions</h2>
+
+                <!-- FAQ Item 1 -->
+                <div class="accordion-item group bg-white/[0.02] border border-white/5 first:rounded-t-lg last:rounded-b-lg overflow-hidden transition-all duration-300 hover:bg-white/[0.04]">
+                    <button class="w-full flex items-center justify-between p-6 text-left" onclick="toggleAccordion(this)">
+                        <h3 class="text-sm text-white/90 font-medium group-hover:text-purple-300 transition-colors pr-8">Do you support government and institutional procurement processes?</h3>
+                        <div class="relative w-4 h-4 flex items-center justify-center">
+                            <iconify-icon icon="solar:add-circle-linear" class="accordion-icon text-slate-500 text-lg transition-transform duration-300 group-hover:text-white absolute"></iconify-icon>
+                        </div>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="px-6 pb-6 text-sm text-slate-400 font-light leading-relaxed max-w-2xl">
+                            <p>Yes. We regularly work with government agencies and have experience with various procurement frameworks. We can provide vendor registration documentation, security questionnaires, and flexible invoicing terms (NET30/60/90). Contact our sales team to discuss your specific procurement requirements.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="accordion-item group bg-white/[0.02] border border-white/5 overflow-hidden transition-all duration-300 hover:bg-white/[0.04]">
+                    <button class="w-full flex items-center justify-between p-6 text-left" onclick="toggleAccordion(this)">
+                        <h3 class="text-sm text-white/90 font-medium group-hover:text-purple-300 transition-colors pr-8">Can we run a pilot programme before committing?</h3>
+                         <div class="relative w-4 h-4 flex items-center justify-center">
+                            <iconify-icon icon="solar:add-circle-linear" class="accordion-icon text-slate-500 text-lg transition-transform duration-300 group-hover:text-white absolute"></iconify-icon>
+                        </div>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="px-6 pb-6 text-sm text-slate-400 font-light leading-relaxed max-w-2xl">
+                            <p>Absolutely. We encourage pilot programmes and can structure short-term engagements to help you evaluate ShadowTrace against your specific use cases. Pilot terms are flexible and often convert to annual agreements with favourable terms based on successful outcomes.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="accordion-item group bg-white/[0.02] border border-white/5 overflow-hidden transition-all duration-300 hover:bg-white/[0.04]">
+                    <button class="w-full flex items-center justify-between p-6 text-left" onclick="toggleAccordion(this)">
+                        <h3 class="text-sm text-white/90 font-medium group-hover:text-purple-300 transition-colors pr-8">What security certifications do you hold?</h3>
+                         <div class="relative w-4 h-4 flex items-center justify-center">
+                            <iconify-icon icon="solar:add-circle-linear" class="accordion-icon text-slate-500 text-lg transition-transform duration-300 group-hover:text-white absolute"></iconify-icon>
+                        </div>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="px-6 pb-6 text-sm text-slate-400 font-light leading-relaxed max-w-2xl">
+                            <p>ShadowTrace maintains SOC 2 Type II certification and operates in compliance with ISO 27001 standards. We undergo regular third-party security audits and can provide detailed security documentation, penetration test reports, and completed security questionnaires upon request (NDA required).</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 4 -->
+                <div class="accordion-item group bg-white/[0.02] border border-white/5 overflow-hidden transition-all duration-300 hover:bg-white/[0.04]">
+                    <button class="w-full flex items-center justify-between p-6 text-left" onclick="toggleAccordion(this)">
+                        <h3 class="text-sm text-white/90 font-medium group-hover:text-purple-300 transition-colors pr-8">Is training included in the subscription?</h3>
+                         <div class="relative w-4 h-4 flex items-center justify-center">
+                            <iconify-icon icon="solar:add-circle-linear" class="accordion-icon text-slate-500 text-lg transition-transform duration-300 group-hover:text-white absolute"></iconify-icon>
+                        </div>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="px-6 pb-6 text-sm text-slate-400 font-light leading-relaxed max-w-2xl">
+                            <p>All plans include access to our documentation, knowledge base, and on-demand video tutorials. Professional and Enterprise plans include onboarding sessions with our team. Extended training programmes, certification courses, and on-site workshops are available as add-ons.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 5 -->
+                <div class="accordion-item group bg-white/[0.02] border border-white/5 last:rounded-b-lg overflow-hidden transition-all duration-300 hover:bg-white/[0.04]">
+                    <button class="w-full flex items-center justify-between p-6 text-left" onclick="toggleAccordion(this)">
+                        <h3 class="text-sm text-white/90 font-medium group-hover:text-purple-300 transition-colors pr-8">Can ShadowTrace be deployed in our private infrastructure?</h3>
+                         <div class="relative w-4 h-4 flex items-center justify-center">
+                            <iconify-icon icon="solar:add-circle-linear" class="accordion-icon text-slate-500 text-lg transition-transform duration-300 group-hover:text-white absolute"></iconify-icon>
+                        </div>
+                    </button>
+                    <div class="accordion-content">
+                        <div class="px-6 pb-6 text-sm text-slate-400 font-light leading-relaxed max-w-2xl">
+                            <p>Yes. Enterprise customers can choose from cloud SaaS, private cloud deployment (in your AWS/Azure/GCP tenancy), or fully on-premises installation for air-gapped environments. Private deployments include custom data residency configurations and integration with your identity provider.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/5 bg-[#020205] relative z-20">
+        <div class="max-w-7xl mr-auto ml-auto pt-20 pr-6 pb-12 pl-6 relative">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20 relative z-10">
+                <div class="space-y-6">
+                    <div class="flex items-center gap-2 mb-6">
+                        <img src="assets/ShadowTraceLogo.svg" alt="ShadowTrace" style="height: 22.4px;">
+                    </div>
+                    <p class="text-sm text-slate-500 font-light leading-relaxed">
+                        Blockchain intelligence for financial crime investigators.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-sm text-white font-medium mb-6">Platform</h4>
+                    <ul class="space-y-4 text-sm text-slate-400 font-light">
+                        <li><a href="platform.html" class="hover:text-purple-400 transition-colors">Features</a></li>
+                        <li><a href="solutions.html" class="hover:text-purple-400 transition-colors">Solutions</a></li>
+                        <li><a href="pricing.html" class="hover:text-purple-400 transition-colors">Pricing</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-sm text-white font-medium mb-6">Company</h4>
+                    <ul class="space-y-4 text-sm text-slate-400 font-light">
+                        <li><a href="about.html" class="hover:text-purple-400 transition-colors">About Us</a></li>
+                        <li><a href="contact.html" class="hover:text-purple-400 transition-colors">Contact</a></li>
+                        <li><a href="resources.html" class="hover:text-purple-400 transition-colors">Resources</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-sm text-white font-medium mb-6">Legal</h4>
+                    <ul class="space-y-4 text-sm text-slate-400 font-light">
+                        <li><a href="privacy.html" class="hover:text-purple-400 transition-colors">Privacy Policy</a></li>
+                        <li><a href="terms.html" class="hover:text-purple-400 transition-colors">Terms of Service</a></li>
+                        <li><a href="security.html" class="hover:text-purple-400 transition-colors">Security</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6 mt-16 pt-8 border-t border-white/5 text-[10px] text-slate-600 uppercase tracking-widest relative z-10">
+                <span>© 2026 ShadowTrace Ltd. All rights reserved.</span>
+                <div class="flex gap-6">
+                    <a href="privacy.html" class="hover:text-slate-400 transition-colors">Privacy Policy</a>
+                    <a href="terms.html" class="hover:text-slate-400 transition-colors">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Logic
+        const menuBtn = document.getElementById('open-menu');
+        const closeBtn = document.getElementById('close-menu');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        function toggleMenu() {
+            if (mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.remove('hidden');
+                mobileMenu.classList.add('flex');
+                setTimeout(() => mobileMenu.classList.remove('opacity-0'), 10);
+            } else {
+                mobileMenu.classList.add('opacity-0');
+                setTimeout(() => {
+                    mobileMenu.classList.remove('flex');
+                    mobileMenu.classList.add('hidden');
+                }, 300);
+            }
+        }
+
+        menuBtn.addEventListener('click', toggleMenu);
+        closeBtn.addEventListener('click', toggleMenu);
+
+        // Accordion Logic
+        function toggleAccordion(button) {
+            const item = button.closest('.accordion-item');
+            const isActive = item.classList.contains('accordion-open');
+
+            // Close all other items
+            document.querySelectorAll('.accordion-item').forEach(acc => {
+                if (acc !== item) {
+                    acc.classList.remove('accordion-open');
+                }
+            });
+
+            // Toggle clicked item
+            if (isActive) {
+                item.classList.remove('accordion-open');
+            } else {
+                item.classList.add('accordion-open');
+            }
+        }
+    </script>
+
+</body>
+</html>

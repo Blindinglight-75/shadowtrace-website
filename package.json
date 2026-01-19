@@ -1,0 +1,24 @@
+{
+  "name": "crypto-trading-template",
+  "version": "1.0.0",
+  "description": "Crypto Trading Platform Landing Page Template from Aura",
+  "main": "index.html",
+  "scripts": {
+    "dev": "npx serve .",
+    "start": "npx serve .",
+    "build": "echo 'No build step required - static HTML site'"
+  },
+  "keywords": [
+    "crypto",
+    "trading",
+    "landing-page",
+    "template",
+    "aura"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "serve": "^14.2.1"
+  },
+  "dependencies": {}
+}

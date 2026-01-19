@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore ShadowTrace's blockchain intelligence platform. Graph-based investigations, real-time alerts, explainable risk scoring, and evidence-grade reporting for financial crime investigators.">
+    <meta property="og:title" content="ShadowTrace Platform - Blockchain Intelligence Tools">
+    <meta property="og:description" content="Investigation workflows, real-time monitoring, and evidence-grade reporting for law enforcement and compliance teams.">
+    <title>ShadowTrace Platform - Investigation Tools for Blockchain Intelligence</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --font-serif: 'Newsreader', serif;
+            --font-sans: 'Inter', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+        }
+        body {
+            font-family: var(--font-sans);
+            background-color: #020205;
+            color: white;
+            overflow-x: hidden;
+        }
+        .font-newsreader {
+            font-family: var(--font-serif);
+        }
+        .font-mono {
+            font-family: var(--font-mono);
+        }
+
+        /* Custom Animations */
+        @keyframes enter {
+            0% { opacity: 0; transform: translateY(20px) scale(0.98); filter: blur(4px); }
+            100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+        }
+        @keyframes beam-spin { to { transform: rotate(360deg); } }
+        @keyframes dots-move {
+            0% { background-position: 0 0; }
+            100% { background-position: 24px 24px; }
+        }
+        @keyframes cursor-blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        .animate-in {
+            animation: enter 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+        .cursor-blink {
+            animation: cursor-blink 1s step-end infinite;
+        }
+
+        .delay-100 { animation-delay: 100ms; }
+        .delay-200 { animation-delay: 200ms; }
+        .delay-300 { animation-delay: 300ms; }
+        .delay-400 { animation-delay: 400ms; }
+        .delay-500 { animation-delay: 500ms; }
+        .delay-700 { animation-delay: 700ms; }
+
+        /* Grid Lines */
+        .grid-lines {
+            position: absolute;
+            inset: 0;
+            max-width: 80rem;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            pointer-events: none;
+            z-index: 0;
+            padding: 0 1.5rem;
+        }
+        .grid-line {
+            width: 1px;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.05) 10%, rgba(255,255,255,0.05) 90%, transparent);
+        }
+
+        /* Spotlight Card Effect */
+        .spotlight-group {
+            display: grid;
+            gap: 1rem;
+            position: relative;
+        }
+        .spotlight-card {
+            position: relative;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            overflow: hidden;
+        }
+        .spotlight-card::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(800px circle at var(--mouse-x) var(--mouse-y), rgba(255, 255, 255, 0.06), transparent 40%);
+            opacity: 0;
+            transition: opacity 0.5s;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .spotlight-card:hover::before {
+            opacity: 1;
+        }
+        .spotlight-border {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 2;
+            background: radial-gradient(400px circle at var(--mouse-x) var(--mouse-y), rgba(168, 85, 247, 0.4), transparent 40%);
+            opacity: 0;
+            transition: opacity 0.5s;
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            padding: 1px;
+            border-radius: inherit;
+        }
+        .spotlight-card:hover .spotlight-border {
+            opacity: 1;
+        }
+
+        /* Navbar Button Border Beam */
+        .btn-beam {
+            position: absolute;
+            inset: -1px;
+            border-radius: 9999px;
+            pointer-events: none;
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            padding: 1px;
+        }
+        .btn-beam::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: conic-gradient(from 0deg, transparent 0deg, transparent 80deg, #a855f7 100deg, transparent 180deg);
+            animation: rotate 3s linear infinite;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .group:hover .btn-beam::before {
+            opacity: 1;
+        }
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Custom Inputs */
+        .custom-input:focus {
+            box-shadow: 0 0 0 1px rgba(168, 85, 247, 0.5), 0 0 0 4px rgba(168, 85, 247, 0.1);
+        }
+
+        /* Step Active States */
+        .step-content {
+            opacity: 0.3;
+            transition: opacity 0.5s ease;
+        }
+        .step-content.active {
+            opacity: 1;
+        }
+        .step-visual {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .step-visual.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-purple-500/30">
+
+    <!-- Background -->
+    <div class="fixed top-0 w-full h-screen -z-10 bg-[#020205]">
+        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-purple-900/20 via-[#020205] to-[#020205]"></div>
+    </div>
+
+    <!-- Vertical Grid Lines -->
+    <div class="grid-lines animate-in duration-1000">
+        <div class="grid-line"></div>
+        <div class="grid-line"></div>
+        <div class="grid-line"></div>
+        <div class="grid-line"></div>
+        <div class="grid-line"></div>
+    </div>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="fixed inset-0 z-[60] bg-[#020205]/90 backdrop-blur-xl hidden opacity-0 transition-opacity duration-300 flex-col items-center justify-center space-y-8">
+        <button id="close-menu" class="absolute top-6 right-6 text-white/60 hover:text-white">
+            <iconify-icon icon="solar:close-circle-linear" width="32" height="32"></iconify-icon>
+        </button>
+        <a href="platform.html" class="text-2xl font-newsreader italic text-purple-400 transition-colors">Platform</a>
+        <a href="solutions.html" class="text-2xl font-newsreader italic text-white hover:text-purple-400 transition-colors">Solutions</a>
+        <a href="pricing.html" class="text-2xl font-newsreader italic text-white hover:text-purple-400 transition-colors">Pricing</a>
+        <a href="about.html" class="text-2xl font-newsreader italic text-white hover:text-purple-400 transition-colors">About</a>
+        <a href="login.html" class="text-2xl font-newsreader italic text-white hover:text-purple-400 transition-colors">Sign In</a>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="fixed top-0 left-0 right-0 z-50 border-b border-white/[0.06] bg-[#020205]/60 backdrop-blur-md animate-in">
+        <div class="flex h-20 max-w-7xl mr-auto ml-auto pr-6 pl-6 items-center justify-between">
+            <div class="flex group cursor-pointer gap-x-2 gap-y-2 items-center" onclick="window.location.href='index.html'" role="button">
+                <img src="assets/ShadowTraceLogo.svg" alt="ShadowTrace" style="height: 22.4px;">
+            </div>
+
+            <div class="hidden md:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
+                <a href="platform.html" class="hover:text-white transition-colors text-xs font-medium text-white">Platform</a>
+                <a href="solutions.html" class="hover:text-white transition-colors text-xs font-medium text-white/60">Solutions</a>
+                <a href="pricing.html" class="hover:text-white transition-colors text-xs font-medium text-white/60">Pricing</a>
+                <a href="resources.html" class="hover:text-white transition-colors text-xs font-medium text-white/60">Resources</a>
+            </div>
+
+            <div class="flex gap-4 gap-x-4 gap-y-4 items-center">
+                <button class="hidden md:block group hover:bg-white/10 transition-all text-xs font-medium text-white bg-white/5 border-white/10 border rounded-full pt-2 pr-4 pb-2 pl-4 relative" onclick="window.location.href='login.html'" role="button">
+                    <span class="z-10 relative">Sign in</span>
+                    <div class="btn-beam"></div>
+                </button>
+                <!-- Hamburger Button -->
+                <button id="open-menu" class="md:hidden text-white/60 hover:text-white transition-colors">
+                    <iconify-icon icon="solar:hamburger-menu-linear" width="24" height="24"></iconify-icon>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="z-10 max-w-7xl mr-auto ml-auto pt-32 pr-6 pb-20 pl-6 relative">
+
+        <!-- SECTION 01: HERO -->
+        <div class="flex flex-col text-center mt-12 mb-32 relative items-center">
+            <div class="absolute left-0 top-0 text-white/20 text-[10px] font-mono tracking-widest animate-in delay-100">01 // PLATFORM</div>
+
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-purple-500/20 bg-purple-500/5 mb-8 animate-in delay-100 hover:border-purple-500/40 transition-colors cursor-pointer">
+                <span class="w-1.5 h-1.5 rounded-full bg-purple-400 animate-pulse"></span>
+                <span class="text-[10px] font-medium text-purple-200 tracking-wide uppercase">Investigation-First Design</span>
+            </div>
+
+            <h1 class="text-5xl md:text-7xl font-newsreader font-medium italic text-white mb-6 leading-[1.1] animate-in delay-200 max-w-4xl tracking-tight">
+                One workspace for <br>
+                <span class="not-italic text-transparent bg-clip-text bg-gradient-to-r from-purple-300 via-white to-indigo-300">end-to-end crypto investigations.</span>
+            </h1>
+
+            <p class="text-lg text-slate-400 font-light max-w-xl mx-auto mb-10 leading-relaxed animate-in delay-300">
+                ShadowTrace combines graph-based tracing, real-time monitoring, entity resolution, and evidence-grade reporting in a single platform designed for the rigour of financial crime work.
+            </p>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-6 animate-in delay-400">
+                <button class="group flex overflow-hidden uppercase transition-all duration-500 hover:scale-[1.02] hover:shadow-[0_0_40px_-10px_rgba(168,85,247,0.5)] focus:outline-none text-xs font-semibold text-white tracking-widest rounded-full py-4 px-10 relative items-center justify-center" onclick="window.location.href='contact.html'">
+                    <div class="absolute inset-0 -z-20 rounded-full overflow-hidden p-[1px]">
+                        <div class="absolute inset-[-100%] bg-[conic-gradient(from_0deg,transparent_0_300deg,#a855f7_360deg)]" style="animation: beam-spin 3s linear infinite;"></div>
+                        <div class="absolute inset-[1px] rounded-full bg-[#020205]"></div>
+                    </div>
+                    <div class="-z-10 overflow-hidden bg-[#020205] rounded-full absolute top-[2px] right-[2px] bottom-[2px] left-[2px]">
+                        <div class="absolute inset-0 bg-gradient-to-b from-zinc-800/60 to-transparent"></div>
+                        <div class="opacity-30 mix-blend-overlay absolute top-0 right-0 bottom-0 left-0" style="background-image: radial-gradient(rgba(255,255,255,0.6) 1px, transparent 1px); background-size: 12px 12px; animation: dots-move 8s linear infinite"></div>
+                    </div>
+                    <span class="relative z-10 text-white/90 transition-colors group-hover:text-white">Request Demo</span>
+                    <iconify-icon icon="solar:arrow-right-linear" class="relative z-10 ml-2 text-base transition-transform duration-300 group-hover:translate-x-1"></iconify-icon>
+                </button>
+            </div>
+        </div>
+
+        <!-- SECTION 02: INVESTIGATION WORKFLOW -->
+        <div class="border-white/5 border-t pt-24 pb-32 relative z-10 w-full max-w-7xl mx-auto">
+            <div class="text-[10px] animate-in delay-200 lg:left-0 lg:top-16 md:top-16 text-white/20 tracking-widest font-mono absolute top-16 left-6">02 // WORKFLOW</div>
+
+            <div class="flex flex-col lg:flex-row gap-8 lg:gap-24 relative">
+
+                <!-- Left: Sticky Visual -->
+                <div class="hidden lg:flex w-1/2 h-[500px] sticky top-32 items-center justify-center">
+                    <div class="relative w-full h-full bg-white/[0.02] border border-white/10 rounded-2xl overflow-hidden p-8">
+                        <div class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:40px_40px] opacity-50"></div>
+
+                        <!-- Visual Container -->
+                        <div class="relative w-full h-full flex items-center justify-center">
+                            <!-- Visual 1: Ingest -->
+                            <div id="visual-1" class="step-visual active flex-col gap-6">
+                                <div class="w-24 h-24 rounded-2xl bg-gradient-to-br from-purple-500/20 to-blue-500/20 border border-white/20 flex items-center justify-center shadow-[0_0_50px_-10px_rgba(168,85,247,0.3)]">
+                                    <iconify-icon icon="solar:database-linear" class="text-5xl text-white"></iconify-icon>
+                                </div>
+                                <div class="text-center">
+                                    <div class="text-sm font-mono text-white mb-1">Data Ingestion</div>
+                                    <div class="text-[10px] text-slate-500 font-mono">Multi-chain indexing</div>
+                                </div>
+                            </div>
+
+                            <!-- Visual 2: Investigate -->
+                            <div id="visual-2" class="step-visual flex-col gap-6">
+                                <div class="relative">
+                                    <div class="absolute inset-0 animate-ping rounded-full border border-purple-500/30"></div>
+                                    <div class="w-24 h-24 rounded-full bg-[#0f0f13] border border-purple-500/50 flex items-center justify-center z-10 relative">
+                                        <iconify-icon icon="solar:graph-new-linear" class="text-4xl text-purple-400"></iconify-icon>
+                                    </div>
+                                    <!-- Orbiting dots -->
+                                    <div class="absolute inset-[-20px] rounded-full border border-dashed border-white/10 animate-spin" style="animation-duration: 8s;"></div>
+                                </div>
+                                <div class="text-center">
+                                    <div class="text-sm font-mono text-white mb-1">Graph Analysis</div>
+                                    <div class="text-[10px] text-slate-500 font-mono">Visual investigation</div>
+                                </div>
+                            </div>
+
+                            <!-- Visual 3: Score -->
+                            <div id="visual-3" class="step-visual flex-col gap-6">
+                                <div class="grid grid-cols-2 gap-4">
+                                    <div class="w-16 h-16 rounded bg-white/5 border border-white/10 flex items-center justify-center"><iconify-icon icon="solar:danger-triangle-linear" class="text-2xl text-rose-400"></iconify-icon></div>
+                                    <div class="w-16 h-16 rounded bg-white/5 border border-white/10 flex items-center justify-center"><iconify-icon icon="solar:shield-warning-linear" class="text-2xl text-amber-400"></iconify-icon></div>
+                                    <div class="w-16 h-16 rounded bg-purple-500/10 border border-purple-500/30 flex items-center justify-center"><iconify-icon icon="solar:check-circle-linear" class="text-2xl text-emerald-400"></iconify-icon></div>
+                                    <div class="w-16 h-16 rounded bg-white/5 border border-white/10 flex items-center justify-center"><iconify-icon icon="solar:question-circle-linear" class="text-2xl text-slate-400"></iconify-icon></div>
+                                </div>
+                                <div class="text-center">
+                                    <div class="text-sm font-mono text-white mb-1">Risk Scoring</div>
+                                    <div class="text-[10px] text-slate-500 font-mono">Explainable results</div>
+                                </div>
+                            </div>
+
+                             <!-- Visual 4: Report -->
+                             <div id="visual-4" class="step-visual flex-col gap-6">
+                                <div class="w-64 bg-[#0f0f13] border border-white/10 rounded-lg p-4 font-mono text-[10px] space-y-2 relative overflow-hidden">
+                                    <div class="absolute top-0 left-0 w-1 h-full bg-purple-500"></div>
+                                    <div class="flex justify-between border-b border-white/5 pb-1"><span>CASE_ID</span><span class="text-slate-500">INV-2026-0142</span></div>
+                                    <div class="flex justify-between border-b border-white/5 pb-1"><span>STATUS</span><span class="text-purple-400">EXPORTED</span></div>
+                                    <div class="flex justify-between"><span>FORMAT</span><span class="text-slate-500">PDF + JSON</span></div>
+                                </div>
+                                <div class="text-center">
+                                    <div class="text-sm font-mono text-white mb-1">Evidence Reports</div>
+                                    <div class="text-[10px] text-slate-500 font-mono">Court-ready output</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Scrolling Content -->
+                <div class="w-full lg:w-1/2 flex flex-col pt-12 pb-32">
+                    <h2 class="text-4xl md:text-5xl font-newsreader font-medium italic text-white mb-16 tracking-tight sticky top-24 lg:static bg-[#020205]/90 lg:bg-transparent py-4 z-20 backdrop-blur-md">
+                        Investigation workflow
+                    </h2>
+
+                    <div class="relative border-l border-white/10 ml-6 pl-12 space-y-48">
+
+                        <!-- Step 1 -->
+                        <div class="step-content active relative" data-step="1">
+                            <span class="absolute -left-[54px] top-1 w-3 h-3 rounded-full bg-purple-500 ring-4 ring-[#020205]"></span>
+                            <h3 class="text-xl font-medium text-white mb-4">1. Ingest &amp; Index</h3>
+                            <p class="text-slate-400 font-light leading-relaxed">
+                                Start with a wallet address, transaction hash, or entity name. ShadowTrace instantly retrieves on-chain data from our indexed database covering Bitcoin, Ethereum, and major EVM chains—with historical depth back to genesis blocks.
+                            </p>
+                        </div>
+
+                        <!-- Step 2 -->
+                        <div class="step-content relative" data-step="2">
+                            <span class="absolute -left-[54px] top-1 w-3 h-3 rounded-full bg-white/20 ring-4 ring-[#020205] transition-colors duration-500"></span>
+                            <h3 class="text-xl font-medium text-white mb-4">2. Investigate &amp; Trace</h3>
+                            <p class="text-slate-400 font-light leading-relaxed">
+                                Use our interactive graph canvas to expand transaction paths, cluster related wallets, and identify fund flows. Annotate entities, tag addresses of interest, and collaborate with team members in shared case workspaces.
+                            </p>
+                        </div>
+
+                        <!-- Step 3 -->
+                        <div class="step-content relative" data-step="3">
+                            <span class="absolute -left-[54px] top-1 w-3 h-3 rounded-full bg-white/20 ring-4 ring-[#020205] transition-colors duration-500"></span>
+                            <h3 class="text-xl font-medium text-white mb-4">3. Score &amp; Explain</h3>
+                            <p class="text-slate-400 font-light leading-relaxed">
+                                Every address and transaction receives an explainable risk score. Drill down to see exactly which factors contributed—direct exposure, behavioural patterns, counterparty risk—so you can justify findings to stakeholders.
+                            </p>
+                        </div>
+
+                         <!-- Step 4 -->
+                         <div class="step-content relative" data-step="4">
+                            <span class="absolute -left-[54px] top-1 w-3 h-3 rounded-full bg-white/20 ring-4 ring-[#020205] transition-colors duration-500"></span>
+                            <h3 class="text-xl font-medium text-white mb-4">4. Report &amp; Export</h3>
+                            <p class="text-slate-400 font-light leading-relaxed">
+                                Generate evidence-grade PDF reports with full methodology documentation, timestamped screenshots, and reproducible audit trails. Export data to CSV or JSON for integration with case management systems.
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 03: CORE CAPABILITIES -->
+        <div class="border-white/5 border-t pt-24 relative z-10 w-full max-w-7xl mx-auto">
+             <div class="text-[10px] animate-in delay-200 lg:left-0 text-white/20 tracking-widest font-mono absolute top-16 left-6">03 // CAPABILITIES</div>
+
+             <div class="mb-16 text-center animate-in delay-300">
+                <h2 class="text-3xl font-newsreader font-medium italic text-white">Core platform capabilities</h2>
+                <p class="text-slate-400 text-sm mt-2">Tools built for the demands of regulated investigations.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="p-8 rounded-2xl bg-white/[0.02] border border-white/10 hover:border-white/20 transition-colors">
+                    <div class="w-10 h-10 rounded-full bg-purple-500/10 flex items-center justify-center text-purple-400 mb-6">
+                        <iconify-icon icon="solar:graph-new-linear" class="text-xl"></iconify-icon>
+                    </div>
+                    <h3 class="text-lg font-medium text-white mb-3">Graph Investigation</h3>
+                    <p class="text-sm text-slate-400 font-light leading-relaxed mb-6">
+                        Visualise transaction flows with an interactive graph canvas. Expand paths, cluster wallets, and trace funds across multiple hops and chains in a single view.
+                    </p>
+                    <a href="solutions.html" class="text-xs text-white border-b border-white/20 hover:border-white pb-0.5 transition-colors">Learn more</a>
+                </div>
+
+                <div class="p-8 rounded-2xl bg-white/[0.02] border border-white/10 hover:border-white/20 transition-colors">
+                    <div class="w-10 h-10 rounded-full bg-blue-500/10 flex items-center justify-center text-blue-400 mb-6">
+                        <iconify-icon icon="solar:bell-bing-linear" class="text-xl"></iconify-icon>
+                    </div>
+                    <h3 class="text-lg font-medium text-white mb-3">Real-Time Alerts</h3>
+                    <p class="text-sm text-slate-400 font-light leading-relaxed mb-6">
+                        Monitor watchlist addresses and receive alerts within seconds of on-chain activity. Configure risk thresholds and notification channels to match your operational needs.
+                    </p>
+                    <a href="solutions.html" class="text-xs text-white border-b border-white/20 hover:border-white pb-0.5 transition-colors">Learn more</a>
+                </div>
+
+                <div class="p-8 rounded-2xl bg-white/[0.02] border border-white/10 hover:border-white/20 transition-colors">
+                    <div class="w-10 h-10 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-400 mb-6">
+                        <iconify-icon icon="solar:document-text-linear" class="text-xl"></iconify-icon>
+                    </div>
+                    <h3 class="text-lg font-medium text-white mb-3">Evidence Reporting</h3>
+                    <p class="text-sm text-slate-400 font-light leading-relaxed mb-6">
+                        Generate comprehensive PDF reports with chain-of-custody documentation. Include annotated graphs, transaction timelines, and reproducible methodology for court proceedings.
+                    </p>
+                    <a href="solutions.html" class="text-xs text-white border-b border-white/20 hover:border-white pb-0.5 transition-colors">Learn more</a>
+                </div>
+            </div>
+
+            <!-- Additional capabilities row -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
+                <div class="p-8 rounded-2xl bg-white/[0.02] border border-white/10 hover:border-white/20 transition-colors">
+                    <div class="w-10 h-10 rounded-full bg-amber-500/10 flex items-center justify-center text-amber-400 mb-6">
+                        <iconify-icon icon="solar:shield-star-linear" class="text-xl"></iconify-icon>
+                    </div>
+                    <h3 class="text-lg font-medium text-white mb-3">Explainable Risk Scores</h3>
+                    <p class="text-sm text-slate-400 font-light leading-relaxed mb-6">
+                        Every risk assessment includes a breakdown of contributing factors. Understand exactly why an address was flagged and document your reasoning for compliance records.
+                    </p>
+                    <a href="solutions.html" class="text-xs text-white border-b border-white/20 hover:border-white pb-0.5 transition-colors">Learn more</a>
+                </div>
+
+                <div class="p-8 rounded-2xl bg-white/[0.02] border border-white/10 hover:border-white/20 transition-colors">
+                    <div class="w-10 h-10 rounded-full bg-rose-500/10 flex items-center justify-center text-rose-400 mb-6">
+                        <iconify-icon icon="solar:users-group-rounded-linear" class="text-xl"></iconify-icon>
+                    </div>
+                    <h3 class="text-lg font-medium text-white mb-3">Entity Resolution</h3>
+                    <p class="text-sm text-slate-400 font-light leading-relaxed mb-6">
+                        Link wallet addresses to known entities including exchanges, services, and flagged actors. Leverage our continuously updated attribution database to accelerate investigations.
+                    </p>
+                    <a href="solutions.html" class="text-xs text-white border-b border-white/20 hover:border-white pb-0.5 transition-colors">Learn more</a>
+                </div>
+
+                <div class="p-8 rounded-2xl bg-white/[0.02] border border-white/10 hover:border-white/20 transition-colors">
+                    <div class="w-10 h-10 rounded-full bg-indigo-500/10 flex items-center justify-center text-indigo-400 mb-6">
+                        <iconify-icon icon="solar:folder-with-files-linear" class="text-xl"></iconify-icon>
+                    </div>
+                    <h3 class="text-lg font-medium text-white mb-3">Case Workspaces</h3>
+                    <p class="text-sm text-slate-400 font-light leading-relaxed mb-6">
+                        Organise investigations in dedicated workspaces with notes, tags, and shared access controls. Maintain audit trails of all investigator actions for compliance and handover.
+                    </p>
+                    <a href="solutions.html" class="text-xs text-white border-b border-white/20 hover:border-white pb-0.5 transition-colors">Learn more</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 04: SECURITY & COMPLIANCE -->
+        <div class="border-white/5 border-t mt-32 pt-24 pb-32 relative z-10 w-full max-w-7xl mx-auto">
+            <div class="absolute left-6 lg:left-0 top-24 text-white/20 text-[10px] font-mono tracking-widest animate-in delay-200">04 // SECURITY</div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div class="flex flex-col justify-center h-full">
+                    <h2 class="text-4xl md:text-5xl font-newsreader font-medium italic text-white mb-8 tracking-tight animate-in delay-300">
+                        Enterprise security for
+                        <span class="not-italic text-transparent bg-clip-text bg-gradient-to-r from-purple-300 via-white to-indigo-300">sensitive investigations.</span>
+                    </h2>
+
+                    <div class="space-y-6 text-lg text-slate-400 font-light leading-relaxed animate-in delay-400">
+                        <p>
+                            ShadowTrace is built to meet the security requirements of law enforcement agencies and regulated financial institutions. We maintain SOC 2 Type II certification and operate in compliance with ISO 27001 standards.
+                        </p>
+                        <p>
+                            All data is encrypted at rest and in transit. Access is controlled through role-based permissions with full audit logging. Enterprise clients can configure SSO/SAML integration, data retention policies, and custom deployment options.
+                        </p>
+                    </div>
+
+                    <div class="mt-10 grid grid-cols-2 gap-6 animate-in delay-500">
+                        <div class="flex items-center gap-3">
+                            <iconify-icon icon="solar:shield-check-linear" class="text-2xl text-purple-400"></iconify-icon>
+                            <span class="text-sm text-white">SOC 2 Type II</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <iconify-icon icon="solar:lock-keyhole-linear" class="text-2xl text-purple-400"></iconify-icon>
+                            <span class="text-sm text-white">AES-256 Encryption</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <iconify-icon icon="solar:user-id-linear" class="text-2xl text-purple-400"></iconify-icon>
+                            <span class="text-sm text-white">SSO/SAML Support</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <iconify-icon icon="solar:clipboard-list-linear" class="text-2xl text-purple-400"></iconify-icon>
+                            <span class="text-sm text-white">Full Audit Logs</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="relative group animate-in delay-500">
+                    <div class="absolute -inset-4 bg-gradient-to-r from-purple-500/20 to-blue-500/20 rounded-3xl blur-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                    <div class="relative rounded-2xl overflow-hidden border border-white/10 bg-white/[0.02] p-8">
+                        <h4 class="text-lg font-medium text-white mb-6">Deployment Options</h4>
+                        <div class="space-y-4">
+                            <div class="flex items-start gap-4 p-4 rounded-xl bg-white/5 border border-white/10">
+                                <iconify-icon icon="solar:cloud-linear" class="text-2xl text-blue-400 mt-1"></iconify-icon>
+                                <div>
+                                    <h5 class="text-sm font-medium text-white mb-1">Cloud SaaS</h5>
+                                    <p class="text-xs text-slate-400">Fully managed platform with automatic updates and global availability. Ideal for most organisations.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4 p-4 rounded-xl bg-white/5 border border-white/10">
+                                <iconify-icon icon="solar:server-square-linear" class="text-2xl text-purple-400 mt-1"></iconify-icon>
+                                <div>
+                                    <h5 class="text-sm font-medium text-white mb-1">Private Cloud</h5>
+                                    <p class="text-xs text-slate-400">Dedicated instance in your preferred cloud provider (AWS, Azure, GCP) with custom data residency.</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start gap-4 p-4 rounded-xl bg-white/5 border border-white/10">
+                                <iconify-icon icon="solar:server-path-linear" class="text-2xl text-emerald-400 mt-1"></iconify-icon>
+                                <div>
+                                    <h5 class="text-sm font-medium text-white mb-1">On-Premises</h5>
+                                    <p class="text-xs text-slate-400">Air-gapped deployment for organisations with strict data sovereignty requirements. Contact us for details.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 05: INTEGRATIONS -->
+        <div class="border-white/5 border-t pt-24 pb-32 relative z-10 w-full max-w-7xl mx-auto">
+            <div class="text-[10px] animate-in delay-200 lg:left-0 text-white/20 tracking-widest font-mono absolute top-16 left-6">05 // INTEGRATIONS</div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center px-6 relative z-10">
+                <div class="lg:col-span-5 space-y-8">
+                    <h2 class="text-4xl md:text-5xl font-newsreader font-medium italic text-white tracking-tight">
+                        API-first architecture for
+                        <span class="not-italic text-transparent bg-clip-text bg-gradient-to-r from-purple-300 via-white to-indigo-300">seamless integration.</span>
+                    </h2>
+                    <p class="text-lg text-slate-400 font-light leading-relaxed">
+                        ShadowTrace integrates with your existing infrastructure through a comprehensive REST API. Connect to case management systems, SIEM/SOAR platforms, and internal databases.
+                    </p>
+
+                    <div class="flex flex-col gap-4 mt-8">
+                        <a href="#" class="group flex items-center gap-4 p-4 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition-colors">
+                            <div class="w-10 h-10 rounded bg-[#0f0f13] flex items-center justify-center text-white border border-white/10">
+                                <iconify-icon icon="solar:book-2-linear" class="text-xl"></iconify-icon>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-medium text-white">API Documentation</h4>
+                                <p class="text-xs text-slate-400">Full REST API reference with examples.</p>
+                            </div>
+                            <iconify-icon icon="solar:arrow-right-linear" class="ml-auto text-white opacity-0 group-hover:opacity-100 transition-opacity"></iconify-icon>
+                        </a>
+
+                        <a href="#" class="group flex items-center gap-4 p-4 rounded-xl border border-white/10 bg-white/5 hover:bg-white/10 transition-colors">
+                            <div class="w-10 h-10 rounded bg-[#0f0f13] flex items-center justify-center text-white border border-white/10">
+                                <iconify-icon icon="solar:download-minimalistic-linear" class="text-xl"></iconify-icon>
+                            </div>
+                            <div>
+                                <h4 class="text-sm font-medium text-white">Export Formats</h4>
+                                <p class="text-xs text-slate-400">JSON, CSV, and PDF output options.</p>
+                            </div>
+                            <iconify-icon icon="solar:arrow-right-linear" class="ml-auto text-white opacity-0 group-hover:opacity-100 transition-opacity"></iconify-icon>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-7 flex justify-center lg:justify-end">
+                    <div class="w-full max-w-lg rounded-xl overflow-hidden bg-[#0c0c0e]/90 backdrop-blur-xl border border-white/10 shadow-2xl shadow-purple-900/10 font-mono text-xs md:text-sm">
+                        <div class="bg-white/5 px-4 py-3 flex items-center gap-2 border-b border-white/5">
+                            <div class="w-3 h-3 rounded-full bg-[#FF5F56]"></div>
+                            <div class="w-3 h-3 rounded-full bg-[#FFBD2E]"></div>
+                            <div class="w-3 h-3 rounded-full bg-[#27C93F]"></div>
+                            <div class="ml-auto text-[10px] text-slate-500">bash — 80x24</div>
+                        </div>
+                        <div class="p-6 space-y-4 text-slate-300">
+                            <div>
+                                <div class="flex gap-2">
+                                    <span class="text-emerald-400">➜</span>
+                                    <span class="text-blue-400">~</span>
+                                    <span class="text-slate-100">curl -X GET "https://api.shadowtrace.io/v1/address/bc1q..."</span>
+                                </div>
+                                <div class="text-slate-500 mt-1">
+                                    -H "Authorization: Bearer sk_live_..."
+                                </div>
+                            </div>
+
+                            <div class="space-y-1 pl-4 border-l border-white/10 ml-1">
+                                <div class="text-slate-500">{</div>
+                                <div>
+                                    <span class="text-purple-400">"address"</span>:
+                                    <span class="text-green-400">"bc1q..."</span>,
+                                </div>
+                                <div>
+                                    <span class="text-purple-400">"risk_score"</span>:
+                                    <span class="text-amber-400">78</span>,
+                                </div>
+                                <div>
+                                    <span class="text-purple-400">"risk_factors"</span>: [
+                                    <span class="text-green-400">"darknet_exposure"</span>,
+                                    <span class="text-green-400">"mixer_usage"</span>],
+                                </div>
+                                <div>
+                                    <span class="text-purple-400">"entity"</span>:
+                                    <span class="text-green-400">"Unknown"</span>,
+                                </div>
+                                <div>
+                                    <span class="text-purple-400">"cluster_size"</span>:
+                                    <span class="text-amber-400">142</span>
+                                </div>
+                                <div class="text-slate-500">}</div>
+                            </div>
+
+                            <div class="flex gap-2 items-center">
+                                <span class="text-emerald-400">➜</span>
+                                <span class="text-blue-400">~</span>
+                                <span class="w-2 h-4 bg-slate-400 cursor-blink"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA Section -->
+        <div class="z-10 w-full max-w-7xl border-white/5 border-t mx-auto pt-12 pb-24 relative">
+            <div class="relative w-full bg-[#6E40C9] rounded-[2rem] overflow-hidden px-8 py-16 md:p-16 flex flex-col lg:flex-row items-center justify-between gap-12 group">
+                <div class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:40px_40px] opacity-30"></div>
+
+                <div class="relative z-10 max-w-2xl text-center lg:text-left">
+                    <h2 class="text-4xl md:text-5xl font-newsreader font-medium text-white mb-6 tracking-tight leading-[1.1]">
+                        Ready to see ShadowTrace in action?
+                    </h2>
+                    <p class="text-lg text-purple-100/80 font-light leading-relaxed max-w-lg mx-auto lg:mx-0">
+                        Schedule a demonstration with our team to explore the platform capabilities and discuss your investigation requirements.
+                    </p>
+                </div>
+
+                <div class="relative z-10 w-full max-w-md">
+                    <div class="bg-white/10 backdrop-blur-md p-6 rounded-2xl border border-white/20 shadow-2xl">
+                        <div class="flex flex-col gap-4">
+                            <button onclick="window.location.href='contact.html'" class="w-full bg-white text-[#6E40C9] hover:bg-white/90 font-semibold py-3 px-4 rounded-xl transition-colors duration-200 flex items-center justify-center gap-2">
+                                <span>Request Demo</span>
+                                <iconify-icon icon="solar:arrow-right-linear" class="text-lg"></iconify-icon>
+                            </button>
+                            <div class="text-center">
+                                <p class="text-[10px] text-purple-200/60 uppercase tracking-widest">No commitment required</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="border-t border-white/5 bg-[#020205] relative z-20">
+            <div class="max-w-7xl mr-auto ml-auto pt-20 pr-6 pb-12 pl-6 relative">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20 relative z-10">
+                    <div class="space-y-6">
+                        <div class="flex items-center gap-2 mb-6">
+                            <img src="assets/ShadowTraceLogo.svg" alt="ShadowTrace" style="height: 22.4px;">
+                        </div>
+                        <p class="text-sm text-slate-500 font-light leading-relaxed">
+                            Blockchain intelligence for financial crime investigators.
+                        </p>
+                    </div>
+
+                    <div>
+                        <h4 class="text-sm text-white font-medium mb-6">Platform</h4>
+                        <ul class="space-y-4 text-sm text-slate-400 font-light">
+                            <li><a href="platform.html" class="hover:text-purple-400 transition-colors">Features</a></li>
+                            <li><a href="solutions.html" class="hover:text-purple-400 transition-colors">Solutions</a></li>
+                            <li><a href="pricing.html" class="hover:text-purple-400 transition-colors">Pricing</a></li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h4 class="text-sm text-white font-medium mb-6">Company</h4>
+                        <ul class="space-y-4 text-sm text-slate-400 font-light">
+                            <li><a href="about.html" class="hover:text-purple-400 transition-colors">About Us</a></li>
+                            <li><a href="contact.html" class="hover:text-purple-400 transition-colors">Contact</a></li>
+                            <li><a href="resources.html" class="hover:text-purple-400 transition-colors">Resources</a></li>
+                        </ul>
+                    </div>
+
+                    <div>
+                        <h4 class="text-sm text-white font-medium mb-6">Legal</h4>
+                        <ul class="space-y-4 text-sm text-slate-400 font-light">
+                            <li><a href="privacy.html" class="hover:text-purple-400 transition-colors">Privacy Policy</a></li>
+                            <li><a href="terms.html" class="hover:text-purple-400 transition-colors">Terms of Service</a></li>
+                            <li><a href="security.html" class="hover:text-purple-400 transition-colors">Security</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="flex flex-col md:flex-row justify-between items-center gap-6 mt-16 pt-8 border-t border-white/5 text-[10px] text-slate-600 uppercase tracking-widest relative z-10">
+                    <span>© 2026 ShadowTrace Ltd. All rights reserved.</span>
+                    <div class="flex gap-6">
+                        <a href="privacy.html" class="hover:text-slate-400 transition-colors">Privacy Policy</a>
+                        <a href="terms.html" class="hover:text-slate-400 transition-colors">Terms of Service</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+    </main>
+
+    <script>
+        // Spotlight Effect Logic
+        const cards = document.querySelectorAll(".spotlight-card");
+
+        document.addEventListener("mousemove", (e) => {
+            cards.forEach((card) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+
+                card.style.setProperty("--mouse-x", `${x}px`);
+                card.style.setProperty("--mouse-y", `${y}px`);
+            });
+        });
+
+        // Mobile Menu Logic
+        const menuBtn = document.getElementById('open-menu');
+        const closeBtn = document.getElementById('close-menu');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        function toggleMenu() {
+            if (mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.remove('hidden');
+                mobileMenu.classList.add('flex');
+                setTimeout(() => mobileMenu.classList.remove('opacity-0'), 10);
+            } else {
+                mobileMenu.classList.add('opacity-0');
+                setTimeout(() => {
+                    mobileMenu.classList.remove('flex');
+                    mobileMenu.classList.add('hidden');
+                }, 300);
+            }
+        }
+
+        menuBtn.addEventListener('click', toggleMenu);
+        closeBtn.addEventListener('click', toggleMenu);
+
+        // Sticky Scroll Logic for Section 02
+        const stepContents = document.querySelectorAll('.step-content');
+        const visuals = document.querySelectorAll('.step-visual');
+
+        // Simple Intersection Observer for scroll steps
+        const observerOptions = {
+            root: null,
+            rootMargin: '-40% 0px -40% 0px', // Trigger when element is in middle of viewport
+            threshold: 0
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // Activate Text
+                    stepContents.forEach(s => s.classList.remove('active'));
+                    entry.target.classList.add('active');
+
+                    // Activate Dot
+                    const dot = entry.target.querySelector('span');
+                    document.querySelectorAll('.step-content span').forEach(s => {
+                        s.classList.remove('bg-purple-500');
+                        s.classList.add('bg-white/20');
+                    });
+                    if(dot) {
+                        dot.classList.remove('bg-white/20');
+                        dot.classList.add('bg-purple-500');
+                    }
+
+                    // Activate Visual
+                    const stepIndex = entry.target.getAttribute('data-step');
+                    visuals.forEach(v => v.classList.remove('active'));
+                    const targetVisual = document.getElementById(`visual-${stepIndex}`);
+                    if (targetVisual) targetVisual.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        stepContents.forEach(step => observer.observe(step));
+    </script>
+
+</body>
+</html>

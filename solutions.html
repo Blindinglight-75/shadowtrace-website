@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solutions | ShadowTrace - Blockchain Intelligence for Every Investigation</title>
+    <meta name="description" content="Discover how ShadowTrace supports law enforcement, financial institutions, crypto exchanges, and regulators with blockchain investigation and compliance solutions.">
+    <meta name="keywords" content="crypto investigation solutions, blockchain compliance, law enforcement crypto tools, VASP compliance, regulator blockchain analytics">
+    <link rel="canonical" href="https://shadowtrace.com/solutions">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --font-serif: 'Newsreader', serif;
+            --font-sans: 'Inter', sans-serif;
+        }
+        body {
+            font-family: var(--font-sans);
+            background-color: #020205;
+            color: white;
+            overflow-x: hidden;
+        }
+        .font-newsreader {
+            font-family: var(--font-serif);
+        }
+
+        @keyframes enter {
+            0% { opacity: 0; transform: translateY(20px) scale(0.98); filter: blur(4px); }
+            100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+        }
+
+        .animate-in {
+            animation: enter 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+
+        .delay-100 { animation-delay: 100ms; }
+        .delay-200 { animation-delay: 200ms; }
+        .delay-300 { animation-delay: 300ms; }
+        .delay-400 { animation-delay: 400ms; }
+
+        .grid-lines {
+            position: absolute;
+            inset: 0;
+            max-width: 80rem;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            pointer-events: none;
+            z-index: 0;
+            padding: 0 1.5rem;
+        }
+        .grid-line {
+            width: 1px;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.05) 10%, rgba(255,255,255,0.05) 90%, transparent);
+        }
+
+        .btn-beam {
+            position: absolute;
+            inset: -1px;
+            border-radius: 9999px;
+            pointer-events: none;
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            padding: 1px;
+        }
+        .btn-beam::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: conic-gradient(from 0deg, transparent 0deg, transparent 80deg, #a855f7 100deg, transparent 180deg);
+            animation: rotate 3s linear infinite;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .group:hover .btn-beam::before {
+            opacity: 1;
+        }
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .solution-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.02) 0%, rgba(255,255,255,0.01) 100%);
+        }
+        .solution-card:hover {
+            background: linear-gradient(135deg, rgba(255,255,255,0.04) 0%, rgba(255,255,255,0.02) 100%);
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-purple-500/30">
+
+    <!-- Background -->
+    <div class="fixed top-0 w-full h-screen -z-10 bg-[#020205]">
+        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-purple-900/20 via-[#020205] to-[#020205]"></div>
+    </div>
+
+    <!-- Vertical Grid Lines -->
+    <div class="grid-lines animate-in duration-1000">
+        <div class="grid-line"></div>
+        <div class="grid-line"></div>
+        <div class="grid-line"></div>
+        <div class="grid-line"></div>
+        <div class="grid-line"></div>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="fixed top-0 left-0 right-0 z-50 border-b border-white/[0.06] bg-[#020205]/60 backdrop-blur-md animate-in">
+        <div class="flex h-20 max-w-7xl mr-auto ml-auto pr-6 pl-6 items-center justify-between">
+            <div class="flex group cursor-pointer gap-x-2 gap-y-2 items-center" onclick="window.location.href='index.html'" role="button">
+                <img src="assets/ShadowTraceLogo.svg" alt="ShadowTrace" style="height: 22.4px;">
+            </div>
+
+            <div class="hidden md:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
+                <a href="platform.html" class="hover:text-white transition-colors text-xs font-medium text-white/60">Platform</a>
+                <a href="solutions.html" class="hover:text-white transition-colors text-xs font-medium text-white">Solutions</a>
+                <a href="pricing.html" class="hover:text-white transition-colors text-xs font-medium text-white/60">Pricing</a>
+                <a href="resources.html" class="hover:text-white transition-colors text-xs font-medium text-white/60">Resources</a>
+            </div>
+
+            <div class="flex gap-4 gap-x-4 gap-y-4 items-center">
+                <a href="login.html" class="hidden md:block hover:text-white transition-colors text-xs font-medium text-white/60">Sign In</a>
+                <button class="hidden md:block group hover:bg-white/10 transition-all text-xs font-medium text-white bg-white/5 border-white/10 border rounded-full pt-2 pr-4 pb-2 pl-4 relative" onclick="window.location.href='contact.html'" role="button">
+                    <span class="z-10 relative">Request Demo</span>
+                    <div class="btn-beam"></div>
+                </button>
+                <button id="open-menu" class="md:hidden text-white/60 hover:text-white transition-colors">
+                    <iconify-icon icon="solar:hamburger-menu-linear" width="24" height="24"></iconify-icon>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-16 px-6 relative z-10">
+        <div class="max-w-4xl mx-auto text-center animate-in">
+            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-white/10 bg-white/5 mb-6">
+                <iconify-icon icon="solar:users-group-rounded-linear" class="text-purple-400 text-sm"></iconify-icon>
+                <span class="text-xs font-medium text-white/70">Solutions by Sector</span>
+            </div>
+
+            <h1 class="text-4xl md:text-5xl lg:text-6xl font-newsreader font-medium italic text-white mb-6 tracking-tight leading-[1.1]">
+                Built for <span class="text-purple-400">investigators</span>,<br>trusted by institutions
+            </h1>
+
+            <p class="text-lg text-slate-400 font-light leading-relaxed max-w-2xl mx-auto">
+                Whether you're tracing illicit funds, meeting regulatory obligations, or managing transaction risk, ShadowTrace provides the intelligence you need.
+            </p>
+        </div>
+    </section>
+
+    <!-- Solutions Grid -->
+    <section class="py-16 px-6 relative z-10">
+        <div class="max-w-7xl mx-auto">
+
+            <!-- Law Enforcement -->
+            <div id="law-enforcement" class="mb-24 scroll-mt-32">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center animate-in delay-100">
+                    <div>
+                        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-blue-500/20 bg-blue-500/10 mb-4">
+                            <iconify-icon icon="solar:shield-star-linear" class="text-blue-400 text-sm"></iconify-icon>
+                            <span class="text-xs font-medium text-blue-400">Law Enforcement</span>
+                        </div>
+
+                        <h2 class="text-3xl md:text-4xl font-newsreader font-medium italic text-white mb-4">
+                            Trace illicit funds. Build prosecutable cases.
+                        </h2>
+
+                        <p class="text-slate-400 font-light leading-relaxed mb-6">
+                            When cryptocurrency is involved in criminal activity, investigators need tools that can keep pace with the speed and complexity of blockchain transactions. ShadowTrace helps law enforcement agencies trace funds across chains, identify suspects, and generate evidence packages that stand up in court.
+                        </p>
+
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex items-start gap-3">
+                                <iconify-icon icon="solar:check-circle-linear" class="text-purple-400 text-lg mt-0.5"></iconify-icon>
+                                <span class="text-sm text-slate-300">Multi-hop transaction tracing with automated path discovery</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <iconify-icon icon="solar:check-circle-linear" class="text-purple-400 text-lg mt-0.5"></iconify-icon>
+                                <span class="text-sm text-slate-300">Entity attribution linking addresses to known actors</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <iconify-icon icon="solar:check-circle-linear" class="text-purple-400 text-lg mt-0.5"></iconify-icon>
+                                <span class="text-sm text-slate-300">Evidence-grade reports with full audit trails</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <iconify-icon icon="solar:check-circle-linear" class="text-purple-400 text-lg mt-0.5"></iconify-icon>
+                                <span class="text-sm text-slate-300">Case workspaces for team collaboration</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <iconify-icon icon="solar:check-circle-linear" class="text-purple-400 text-lg mt-0.5"></iconify-icon>
+                                <span class="text-sm text-slate-300">Real-time alerts on monitored addresses</span>
+                            </li>
+                        </ul>
+
+                        <div class="flex flex-wrap gap-3">
+                            <a href="contact.html" class="inline-flex items-center gap-2 px-5 py-2.5 bg-white text-black rounded-full text-sm font-medium hover:bg-slate-200 transition-colors">
+                                Request Demo
+                                <iconify-icon icon="solar:arrow-right-linear"></iconify-icon>
+                            </a>
+                            <a href="platform.html" class="inline-flex items-center gap-2 px-5 py-2.5 border border-white/10 rounded-full text-sm font-medium text-white/80 hover:bg-white/5 transition-colors">
+                                See Platform
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="solution-card border border-white/5 rounded-2xl p-8 transition-all">
+                        <div class="text-[10px] uppercase tracking-widest text-slate-600 mb-6">Common Use Cases</div>
+                        <div class="space-y-4">
+                            <div class="bg-white/[0.02] rounded-lg p-4 border border-white/5">
+                                <div class="text-sm font-medium text-white mb-1">Ransomware Investigations</div>
+                                <div class="text-xs text-slate-500">Track ransom payments through mixers, exchanges, and cash-out points</div>
+                            </div>
+                            <div class="bg-white/[0.02] rounded-lg p-4 border border-white/5">
+                                <div class="text-sm font-medium text-white mb-1">Fraud & Scam Recovery</div>
+                                <div class="text-xs text-slate-500">Identify where stolen funds have moved and which services hold them</div>
+                            </div>
+                            <div class="bg-white/[0.02] rounded-lg p-4 border border-white/5">
+                                <div class="text-sm font-medium text-white mb-1">Darknet Market Analysis</div>
+                                <div class="text-xs text-slate-500">Map vendor wallets and trace proceeds to identifiable endpoints</div>
+                            </div>
+                            <div class="bg-white/[0.02] rounded-lg p-4 border border-white/5">
+                                <div class="text-sm font-medium text-white mb-1">Asset Seizure Support</div>
+                                <div class="text-xs text-slate-500">Generate evidence packages for court-ordered seizure requests</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Financial Institutions -->
+            <div id="financial-institutions" class="mb-24 scroll-mt-32">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center animate-in delay-200">
+                    <div class="lg:order-2">
+                        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-emerald-500/20 bg-emerald-500/10 mb-4">
+                            <iconify-icon icon="solar:buildings-2-linear" class="text-emerald-400 text-sm"></iconify-icon>
+                            <span class="text-xs font-medium text-emerald-400">Financial Institutions</span>
+                        </div>
+
+                        <h2 class="text-3xl md:text-4xl font-newsreader font-medium italic text-white mb-4">
+                            Manage crypto exposure. Strengthen compliance.
+                        </h2>
+
+                        <p class="text-slate-400 font-light leading-relaxed mb-6">
+                            As cryptocurrency becomes part of mainstream finance, banks and financial institutions need visibility into digital asset flows. ShadowTrace helps you assess counterparty risk, screen transactions, and demonstrate due diligence to regulators.
+                        </p>
+
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex items-start gap-3">
+                                <iconify-icon icon="solar:check-circle-linear" class="text-purple-400 text-lg mt-0.5"></iconify-icon>
+                                <span class="text-sm text-slate-300">Transaction screening against sanctions lists</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <iconify-icon icon="solar:check-circle-linear" class="text-purple-400 text-lg mt-0.5"></iconify-icon>
+                                <span class="text-sm text-slate-300">Counterparty risk scoring with explainable factors</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <iconify-icon icon="solar:check-circle-linear" class="text-purple-400 text-lg mt-0.5"></iconify-icon>
+                                <span class="text-sm text-slate-300">Source of funds analysis for large deposits</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <iconify-icon icon="solar:check-circle-linear" class="text-purple-400 text-lg mt-0.5"></iconify-icon>
+                                <span class="text-sm text-slate-300">SAR documentation and evidence export</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <iconify-icon icon="solar:check-circle-linear" class="text-purple-400 text-lg mt-0.5"></iconify-icon>
+                                <span class="text-sm text-slate-300">API integration with existing AML workflows</span>
+                            </li>
+                        </ul>
+
+                        <div class="flex flex-wrap gap-3">
+                            <a href="contact.html" class="inline-flex items-center gap-2 px-5 py-2.5 bg-white text-black rounded-full text-sm font-medium hover:bg-slate-200 transition-colors">
+                                Request Demo
+                                <iconify-icon icon="solar:arrow-right-linear"></iconify-icon>
+                            </a>
+                            <a href="pricing.html" class="inline-flex items-center gap-2 px-5 py-2.5 border border-white/10 rounded-full text-sm font-medium text-white/80 hover:bg-white/5 transition-colors">
+                                View Pricing
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="lg:order-1 solution-card border border-white/5 rounded-2xl p-8 transition-all">
+                        <div class="text-[10px] uppercase tracking-widest text-slate-600 mb-6">Common Use Cases</div>
+                        <div class="space-y-4">
+                            <div class="bg-white/[0.02] rounded-lg p-4 border border-white/5">
+                                <div class="text-sm font-medium text-white mb-1">Customer Due Diligence</div>
+                                <div class="text-xs text-slate-500">Assess risk profiles of crypto-related business customers</div>
+                            </div>
+                            <div class="bg-white/[0.02] rounded-lg p-4 border border-white/5">
+                                <div class="text-sm font-medium text-white mb-1">Transaction Monitoring</div>
+                                <div class="text-xs text-slate-500">Flag high-risk crypto transfers for compliance review</div>
+                            </div>
+                            <div class="bg-white/[0.02] rounded-lg p-4 border border-white/5">
+                                <div class="text-sm font-medium text-white mb-1">Correspondent Banking</div>
+                                <div class="text-xs text-slate-500">Screen partner institutions for crypto-related exposure</div>
+                            </div>
+                            <div class="bg-white/[0.02] rounded-lg p-4 border border-white/5">
+                                <div class="text-sm font-medium text-white mb-1">Regulatory Reporting</div>
+                                <div class="text-xs text-slate-500">Generate documentation for examiner requests</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Exchanges & VASPs -->
+            <div id="exchanges" class="mb-24 scroll-mt-32">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center animate-in delay-300">
+                    <div>
+                        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-amber-500/20 bg-amber-500/10 mb-4">
+                            <iconify-icon icon="solar:transfer-horizontal-linear" class="text-amber-400 text-sm"></iconify-icon>
+                            <span class="text-xs font-medium text-amber-400">Exchanges & VASPs</span>
+                        </div>
+
+                        <h2 class="text-3xl md:text-4xl font-newsreader font-medium italic text-white mb-4">
+                            Meet Travel Rule. Protect your platform.
+                        </h2>
+
+                        <p class="text-slate-400 font-light leading-relaxed mb-6">
+                            Crypto exchanges and virtual asset service providers face growing regulatory scrutiny. ShadowTrace helps you implement robust AML controls, comply with Travel Rule requirements, and protect your platform from abuse.
+                        </p>
+
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex items-start gap-3">
+                                <iconify-icon icon="solar:check-circle-linear" class="text-purple-400 text-lg mt-0.5"></iconify-icon>
+                                <span class="text-sm text-slate-300">Real-time deposit and withdrawal screening</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <iconify-icon icon="solar:check-circle-linear" class="text-purple-400 text-lg mt-0.5"></iconify-icon>
+                                <span class="text-sm text-slate-300">Counterparty VASP identification for Travel Rule</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <iconify-icon icon="solar:check-circle-linear" class="text-purple-400 text-lg mt-0.5"></iconify-icon>
+                                <span class="text-sm text-slate-300">Risk-based alerting with configurable thresholds</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <iconify-icon icon="solar:check-circle-linear" class="text-purple-400 text-lg mt-0.5"></iconify-icon>
+                                <span class="text-sm text-slate-300">User behaviour analytics for fraud detection</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <iconify-icon icon="solar:check-circle-linear" class="text-purple-400 text-lg mt-0.5"></iconify-icon>
+                                <span class="text-sm text-slate-300">Case management for compliance teams</span>
+                            </li>
+                        </ul>
+
+                        <div class="flex flex-wrap gap-3">
+                            <a href="contact.html" class="inline-flex items-center gap-2 px-5 py-2.5 bg-white text-black rounded-full text-sm font-medium hover:bg-slate-200 transition-colors">
+                                Request Demo
+                                <iconify-icon icon="solar:arrow-right-linear"></iconify-icon>
+                            </a>
+                            <a href="platform.html" class="inline-flex items-center gap-2 px-5 py-2.5 border border-white/10 rounded-full text-sm font-medium text-white/80 hover:bg-white/5 transition-colors">
+                                See Platform
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="solution-card border border-white/5 rounded-2xl p-8 transition-all">
+                        <div class="text-[10px] uppercase tracking-widest text-slate-600 mb-6">Common Use Cases</div>
+                        <div class="space-y-4">
+                            <div class="bg-white/[0.02] rounded-lg p-4 border border-white/5">
+                                <div class="text-sm font-medium text-white mb-1">Deposit Screening</div>
+                                <div class="text-xs text-slate-500">Identify high-risk incoming funds before they hit your platform</div>
+                            </div>
+                            <div class="bg-white/[0.02] rounded-lg p-4 border border-white/5">
+                                <div class="text-sm font-medium text-white mb-1">Travel Rule Compliance</div>
+                                <div class="text-xs text-slate-500">Identify counterparty VASPs and document transfers</div>
+                            </div>
+                            <div class="bg-white/[0.02] rounded-lg p-4 border border-white/5">
+                                <div class="text-sm font-medium text-white mb-1">Suspicious Activity Monitoring</div>
+                                <div class="text-xs text-slate-500">Detect patterns indicative of market manipulation or fraud</div>
+                            </div>
+                            <div class="bg-white/[0.02] rounded-lg p-4 border border-white/5">
+                                <div class="text-sm font-medium text-white mb-1">Law Enforcement Requests</div>
+                                <div class="text-xs text-slate-500">Respond efficiently to information requests and subpoenas</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Regulators -->
+            <div id="regulators" class="scroll-mt-32">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center animate-in delay-400">
+                    <div class="lg:order-2">
+                        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-purple-500/20 bg-purple-500/10 mb-4">
+                            <iconify-icon icon="solar:scale-linear" class="text-purple-400 text-sm"></iconify-icon>
+                            <span class="text-xs font-medium text-purple-400">Regulators</span>
+                        </div>
+
+                        <h2 class="text-3xl md:text-4xl font-newsreader font-medium italic text-white mb-4">
+                            Supervise the market. Enforce the rules.
+                        </h2>
+
+                        <p class="text-slate-400 font-light leading-relaxed mb-6">
+                            Regulatory agencies need independent tools to verify compliance, investigate violations, and understand market dynamics. ShadowTrace provides the visibility regulators need to supervise virtual asset markets effectively.
+                        </p>
+
+                        <ul class="space-y-3 mb-8">
+                            <li class="flex items-start gap-3">
+                                <iconify-icon icon="solar:check-circle-linear" class="text-purple-400 text-lg mt-0.5"></iconify-icon>
+                                <span class="text-sm text-slate-300">Independent verification of VASP compliance claims</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <iconify-icon icon="solar:check-circle-linear" class="text-purple-400 text-lg mt-0.5"></iconify-icon>
+                                <span class="text-sm text-slate-300">Market surveillance and manipulation detection</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <iconify-icon icon="solar:check-circle-linear" class="text-purple-400 text-lg mt-0.5"></iconify-icon>
+                                <span class="text-sm text-slate-300">Cross-border transaction flow analysis</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <iconify-icon icon="solar:check-circle-linear" class="text-purple-400 text-lg mt-0.5"></iconify-icon>
+                                <span class="text-sm text-slate-300">Enforcement investigation support</span>
+                            </li>
+                            <li class="flex items-start gap-3">
+                                <iconify-icon icon="solar:check-circle-linear" class="text-purple-400 text-lg mt-0.5"></iconify-icon>
+                                <span class="text-sm text-slate-300">Custom deployment options for sensitive data</span>
+                            </li>
+                        </ul>
+
+                        <div class="flex flex-wrap gap-3">
+                            <a href="contact.html" class="inline-flex items-center gap-2 px-5 py-2.5 bg-white text-black rounded-full text-sm font-medium hover:bg-slate-200 transition-colors">
+                                Contact Us
+                                <iconify-icon icon="solar:arrow-right-linear"></iconify-icon>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="lg:order-1 solution-card border border-white/5 rounded-2xl p-8 transition-all">
+                        <div class="text-[10px] uppercase tracking-widest text-slate-600 mb-6">Common Use Cases</div>
+                        <div class="space-y-4">
+                            <div class="bg-white/[0.02] rounded-lg p-4 border border-white/5">
+                                <div class="text-sm font-medium text-white mb-1">Supervision & Examination</div>
+                                <div class="text-xs text-slate-500">Verify regulated entities' transaction monitoring practices</div>
+                            </div>
+                            <div class="bg-white/[0.02] rounded-lg p-4 border border-white/5">
+                                <div class="text-sm font-medium text-white mb-1">Market Surveillance</div>
+                                <div class="text-xs text-slate-500">Monitor for wash trading, pump-and-dump schemes, and manipulation</div>
+                            </div>
+                            <div class="bg-white/[0.02] rounded-lg p-4 border border-white/5">
+                                <div class="text-sm font-medium text-white mb-1">Enforcement Actions</div>
+                                <div class="text-xs text-slate-500">Build evidence packages for enforcement proceedings</div>
+                            </div>
+                            <div class="bg-white/[0.02] rounded-lg p-4 border border-white/5">
+                                <div class="text-sm font-medium text-white mb-1">Policy Development</div>
+                                <div class="text-xs text-slate-500">Understand market dynamics to inform regulatory frameworks</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-24 px-6 relative z-10">
+        <div class="max-w-4xl mx-auto text-center">
+            <div class="bg-gradient-to-br from-purple-500/10 to-indigo-500/10 border border-white/5 rounded-2xl p-12 animate-in">
+                <h2 class="text-3xl md:text-4xl font-newsreader font-medium italic text-white mb-4">
+                    Ready to see ShadowTrace in action?
+                </h2>
+                <p class="text-slate-400 font-light mb-8 max-w-xl mx-auto">
+                    Request a personalised demo and discover how our platform can support your specific use case.
+                </p>
+                <a href="contact.html" class="inline-flex items-center gap-2 px-6 py-3 bg-white text-black rounded-full text-sm font-semibold hover:bg-slate-200 transition-colors">
+                    Request Demo
+                    <iconify-icon icon="solar:arrow-right-linear" class="text-lg"></iconify-icon>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-white/5 bg-[#020205] relative z-20">
+        <div class="max-w-7xl mx-auto pt-12 px-6 pb-12 relative">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
+                <div class="space-y-6">
+                    <div class="flex items-center gap-2">
+                        <img src="assets/ShadowTraceLogo.svg" alt="ShadowTrace" style="height: 22.4px;">
+                    </div>
+                    <p class="text-sm text-slate-400 font-light leading-relaxed">
+                        Blockchain intelligence for investigators who need answers.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-sm text-white font-medium mb-4">Platform</h4>
+                    <ul class="space-y-2 text-sm text-slate-400 font-light">
+                        <li><a href="platform.html" class="hover:text-purple-400 transition-colors">Capabilities</a></li>
+                        <li><a href="pricing.html" class="hover:text-purple-400 transition-colors">Pricing</a></li>
+                        <li><a href="#" class="hover:text-purple-400 transition-colors">API Documentation</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-sm text-white font-medium mb-4">Company</h4>
+                    <ul class="space-y-2 text-sm text-slate-400 font-light">
+                        <li><a href="about.html" class="hover:text-purple-400 transition-colors">About Us</a></li>
+                        <li><a href="contact.html" class="hover:text-purple-400 transition-colors">Contact</a></li>
+                        <li><a href="resources.html" class="hover:text-purple-400 transition-colors">Resources</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-sm text-white font-medium mb-4">Legal</h4>
+                    <ul class="space-y-2 text-sm text-slate-400 font-light">
+                        <li><a href="#" class="hover:text-purple-400 transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-purple-400 transition-colors">Terms of Service</a></li>
+                        <li><a href="#" class="hover:text-purple-400 transition-colors">Security</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6 pt-8 border-t border-white/5 text-[10px] text-slate-600 uppercase tracking-widest">
+                <span>&copy; 2026 ShadowTrace Ltd. All rights reserved.</span>
+                <div class="flex items-center gap-4">
+                    <span class="text-slate-500">SOC 2 Type II Certified</span>
+                    <span class="text-slate-700">|</span>
+                    <span class="text-slate-500">ISO 27001</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

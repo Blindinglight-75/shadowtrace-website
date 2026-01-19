@@ -1,0 +1,1494 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="description" content="ShadowTrace is the leading blockchain intelligence and crypto-forensics platform for law enforcement, regulators, and financial crime investigators. Trace illicit funds, detect laundering patterns, and generate evidence-grade reports.">
+    <meta name="keywords" content="blockchain intelligence, crypto forensics, cryptocurrency investigation, AML compliance, financial crime, law enforcement, blockchain analytics">
+    <meta property="og:title" content="ShadowTrace - Blockchain Intelligence for Financial Crime Investigators">
+    <meta property="og:description" content="Trace illicit funds across chains, detect laundering patterns, and generate evidence-grade reports with ShadowTrace.">
+    <meta property="og:type" content="website">
+    <title>ShadowTrace - Blockchain Intelligence for Financial Crime Investigators</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Iconify Icons -->
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    
+    <!-- D3.js -->
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    
+    <style>
+        :root {
+            --font-serif: 'Newsreader', serif;
+            --font-sans: 'Inter', sans-serif;
+        }
+        body {
+            font-family: var(--font-sans);
+            background-color: #020205;
+            color: white;
+            overflow-x: hidden;
+        }
+        .font-newsreader {
+            font-family: var(--font-serif);
+        }
+        /* Custom Animations */
+        @keyframes enter {
+            0% { opacity: 0; transform: translateY(20px) scale(0.98); filter: blur(4px); }
+            100% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+        }
+        @keyframes dash {
+            to { stroke-dashoffset: 0; }
+        }
+        @keyframes beam-spin { 
+            to { transform: rotate(360deg); } 
+        }
+        @keyframes dots-move {
+            0% { background-position: 0 0; }
+            100% { background-position: 24px 24px; }
+        }
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .animate-in {
+            animation: enter 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+        .animate-scroll {
+            animation: scroll 60s linear infinite;
+        }
+        .animate-scroll:hover {
+            animation-play-state: paused;
+        }
+        .delay-100 { animation-delay: 100ms; }
+        .delay-200 { animation-delay: 200ms; }
+        .delay-300 { animation-delay: 300ms; }
+        .delay-400 { animation-delay: 400ms; }
+        .delay-500 { animation-delay: 500ms; }
+        .delay-700 { animation-delay: 700ms; }
+        /* Grid Lines */
+        .grid-lines {
+            position: absolute;
+            inset: 0;
+            max-width: 80rem;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            pointer-events: none;
+            z-index: 0;
+            padding: 0 1.5rem;
+        }
+        .grid-line {
+            width: 1px;
+            height: 100%;
+            background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.05) 10%, rgba(255,255,255,0.05) 90%, transparent);
+        }
+        /* Spotlight Card Effect */
+        .spotlight-group {
+            display: grid;
+            gap: 1.5rem;
+            position: relative;
+        }
+        .spotlight-card {
+            position: relative;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            overflow: hidden;
+        }
+        .spotlight-card::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: radial-gradient(800px circle at var(--mouse-x) var(--mouse-y), rgba(255, 255, 255, 0.06), transparent 40%);
+            opacity: 0;
+            transition: opacity 0.5s;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .spotlight-card:hover::before {
+            opacity: 1;
+        }
+        .spotlight-border {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 2;
+            background: radial-gradient(400px circle at var(--mouse-x) var(--mouse-y), rgba(168, 85, 247, 0.4), transparent 40%);
+            opacity: 0;
+            transition: opacity 0.5s;
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            padding: 1px;
+            border-radius: inherit;
+        }
+        .spotlight-card:hover .spotlight-border {
+            opacity: 1;
+        }
+        /* Navbar Button Border Beam */
+        .btn-beam {
+            position: absolute;
+            inset: -1px;
+            border-radius: 9999px;
+            pointer-events: none;
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: xor;
+            mask-composite: exclude;
+            padding: 1px;
+        }
+        .btn-beam::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: conic-gradient(from 0deg, transparent 0deg, transparent 80deg, #a855f7 100deg, transparent 180deg);
+            animation: rotate 3s linear infinite;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .group:hover .btn-beam::before {
+            opacity: 1;
+        }
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        /* Noodles */
+        .noodle-line {
+            stroke-dasharray: 10, 10;
+            animation: dash 30s linear infinite backwards;
+        }
+        .noodle-beam {
+            stroke-dasharray: 200;
+            stroke-dashoffset: 200;
+            animation: dash 4s linear infinite;
+        }
+        /* Modal Animation */
+        #faq-modal.animate-in {
+            animation: enter 0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+        #faq-modal.animate-out {
+            animation: exit 0.2s cubic-bezier(0.16, 1, 0.3, 1) both;
+        }
+        #faq-modal #modal-backdrop {
+            animation: fadeIn 0.2s ease-out;
+        }
+        #faq-modal.animate-out #modal-backdrop {
+            animation: fadeOut 0.2s ease-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+        @keyframes exit {
+            0% { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+            100% { opacity: 0; transform: translateY(20px) scale(0.98); filter: blur(4px); }
+        }
+        /* D3 Chart */
+        #chart-container svg {
+            overflow: visible;
+        }
+        .chart-path {
+            fill: url(#chart-gradient);
+            stroke: #a855f7;
+            stroke-width: 2;
+        }
+        .chart-area {
+            fill: url(#area-gradient);
+        }
+        /* Mask for Testimonials */
+        .mask-edges {
+            mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 15%, black 85%, transparent);
+        }
+    </style>
+    
+    <script>
+        // Configure Tailwind to include our custom 3D transform utilities
+        tailwind.config = {
+            theme: {
+                extend: {}
+            },
+            plugins: [
+                function({ addUtilities }) {
+                    const rotateXUtilities = {};
+                    const rotateYUtilities = {};
+                    const rotateZUtilities = {};
+                    const rotateValues = [0, 5, 10, 15, 20, 30, 45, 75];
+                    
+                    // Generate rotate-x utilities
+                    rotateValues.forEach((value) => {
+                        rotateXUtilities[`.rotate-x-${value}`] = {
+                            '--tw-rotate-x': `${value}deg`,
+                            transform: `translate3d(var(--tw-translate-x, 0), var(--tw-translate-y, 0), var(--tw-translate-z, 0)) rotateX(var(--tw-rotate-x, 0)) rotateY(var(--tw-rotate-y, 0)) rotateZ(var(--tw-rotate-z, 0)) skewX(var(--tw-skew-x, 0)) skewY(var(--tw-skew-y, 0)) scaleX(var(--tw-scale-x, 1)) scaleY(var(--tw-scale-y, 1))`.replace(/\s+/g, ' ').trim(),
+                        };
+                        if (value !== 0) {
+                            rotateXUtilities[`.-rotate-x-${value}`] = {
+                                '--tw-rotate-x': `-${value}deg`,
+                                transform: `translate3d(var(--tw-translate-x, 0), var(--tw-translate-y, 0), var(--tw-translate-z, 0)) rotateX(var(--tw-rotate-x, 0)) rotateY(var(--tw-rotate-y, 0)) rotateZ(var(--tw-rotate-z, 0)) skewX(var(--tw-skew-x, 0)) skewY(var(--tw-skew-y, 0)) scaleX(var(--tw-scale-x, 1)) scaleY(var(--tw-scale-y, 1))`.replace(/\s+/g, ' ').trim(),
+                            };
+                        }
+                    });
+                    
+                    // Generate rotate-y utilities
+                    rotateValues.forEach((value) => {
+                        rotateYUtilities[`.rotate-y-${value}`] = {
+                            '--tw-rotate-y': `${value}deg`,
+                            transform: `translate3d(var(--tw-translate-x, 0), var(--tw-translate-y, 0), var(--tw-translate-z, 0)) rotateX(var(--tw-rotate-x, 0)) rotateY(var(--tw-rotate-y, 0)) rotateZ(var(--tw-rotate-z, 0)) skewX(var(--tw-skew-x, 0)) skewY(var(--tw-skew-y, 0)) scaleX(var(--tw-scale-x, 1)) scaleY(var(--tw-scale-y, 1))`.replace(/\s+/g, ' ').trim(),
+                        };
+                        if (value !== 0) {
+                            rotateYUtilities[`.-rotate-y-${value}`] = {
+                                '--tw-rotate-y': `-${value}deg`,
+                                transform: `translate3d(var(--tw-translate-x, 0), var(--tw-translate-y, 0), var(--tw-translate-z, 0)) rotateX(var(--tw-rotate-x, 0)) rotateY(var(--tw-rotate-y, 0)) rotateZ(var(--tw-rotate-z, 0)) skewX(var(--tw-skew-x, 0)) skewY(var(--tw-skew-y, 0)) scaleX(var(--tw-scale-x, 1)) scaleY(var(--tw-scale-y, 1))`.replace(/\s+/g, ' ').trim(),
+                            };
+                        }
+                    });
+                    
+                    // Generate rotate-z utilities
+                    rotateValues.forEach((value) => {
+                        rotateZUtilities[`.rotate-z-${value}`] = {
+                            '--tw-rotate-z': `${value}deg`,
+                            transform: `translate3d(var(--tw-translate-x, 0), var(--tw-translate-y, 0), var(--tw-translate-z, 0)) rotateX(var(--tw-rotate-x, 0)) rotateY(var(--tw-rotate-y, 0)) rotateZ(var(--tw-rotate-z, 0)) skewX(var(--tw-skew-x, 0)) skewY(var(--tw-skew-y, 0)) scaleX(var(--tw-scale-x, 1)) scaleY(var(--tw-scale-y, 1))`.replace(/\s+/g, ' ').trim(),
+                        };
+                        if (value !== 0) {
+                            rotateZUtilities[`.-rotate-z-${value}`] = {
+                                '--tw-rotate-z': `-${value}deg`,
+                                transform: `translate3d(var(--tw-translate-x, 0), var(--tw-translate-y, 0), var(--tw-translate-z, 0)) rotateX(var(--tw-rotate-x, 0)) rotateY(var(--tw-rotate-y, 0)) rotateZ(var(--tw-rotate-z, 0)) skewX(var(--tw-skew-x, 0)) skewY(var(--tw-skew-y, 0)) scaleX(var(--tw-scale-x, 1)) scaleY(var(--tw-scale-y, 1))`.replace(/\s+/g, ' ').trim(),
+                            };
+                        }
+                    });
+                    
+                    // Perspective utilities
+                    const perspectiveUtilities = {
+                        ".perspective-none": { perspective: "none" },
+                        ".perspective-dramatic": { perspective: "100px" },
+                        ".perspective-near": { perspective: "300px" },
+                        ".perspective-normal": { perspective: "500px" },
+                        ".perspective-midrange": { perspective: "800px" },
+                        ".perspective-distant": { perspective: "1200px" },
+                    };
+                    
+                    // Transform style utilities
+                    const transformStyleUtilities = {
+                        ".transform-style-preserve-3d": { "transform-style": "preserve-3d" },
+                        ".transform-style-flat": { "transform-style": "flat" },
+                    };
+                    
+                    addUtilities({
+                        ...rotateXUtilities,
+                        ...rotateYUtilities,
+                        ...rotateZUtilities,
+                        ...perspectiveUtilities,
+                        ...transformStyleUtilities,
+                    });
+                }
+            ]
+        };
+    </script>
+</head>
+<body class="antialiased selection:bg-purple-500/30">
+
+    <!-- Background (component) added by Aura -->
+    <div class="aura-background-component fixed top-0 w-full h-screen -z-10" data-alpha-mask="80" style="mask-image: linear-gradient(to bottom, transparent, black 0%, black 80%, transparent); -webkit-mask-image: linear-gradient(to bottom, transparent, black 0%, black 80%, transparent)">
+        <div class="aura-background-component top-0 w-full -z-10 absolute h-full">
+            <div data-us-project="8dH3WnYdxsenOolYGHB0" class="absolute w-full h-full left-0 top-0 -z-10"></div>
+            <script type="text/javascript">
+                !function(){if(!window.UnicornStudio){window.UnicornStudio={isInitialized:!1};var i=document.createElement("script");i.src="https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v1.4.29/dist/unicornStudio.umd.js",i.onload=function(){window.UnicornStudio.isInitialized||(UnicornStudio.init(),window.UnicornStudio.isInitialized=!0)},(document.head || document.body).appendChild(i)}}();
+            </script>
+        </div>
+    </div>
+
+    <!-- Vertical Grid Lines -->
+    <div class="grid-lines animate-in duration-1000">
+        <div class="grid-line"></div>
+        <div class="grid-line"></div>
+        <div class="grid-line"></div>
+        <div class="grid-line"></div>
+        <div class="grid-line"></div>
+    </div>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="fixed inset-0 z-[60] bg-[#020205]/90 backdrop-blur-xl hidden opacity-0 transition-opacity duration-300 flex-col items-center justify-center space-y-8">
+        <button id="close-menu" class="absolute top-6 right-6 text-white/60 hover:text-white">
+            <iconify-icon icon="solar:close-circle-linear" width="32" height="32"></iconify-icon>
+        </button>
+        <a href="platform.html" class="text-2xl font-newsreader italic text-white hover:text-purple-400 transition-colors">Platform</a>
+        <a href="solutions.html" class="text-2xl font-newsreader italic text-white hover:text-purple-400 transition-colors">Solutions</a>
+        <a href="pricing.html" class="text-2xl font-newsreader italic text-white hover:text-purple-400 transition-colors">Pricing</a>
+        <a href="about.html" class="text-2xl font-newsreader italic text-white hover:text-purple-400 transition-colors">About</a>
+        <a href="login.html" class="text-2xl font-newsreader italic text-white hover:text-purple-400 transition-colors">Sign In</a>
+    </div>
+
+    <!-- Navbar -->
+    <nav class="fixed top-0 left-0 right-0 z-50 border-b border-white/[0.06] bg-[#020205]/60 backdrop-blur-md animate-in">
+        <div class="relative flex h-20 max-w-7xl mr-auto ml-auto pr-6 pl-6 items-center justify-between">
+            <div class="flex group cursor-pointer gap-x-2 gap-y-2 items-center" onclick="window.location.href='index.html'" role="button">
+                <img src="assets/ShadowTraceLogo.svg" alt="ShadowTrace" style="height: 22.4px;">
+            </div>
+
+            <div class="hidden md:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
+                <a href="platform.html" class="hover:text-white transition-colors text-xs font-medium text-white/60">Platform</a>
+                <a href="solutions.html" class="hover:text-white transition-colors text-xs font-medium text-white/60">Solutions</a>
+                <a href="pricing.html" class="hover:text-white transition-colors text-xs font-medium text-white/60">Pricing</a>
+                <a href="resources.html" class="hover:text-white transition-colors text-xs font-medium text-white/60">Resources</a>
+            </div>
+
+            <div class="flex gap-4 gap-x-4 gap-y-4 items-center">
+                <button class="hidden md:block group hover:bg-white/10 transition-all text-xs font-medium text-white bg-white/5 border-white/10 border rounded-full pt-2 pr-4 pb-2 pl-4 relative" onclick="window.location.href='login.html'" role="button">
+                    <span class="z-10 relative">Sign in</span>
+                    <div class="btn-beam"></div>
+                </button>
+                <!-- Hamburger Button -->
+                <button id="open-menu" class="md:hidden text-white/60 hover:text-white transition-colors">
+                    <iconify-icon icon="solar:hamburger-menu-linear" width="24" height="24"></iconify-icon>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="z-10 max-w-7xl mr-auto ml-auto pt-32 pr-6 pb-20 pl-6 relative">
+        
+        <!-- SECTION 01: HERO -->
+        <div class="flex flex-col text-center mt-12 mb-32 relative items-center">
+            <div class="absolute left-0 top-0 text-white/20 text-[10px] font-mono tracking-widest animate-in delay-100">01 // BLOCKCHAIN INTELLIGENCE</div>
+
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-purple-500/20 bg-purple-500/5 mb-8 animate-in delay-100 hover:border-purple-500/40 transition-colors cursor-pointer">
+                <iconify-icon icon="solar:shield-check-linear" class="text-purple-400 text-xs"></iconify-icon>
+                <span class="text-[10px] font-medium text-purple-200 tracking-wide uppercase">Trusted by Law Enforcement Worldwide</span>
+            </div>
+
+            <h1 class="text-5xl md:text-7xl font-newsreader font-medium italic text-white mb-6 leading-[1.1] animate-in delay-200 max-w-4xl tracking-tight">
+                Trace illicit funds. <span class="not-italic text-transparent bg-clip-text bg-gradient-to-r from-purple-300 via-white to-indigo-300">Build evidence-grade cases.</span>
+            </h1>
+
+            <p class="text-lg text-slate-400 font-light max-w-xl mx-auto mb-10 leading-relaxed animate-in delay-300">
+                ShadowTrace is the blockchain intelligence platform built for investigators. Trace cryptocurrency flows, detect laundering patterns, and generate court-ready reports—all from a single workspace.
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-6 animate-in delay-400 gap-x-6 gap-y-6 items-center justify-center">
+
+                <!-- Main CTA -->
+                <button class="group flex overflow-hidden uppercase transition-all duration-500 hover:scale-[1.02] hover:shadow-[0_0_40px_-10px_rgba(168,85,247,0.5)] focus:outline-none text-xs font-semibold text-white tracking-widest rounded-full pt-4 pr-8 pb-4 pl-8 relative items-center justify-center" onclick="window.location.href='contact.html'" role="button">
+                    <div class="absolute inset-0 -z-20 rounded-full overflow-hidden p-[1px]">
+                        <div class="absolute inset-[-100%] bg-[conic-gradient(from_0deg,transparent_0_300deg,#a855f7_360deg)]" style="animation: beam-spin 3s linear infinite;"></div>
+                        <div class="absolute inset-[1px] rounded-full bg-[#020205]"></div>
+                    </div>
+                    <div class="-z-10 overflow-hidden bg-[#020205] rounded-full absolute top-[2px] right-[2px] bottom-[2px] left-[2px]">
+                        <div class="absolute inset-0 bg-gradient-to-b from-zinc-800/60 to-transparent"></div>
+                        <div class="opacity-30 mix-blend-overlay absolute top-0 right-0 bottom-0 left-0" style="background-image: radial-gradient(rgba(255,255,255,0.6) 1px, transparent 1px); background-size: 12px 12px; animation: dots-move 8s linear infinite"></div>
+                        <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-2/3 h-1/2 bg-purple-500/10 blur-2xl rounded-full pointer-events-none transition-colors duration-500 group-hover:bg-purple-500/30"></div>
+                    </div>
+                    <span class="relative z-10 text-white/90 transition-colors group-hover:text-white">Request a Demo</span>
+                    <iconify-icon icon="solar:arrow-right-linear" class="relative z-10 ml-2 text-base transition-transform duration-300 group-hover:translate-x-1"></iconify-icon>
+                </button>
+
+                <!-- Secondary CTA -->
+                <button class="group inline-flex overflow-hidden transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_0_25px_rgba(255,255,255,0.1)] cursor-pointer rounded-full pt-[1px] pr-[1px] pb-[1px] pl-[1px] relative items-center justify-center" onclick="window.location.href='platform.html'" role="button">
+                    <span class="absolute inset-[-100%] animate-[spin_3s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,transparent_0%,transparent_75%,#ffffff_100%)] opacity-0 transition-opacity duration-300 group-hover:opacity-100"></span>
+                    <span class="absolute inset-0 rounded-full bg-white/10 transition-opacity duration-300 group-hover:opacity-0"></span>
+                    <span class="flex items-center justify-center gap-2 uppercase transition-colors duration-300 group-hover:text-white text-xs font-semibold text-slate-400 tracking-widest bg-[#020205] w-full h-full rounded-full pt-3.5 pr-8 pb-3.5 pl-8 relative shadow-[inset_0_1px_0_rgba(255,255,255,0.1)]">
+                        <span class="relative z-10">Explore Platform</span>
+                    </span>
+                </button>
+
+            </div>
+        </div>
+
+        <!-- SECTION 02: INTERFACE -->
+        <div class="relative w-full mb-32">
+            <div class="absolute right-0 -top-10 text-white/20 text-[10px] font-mono tracking-widest animate-in delay-300">02 // INTERFACE</div>
+            
+            <!-- Connecting Noodles Background -->
+            <svg class="absolute inset-0 w-full h-full -z-10 pointer-events-none overflow-visible opacity-40" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <linearGradient id="beam-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" stop-color="rgba(168, 85, 247, 0)"></stop>
+                        <stop offset="50%" stop-color="#a855f7"></stop>
+                        <stop offset="100%" stop-color="rgba(168, 85, 247, 0)"></stop>
+                    </linearGradient>
+                </defs>
+                <path d="M 100 0 V 100 Q 100 150 150 150 H 300" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1" class="noodle-line"></path>
+                <path d="M 800 0 V 80 Q 800 130 750 130 H 600" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1" class="noodle-line"></path>
+                
+                <!-- Animated Beams -->
+                <path d="M 100 0 V 100 Q 100 150 150 150 H 300" fill="none" stroke="url(#beam-grad)" stroke-width="2" class="noodle-beam" stroke-linecap="round"></path>
+            </svg>
+
+            <!-- Spotlight Cards Container -->
+            <div class="spotlight-group grid-cols-1 md:grid-cols-3 animate-in delay-500">
+                
+                <!-- Card 1: Wallet Scan -->
+                <div class="spotlight-card rounded-xl p-6 flex flex-col justify-between h-[320px] group" style="--mouse-x: 639px; --mouse-y: -576.5px;">
+                    <div class="spotlight-border"></div>
+                    <div class="relative z-10 h-full flex flex-col">
+                        <!-- Header Section -->
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center gap-2">
+                                <iconify-icon icon="solar:danger-triangle-linear" class="text-slate-400 text-lg"></iconify-icon>
+                                <span class="text-xs text-slate-400 font-semibold uppercase tracking-wider">Wallet Scan</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <span class="bg-white/10 text-white text-[10px] px-2 py-0.5 rounded-full">Weight: 35%</span>
+                                <span class="text-rose-500 text-sm font-semibold">85/100</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Progress Bar -->
+                        <div class="w-full bg-white/10 rounded-full h-1.5 mb-4 overflow-hidden">
+                            <div class="bg-blue-500 h-full rounded-full" style="width: 85%"></div>
+                        </div>
+                        
+                        <!-- Description -->
+                        <p class="text-xs text-slate-400 mb-4">Analysis of wallet addresses against known threat intelligence sources</p>
+                        
+                        <!-- Evidence Section -->
+                        <div class="flex-1 flex flex-col gap-2 overflow-y-auto">
+                            <div class="flex items-center justify-between mb-2 cursor-pointer hover:text-white transition-colors">
+                                <span class="text-xs text-slate-400">Evidence (2)</span>
+                                <iconify-icon icon="solar:alt-arrow-down-linear" class="text-slate-400 text-xs"></iconify-icon>
+                            </div>
+                            
+                            <!-- Evidence Item 1 -->
+                            <div class="bg-white/5 border border-white/10 rounded-lg p-3">
+                                <div class="flex items-start gap-2">
+                                    <span class="text-slate-500 text-xs mt-0.5">•</span>
+                                    <span class="text-xs text-white">Ethereum-Phishing: Pattern match detected</span>
+                                </div>
+                            </div>
+                            
+                            <!-- Evidence Item 2 -->
+                            <div class="bg-white/5 border border-white/10 rounded-lg p-3">
+                                <div class="flex items-start gap-2">
+                                    <span class="text-slate-500 text-xs mt-0.5">•</span>
+                                    <span class="text-xs text-white">Suspicious transaction pattern: High-risk address interaction</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2: D3 Chart -->
+                <div class="spotlight-card rounded-xl p-6 h-[320px] md:col-span-1" style="--mouse-x: 289.671875px; --mouse-y: -576.5px;">
+                    <div class="spotlight-border"></div>
+                    <div class="relative z-10 h-full flex flex-col">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center gap-2">
+                                <iconify-icon icon="solar:magnifer-linear" class="text-slate-400 text-lg"></iconify-icon>
+                                <span class="text-xs text-slate-400 font-semibold uppercase tracking-wider">Investigations</span>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-center gap-3 mb-2">
+                            <span class="text-sm text-slate-400">
+                                <span class="bg-white/10 text-white px-2 py-0.5 rounded-full text-xs font-medium mr-1.5">12</span>
+                                associated Entities
+                            </span>
+                            <span class="text-sm text-slate-400">
+                                <span class="bg-white/10 text-white px-2 py-0.5 rounded-full text-xs font-medium mr-1.5">103</span>
+                                Wallets
+                            </span>
+                        </div>
+                        
+                        <!-- Transaction Flow Visualization -->
+                        <div class="flex-1 relative w-full h-full">
+                            <svg class="w-full h-full" viewBox="0 0 240 200" preserveAspectRatio="xMidYMid meet">
+                                <!-- Connection Lines -->
+                                <defs>
+                                    <marker id="arrowhead" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+                                        <polygon points="0 0, 6 3, 0 6" fill="#a855f7" opacity="0.6" />
+                                    </marker>
+                                </defs>
+                                
+                                <!-- Transaction Flow Lines -->
+                                <line x1="35" y1="45" x2="78" y2="120" stroke="#a855f7" stroke-width="1.5" opacity="0.4" marker-end="url(#arrowhead)" />
+                                <line x1="35" y1="45" x2="145" y2="75" stroke="#a855f7" stroke-width="1.5" opacity="0.4" marker-end="url(#arrowhead)" />
+                                <line x1="78" y1="120" x2="185" y2="155" stroke="#a855f7" stroke-width="1.5" opacity="0.4" marker-end="url(#arrowhead)" />
+                                <line x1="145" y1="75" x2="185" y2="155" stroke="#a855f7" stroke-width="1.5" opacity="0.4" marker-end="url(#arrowhead)" />
+                                <line x1="185" y1="155" x2="205" y2="35" stroke="#a855f7" stroke-width="1.5" opacity="0.4" marker-end="url(#arrowhead)" />
+                                
+                                <!-- Animated flow dots -->
+                                <circle r="2" fill="#a855f7" opacity="0.8">
+                                    <animateMotion dur="3s" repeatCount="indefinite" path="M 35 45 L 78 120 L 185 155" />
+                                </circle>
+                                <circle r="2" fill="#a855f7" opacity="0.8">
+                                    <animateMotion dur="3s" repeatCount="indefinite" begin="1.5s" path="M 35 45 L 145 75 L 185 155" />
+                                </circle>
+                                
+                                <!-- Node 1: Source Wallet -->
+                                <circle cx="35" cy="45" r="6" fill="#a855f7" />
+                                
+                                <!-- Node 2: Intermediate Wallet 1 -->
+                                <circle cx="78" cy="120" r="6" fill="#627EEA" />
+                                
+                                <!-- Node 3: Intermediate Wallet 2 -->
+                                <circle cx="145" cy="75" r="6" fill="#627EEA" />
+                                
+                                <!-- Node 4: Destination Wallet -->
+                                <circle cx="185" cy="155" r="6" fill="#a855f7" />
+                                
+                                <!-- Node 5: Final Destination -->
+                                <circle cx="205" cy="35" r="6" fill="#14F195" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3: Swap -->
+                <div class="spotlight-card rounded-xl p-6 h-[320px]" style="--mouse-x: -59.6640625px; --mouse-y: -576.5px;">
+                    <div class="spotlight-border"></div>
+                    <div class="relative z-10 h-full flex flex-col">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="flex items-center gap-2 text-slate-400">
+                                <iconify-icon icon="solar:bell-linear" class="text-lg"></iconify-icon>
+                                <span class="text-xs font-semibold uppercase tracking-wider">Alerting</span>
+                            </div>
+                            <iconify-icon icon="solar:settings-linear" class="text-slate-500 cursor-pointer hover:text-white transition-colors"></iconify-icon>
+                        </div>
+
+                        <div class="flex-1 overflow-y-auto space-y-3">
+                            <!-- Alert Card 1 -->
+                            <div class="bg-white/5 border border-white/10 rounded-lg p-3 hover:bg-white/10 hover:border-white/20 transition-all cursor-pointer">
+                                <div class="flex items-start gap-3">
+                                    <div class="flex-shrink-0 mt-0.5">
+                                        <iconify-icon icon="solar:danger-triangle-linear" class="text-rose-500 text-lg"></iconify-icon>
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <h4 class="text-xs font-semibold text-white mb-1">High-Risk Transaction Detected</h4>
+                                        <p class="text-[10px] text-slate-400 leading-relaxed">Large transfer to known darknet marketplace address</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Alert Card 2 -->
+                            <div class="bg-white/5 border border-white/10 rounded-lg p-3 hover:bg-white/10 hover:border-white/20 transition-all cursor-pointer">
+                                <div class="flex items-start gap-3">
+                                    <div class="flex-shrink-0 mt-0.5">
+                                        <iconify-icon icon="solar:shield-warning-linear" class="text-amber-500 text-lg"></iconify-icon>
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <h4 class="text-xs font-semibold text-white mb-1">Suspicious Pattern Match</h4>
+                                        <p class="text-[10px] text-slate-400 leading-relaxed">Wallet linked to multiple phishing campaigns</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Alert Card 3 -->
+                            <div class="bg-white/5 border border-white/10 rounded-lg p-3 hover:bg-white/10 hover:border-white/20 transition-all cursor-pointer">
+                                <div class="flex items-start gap-3">
+                                    <div class="flex-shrink-0 mt-0.5">
+                                        <iconify-icon icon="solar:graph-up-linear" class="text-blue-500 text-lg"></iconify-icon>
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <h4 class="text-xs font-semibold text-white mb-1">Unusual Volume Spike</h4>
+                                        <p class="text-[10px] text-slate-400 leading-relaxed">Transaction volume increased 500% in 24 hours</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Alert Card 4 -->
+                            <div class="bg-white/5 border border-white/10 rounded-lg p-3 hover:bg-white/10 hover:border-white/20 transition-all cursor-pointer">
+                                <div class="flex items-start gap-3">
+                                    <div class="flex-shrink-0 mt-0.5">
+                                        <iconify-icon icon="solar:link-circle-linear" class="text-purple-500 text-lg"></iconify-icon>
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <h4 class="text-xs font-semibold text-white mb-1">Entity Relationship Update</h4>
+                                        <p class="text-[10px] text-slate-400 leading-relaxed">New connection identified in investigation network</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 03: TRUSTED BY -->
+        <div class="border-white/5 border-t pt-16 relative">
+            <div class="text-[10px] animate-in delay-500 text-white/20 tracking-widest font-mono absolute top-8 left-0">03 // TRUSTED BY</div>
+
+            <p class="text-center text-xs text-slate-500 font-semibold mb-12 animate-in delay-500 uppercase tracking-wide">Used by investigators and compliance teams globally</p>
+
+            <div class="relative w-full overflow-hidden mask-edges animate-in delay-700">
+                <div class="flex w-max gap-6 animate-scroll hover:pause">
+                    <!-- Cards Batch 1 -->
+                    <div class="flex gap-6">
+                        <div class="w-[320px] bg-white/5 backdrop-blur-md border border-white/10 p-5 rounded-xl flex flex-col gap-4">
+                            <p class="text-sm text-slate-300 font-light leading-relaxed">"ShadowTrace helped us trace funds across 14 wallets and three chains in a single afternoon. The graph visualisation made explaining the case to prosecutors straightforward."</p>
+                            <div class="flex items-center gap-3">
+                                <div class="w-8 h-8 rounded-full bg-gradient-to-br from-purple-500/30 to-indigo-500/30 flex items-center justify-center border border-white/10">
+                                    <iconify-icon icon="solar:shield-user-linear" class="text-purple-300 text-sm"></iconify-icon>
+                                </div>
+                                <div class="">
+                                    <div class="text-xs font-medium text-white">National Law Enforcement Unit</div>
+                                    <div class="text-[10px] text-slate-500">EMEA Region</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="w-[320px] bg-white/5 backdrop-blur-md border border-white/10 p-5 rounded-xl flex flex-col gap-4">
+                            <p class="text-sm text-slate-300 font-light leading-relaxed">"The explainable risk scores are crucial for our compliance workflow. We can clearly document why a transaction was flagged and demonstrate due diligence to regulators."</p>
+                            <div class="flex items-center gap-3">
+                                <div class="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500/30 to-cyan-500/30 flex items-center justify-center border border-white/10">
+                                    <iconify-icon icon="solar:bank-linear" class="text-blue-300 text-sm"></iconify-icon>
+                                </div>
+                                <div class="">
+                                    <div class="text-xs font-medium text-white">Global Financial Institution</div>
+                                    <div class="text-[10px] text-slate-500">AML Compliance Team</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="w-[320px] bg-white/5 backdrop-blur-md border border-white/10 p-5 rounded-xl flex flex-col gap-4">
+                            <p class="text-sm text-slate-300 font-light leading-relaxed">"Real-time alerts on watchlist addresses have transformed our response time. We've been able to freeze assets before they're moved to unhosted wallets."</p>
+                            <div class="flex items-center gap-3">
+                                <div class="w-8 h-8 rounded-full bg-gradient-to-br from-emerald-500/30 to-teal-500/30 flex items-center justify-center border border-white/10">
+                                    <iconify-icon icon="solar:buildings-linear" class="text-emerald-300 text-sm"></iconify-icon>
+                                </div>
+                                <div>
+                                    <div class="text-xs font-medium text-white">Licensed Crypto Exchange</div>
+                                    <div class="text-[10px] text-slate-500">Asia-Pacific</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cards Batch 2 (Duplicate for Loop) -->
+                    <div class="flex gap-6">
+                        <div class="w-[320px] bg-white/5 backdrop-blur-md border border-white/10 p-5 rounded-xl flex flex-col gap-4">
+                            <p class="text-sm text-slate-300 font-light leading-relaxed">"ShadowTrace helped us trace funds across 14 wallets and three chains in a single afternoon. The graph visualisation made explaining the case to prosecutors straightforward."</p>
+                            <div class="flex items-center gap-3">
+                                <div class="w-8 h-8 rounded-full bg-gradient-to-br from-purple-500/30 to-indigo-500/30 flex items-center justify-center border border-white/10">
+                                    <iconify-icon icon="solar:shield-user-linear" class="text-purple-300 text-sm"></iconify-icon>
+                                </div>
+                                <div>
+                                    <div class="text-xs font-medium text-white">National Law Enforcement Unit</div>
+                                    <div class="text-[10px] text-slate-500">EMEA Region</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="w-[320px] bg-white/5 backdrop-blur-md border border-white/10 p-5 rounded-xl flex flex-col gap-4">
+                            <p class="text-sm text-slate-300 font-light leading-relaxed">"The explainable risk scores are crucial for our compliance workflow. We can clearly document why a transaction was flagged and demonstrate due diligence to regulators."</p>
+                            <div class="flex items-center gap-3">
+                                <div class="w-8 h-8 rounded-full bg-gradient-to-br from-blue-500/30 to-cyan-500/30 flex items-center justify-center border border-white/10">
+                                    <iconify-icon icon="solar:bank-linear" class="text-blue-300 text-sm"></iconify-icon>
+                                </div>
+                                <div>
+                                    <div class="text-xs font-medium text-white">Global Financial Institution</div>
+                                    <div class="text-[10px] text-slate-500">AML Compliance Team</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 04: CAPABILITIES -->
+        <div class="border-white/5 border-t pt-24 relative z-10 w-full max-w-7xl mx-auto">
+            <div class="text-[10px] animate-in delay-200 lg:left-0 lg:top-16 md:top-16 text-white/20 tracking-widest font-mono absolute top-16 left-6">04 // CAPABILITIES</div>
+
+            <div class="flex flex-col items-center text-center mb-20 px-6 animate-in delay-300">
+                <h2 class="text-4xl md:text-5xl font-newsreader font-medium italic text-white mb-6 tracking-tight">
+                    Purpose-built for
+                    <span class="not-italic text-transparent bg-clip-text bg-gradient-to-r from-purple-300 via-white to-indigo-300">financial crime investigators.</span>
+                </h2>
+                <p class="text-lg text-slate-400 font-light max-w-xl mx-auto leading-relaxed">
+                    From initial triage to court-ready documentation, ShadowTrace supports your entire investigation workflow with tools designed for chain-of-custody rigour.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 gap-x-8 gap-y-8 px-6">
+                <!-- Card 1: Graph Investigations -->
+                <div class="group relative rounded-2xl bg-white/[0.02] border border-white/10 overflow-hidden h-[480px] hover:border-white/20 transition-all duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+                    <div class="p-8 relative z-10 h-full flex flex-col">
+                        <div class="mb-8">
+                            <h3 class="text-2xl font-newsreader font-medium italic text-white mb-2">Graph-Based Investigation</h3>
+                            <p class="text-sm text-slate-400 font-light">Visualise transaction flows, identify clusters, and trace funds across chains with an intuitive graph interface. Expand nodes, annotate entities, and build your case visually.</p>
+                        </div>
+                        <div class="flex-1 flex items-center justify-center">
+                            <div class="w-full h-full max-h-64 flex items-center justify-center opacity-60 group-hover:opacity-100 transition-opacity">
+                                <iconify-icon icon="solar:graph-new-linear" class="text-[120px] text-purple-400/50"></iconify-icon>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2: Evidence Reports -->
+                <div class="group relative rounded-2xl bg-white/[0.02] border border-white/10 overflow-hidden h-[480px] hover:border-white/20 transition-all duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-bl from-indigo-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+
+                    <div class="p-8 relative z-10 h-full flex flex-col">
+                        <div class="mb-8">
+                            <h3 class="text-2xl font-newsreader font-medium italic text-white mb-2">Evidence-Grade Reporting</h3>
+                            <p class="text-sm text-slate-400 font-light">Generate comprehensive PDF reports with full audit trails, timestamped findings, and reproducible methodology. Designed to meet evidentiary standards for court proceedings.</p>
+                        </div>
+                        <div class="flex-1 flex items-center justify-center">
+                            <div class="w-full h-full max-h-64 flex items-center justify-center opacity-60 group-hover:opacity-100 transition-opacity">
+                                <iconify-icon icon="solar:document-text-linear" class="text-[120px] text-indigo-400/50"></iconify-icon>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 05: MOBILE -->
+        <div class="border-white/5 border-t pt-24 relative z-10 w-full max-w-7xl mx-auto">
+            <div class="text-[10px] animate-in delay-200 lg:left-0 text-white/20 tracking-widest font-mono absolute top-16 left-6">05 // MOBILE</div>
+
+            <div class="flex flex-col animate-in delay-300 z-10 text-center mb-24 pr-6 pl-6 relative items-center">
+                <h2 class="text-4xl md:text-5xl font-newsreader font-medium italic text-white mb-6 tracking-tight">
+                    Mobile App for
+                    <span class="not-italic text-transparent bg-clip-text bg-gradient-to-r from-purple-300 via-white to-indigo-300">in the field scanning.</span>
+                </h2>
+                <p class="text-lg text-slate-400 font-light max-w-xl mx-auto leading-relaxed">
+                    Scan wallet addresses and investigate transactions directly from your mobile device, even when offline.
+                </p>
+            </div>
+
+            <!-- Main Content Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center px-6 relative z-10">
+        
+        <!-- Left Column Annotations -->
+        <div class="lg:col-span-3 space-y-24 hidden lg:block text-right">
+            <div class="group relative">
+                <div class="text-[10px] font-mono text-purple-400 mb-2">01</div>
+                <h3 class="text-lg font-medium text-white mb-2">Wallet Search</h3>
+                <p class="text-sm text-slate-400 leading-relaxed">Quickly scan and analyze any wallet address. Get instant insights into transaction history and balance.</p>
+                <!-- Connecting Line (Visual only) -->
+                <div class="absolute top-1/2 -right-12 w-8 h-px bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            </div>
+            
+            <div class="group relative">
+                <div class="text-[10px] font-mono text-purple-400 mb-2">02</div>
+                <h3 class="text-lg font-medium text-white mb-2">Risk Assessment</h3>
+                <p class="text-sm text-slate-400 leading-relaxed">Real-time threat detection flags wallets linked to criminal activity and known bad actors.</p>
+                <div class="absolute top-1/2 -right-12 w-8 h-px bg-gradient-to-r from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            </div>
+        </div>
+
+        <!-- Center Phone Mockup -->
+        <div class="lg:col-span-6 flex perspective-[1000px] justify-center">
+    <div class="relative w-[320px] h-[640px] bg-black rounded-[3rem] shadow-[0_0_50px_-12px_rgba(168,85,247,0.25)] transform transition-transform duration-700 hover:rotate-x-2 hover:scale-[1.02] group/phone p-[4px]">
+        <!-- Animated Border Beam -->
+        <div class="absolute inset-0 rounded-[3rem] overflow-hidden pointer-events-none z-0">
+             <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[200%] h-[200%] bg-[conic-gradient(from_0deg,transparent_0_320deg,#a855f7_360deg)] animate-[spin_4s_linear_infinite] opacity-0 group-hover/phone:opacity-100 transition-opacity duration-700"></div>
+        </div>
+        
+        <!-- Inner Phone Bezel/Chassis -->
+        <div class="relative w-full h-full bg-[#020205] rounded-[2.8rem] overflow-hidden z-10 border-[6px] border-black">
+            
+            <!-- Dynamic Island -->
+            <div class="absolute top-3 left-1/2 -translate-x-1/2 z-50">
+                <div class="relative h-[28px] bg-black rounded-full flex items-center justify-between px-3 min-w-[100px] group/island transition-all duration-300 hover:min-w-[140px] hover:scale-105 border border-white/5 shadow-lg overflow-hidden cursor-default">
+                    <!-- Island Content -->
+                    <div class="flex items-center gap-2 w-full justify-between">
+                         <!-- Recording/Active Indicator -->
+                         <div class="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.8)] animate-pulse"></div>
+                         
+                         <!-- Audio Waveform Simulation -->
+                         <div class="flex gap-[2px] items-center h-2 w-4 justify-end opacity-60">
+                            <div class="w-0.5 bg-white rounded-full animate-pulse h-full"></div>
+                            <div class="w-0.5 bg-white rounded-full animate-pulse h-2/3 delay-75"></div>
+                            <div class="w-0.5 bg-white rounded-full animate-pulse h-full delay-150"></div>
+                            <div class="w-0.5 bg-white rounded-full animate-pulse h-1/2 delay-100"></div>
+                         </div>
+                    </div>
+                    
+                    <!-- Expanded Interaction Hint (Visible on Hover) -->
+                    <div class="absolute inset-0 bg-white/5 opacity-0 group-hover/island:opacity-100 transition-opacity pointer-events-none"></div>
+                </div>
+            </div>
+
+            <!-- Screen Content -->
+            <div class="w-full h-full bg-gradient-to-b from-slate-900 via-[#050508] to-black p-4 relative flex flex-col font-sans pt-12 overflow-y-auto">
+                
+                <!-- App Header -->
+                <div class="flex items-center justify-center mb-4 px-2">
+                    <span class="text-xs font-semibold text-white">Wallet Search</span>
+                </div>
+
+                <!-- Search Bar -->
+                <div class="bg-white/5 border border-white/10 rounded-lg px-3 py-2.5 mb-3 flex items-center gap-2">
+                    <span class="text-[10px] text-slate-400 font-mono flex-1 truncate">1Lbcfr7sAHTD9CgdQo3HTMTkV8LK...</span>
+                    <iconify-icon icon="solar:magnifer-linear" class="text-blue-500 text-sm"></iconify-icon>
+                </div>
+
+                <!-- Warning Banner -->
+                <div class="bg-rose-500/20 border border-rose-500/30 rounded-lg px-3 py-2.5 mb-4 flex items-start gap-2">
+                    <iconify-icon icon="solar:danger-triangle-linear" class="text-rose-500 text-base flex-shrink-0 mt-0.5"></iconify-icon>
+                    <p class="text-[10px] text-rose-200 leading-tight">This Wallet has received funds from a known Criminal Wallet Address</p>
+                </div>
+
+                <!-- Wallet Stats -->
+                <div class="space-y-3 mb-3">
+                    <div>
+                        <div class="text-[9px] text-slate-400 mb-0.5">Current Balance</div>
+                        <div class="text-sm font-semibold text-white">₿217.39 / £16,968,433</div>
+                    </div>
+                    <div class="flex justify-between">
+                        <div>
+                            <div class="text-[9px] text-slate-400 mb-0.5">First Transaction</div>
+                            <div class="text-xs text-white">17 Nov 2024</div>
+                            <div class="text-[10px] text-slate-400">04:02:21</div>
+                        </div>
+                        <div>
+                            <div class="text-[9px] text-slate-400 mb-0.5">Wallet Addresses</div>
+                            <div class="text-xs text-white">1,024</div>
+                            <div class="text-[10px] text-blue-400">View</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Transactions History -->
+                <div>
+                    <div class="flex justify-between items-center mb-3">
+                        <h3 class="text-sm font-semibold text-white">Transactions History</h3>
+                        <div class="flex items-center gap-1 text-[10px] text-slate-400">
+                            <span>Last 30 Days</span>
+                            <iconify-icon icon="solar:alt-arrow-down-linear" class="text-xs"></iconify-icon>
+                        </div>
+                    </div>
+
+                    <!-- Filter Buttons -->
+                    <div class="flex gap-2 mb-3">
+                        <button class="bg-purple-500/20 border border-purple-500/50 text-purple-300 px-3 py-1 rounded text-[10px] font-medium">Low</button>
+                        <button class="bg-white/5 border border-white/10 text-slate-400 px-3 py-1 rounded text-[10px] font-medium">Medium</button>
+                        <button class="bg-white/5 border border-white/10 text-slate-400 px-3 py-1 rounded text-[10px] font-medium">High</button>
+                    </div>
+
+                    <!-- Transaction Entries -->
+                    <div class="space-y-2">
+                        <div class="bg-white/5 border border-white/10 rounded-lg p-2.5 flex items-center gap-2">
+                            <span class="bg-emerald-500/20 text-emerald-400 px-1.5 py-0.5 rounded text-[9px] font-medium">LOW</span>
+                            <div class="flex-1 min-w-0">
+                                <div class="text-[9px] text-slate-400 mb-0.5">19 Nov 2024 04:03:23</div>
+                                <div class="text-[10px] text-white font-mono truncate">1Lbcfr7sAHTD9CgdQo3HTMTkV8LK4ZnX71</div>
+                                <div class="text-[10px] text-slate-300">0.000938877 BTC / £72.96</div>
+                            </div>
+                            <iconify-icon icon="solar:arrow-right-linear" class="text-amber-500 text-sm"></iconify-icon>
+                        </div>
+
+                        <div class="bg-white/5 border border-white/10 rounded-lg p-2.5 flex items-center gap-2">
+                            <span class="bg-emerald-500/20 text-emerald-400 px-1.5 py-0.5 rounded text-[9px] font-medium">LOW</span>
+                            <div class="flex-1 min-w-0">
+                                <div class="text-[9px] text-slate-400 mb-0.5">19 Nov 2024 04:03:23</div>
+                                <div class="text-[10px] text-white font-mono truncate">1Lbcfr7sAHTD9CgdQo3HTMTkV8LK4ZnX71</div>
+                                <div class="text-[10px] text-slate-300">0.000938877 BTC / £72.96</div>
+                            </div>
+                            <iconify-icon icon="solar:arrow-right-linear" class="text-amber-500 text-sm"></iconify-icon>
+                        </div>
+
+                        <div class="bg-white/5 border border-white/10 rounded-lg p-2.5 flex items-center gap-2">
+                            <span class="bg-amber-500/20 text-amber-400 px-1.5 py-0.5 rounded text-[9px] font-medium">MEDIUM</span>
+                            <div class="flex-1 min-w-0">
+                                <div class="text-[9px] text-slate-400 mb-0.5">18 Nov 2024 14:22:15</div>
+                                <div class="text-[10px] text-white font-mono truncate">3Kj8mN9pQr2sT5vWxYzA1bC4dE6fG8hI0</div>
+                                <div class="text-[10px] text-slate-300">0.001245623 BTC / £97.12</div>
+                            </div>
+                            <iconify-icon icon="solar:arrow-right-linear" class="text-amber-500 text-sm"></iconify-icon>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            
+            <!-- Screen Reflections -->
+            <div class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-white/5 to-transparent pointer-events-none z-20"></div>
+        </div>
+        
+    </div>
+            
+    <!-- Glow behind phone -->
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[500px] bg-purple-500/20 blur-[100px] -z-10 pointer-events-none rounded-full mix-blend-screen opacity-50 group-hover/phone:opacity-80 transition-opacity duration-700"></div>
+</div>
+
+        <!-- Right Column Annotations -->
+        <div class="lg:col-span-3 space-y-24 hidden lg:block">
+            <div class="group relative">
+                <div class="text-[10px] font-mono text-purple-400 mb-2">03</div>
+                <h3 class="text-lg font-medium text-white mb-2">Transaction History</h3>
+                <p class="text-sm text-slate-400 leading-relaxed">Filter and analyze transactions by risk level. View detailed transaction data with timestamps and amounts.</p>
+                <div class="absolute top-1/2 -left-12 w-8 h-px bg-gradient-to-l from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            </div>
+            
+            <div class="group relative">
+                <div class="text-[10px] font-mono text-purple-400 mb-2">04</div>
+                <h3 class="text-lg font-medium text-white mb-2">Wallet Analytics</h3>
+                <p class="text-sm text-slate-400 leading-relaxed">Comprehensive wallet statistics including balance, first transaction date, and associated addresses.</p>
+                <div class="absolute top-1/2 -left-12 w-8 h-px bg-gradient-to-l from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            </div>
+        </div>
+
+        <!-- Mobile Annotations (Visible only on small screens) -->
+        <div class="lg:hidden col-span-1 grid grid-cols-1 sm:grid-cols-2 gap-8 mt-8">
+            <div class="border-l border-white/10 pl-4">
+                <div class="text-xs font-mono text-purple-400 mb-1">01</div>
+                <h3 class="text-white font-medium mb-1">Wallet Search</h3>
+                <p class="text-xs text-slate-400">Scan and analyze wallet addresses instantly.</p>
+            </div>
+            <div class="border-l border-white/10 pl-4">
+                <div class="text-xs font-mono text-purple-400 mb-1">02</div>
+                <h3 class="text-white font-medium mb-1">Risk Assessment</h3>
+                <p class="text-xs text-slate-400">Real-time threat detection and warnings.</p>
+            </div>
+            <div class="border-l border-white/10 pl-4">
+                <div class="text-xs font-mono text-purple-400 mb-1">03</div>
+                <h3 class="text-white font-medium mb-1">Transaction History</h3>
+                <p class="text-xs text-slate-400">Filter by risk level and view details.</p>
+            </div>
+            <div class="border-l border-white/10 pl-4">
+                <div class="text-xs font-mono text-purple-400 mb-1">04</div>
+                <h3 class="text-white font-medium mb-1">Wallet Analytics</h3>
+                <p class="text-xs text-slate-400">Balance, dates, and address statistics.</p>
+            </div>
+        </div>
+    </div>
+        </div>
+
+        <!-- Supported Chains Strip -->
+        <div class="mt-32 border-t border-white/5 pt-16">
+            <p class="text-center text-[10px] uppercase tracking-widest text-slate-500 mb-10 font-semibold">Multi-chain coverage across major blockchain networks</p>
+            <div class="flex flex-wrap justify-center items-center gap-12 md:gap-20 opacity-40 grayscale hover:grayscale-0 transition-all duration-700 pb-32">
+
+                <div class="group flex items-center gap-3 hover:opacity-100 transition-opacity">
+                    <iconify-icon icon="simple-icons:bitcoin" width="24" height="24" class="text-[#F7931A]"></iconify-icon>
+                    <span class="text-lg font-bold tracking-tight text-white hidden md:block">Bitcoin</span>
+                </div>
+
+                <div class="group flex items-center gap-3 hover:opacity-100 transition-opacity">
+                    <iconify-icon icon="simple-icons:ethereum" width="24" height="24" class="text-[#627EEA]"></iconify-icon>
+                    <span class="text-lg font-bold tracking-tight text-white hidden md:block">Ethereum</span>
+                </div>
+
+                <div class="group flex items-center gap-3 hover:opacity-100 transition-opacity">
+                    <iconify-icon icon="simple-icons:polygon" width="24" height="24" class="text-[#8247E5]"></iconify-icon>
+                    <span class="text-lg font-bold tracking-tight text-white hidden md:block">Polygon</span>
+                </div>
+
+                <div class="group flex items-center gap-3 hover:opacity-100 transition-opacity">
+                    <iconify-icon icon="cryptocurrency:bnb" width="24" height="24" class="text-[#F0B90B]"></iconify-icon>
+                    <span class="text-lg font-bold tracking-tight text-white hidden md:block">BNB Chain</span>
+                </div>
+
+                <div class="group flex items-center gap-3 hover:opacity-100 transition-opacity">
+                    <iconify-icon icon="simple-icons:tether" width="24" height="24" class="text-[#26A17B]"></iconify-icon>
+                    <span class="text-lg font-bold tracking-tight text-white hidden md:block">Tron</span>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- SECTION 06: SCALE -->
+        <div class="border-white/5 border-t pt-24 relative z-10 w-full max-w-7xl mx-auto">
+            <div class="absolute left-6 lg:left-0 top-24 text-white/20 text-[10px] font-mono tracking-widest animate-in delay-200">06 // SCALE</div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 z-10 relative gap-x-16 gap-y-16 px-6">
+                <div class="relative flex flex-col justify-center h-full lg:sticky lg:top-32 lg:self-start mb-12 lg:mb-0">
+            <h2 class="text-4xl md:text-5xl font-newsreader font-medium italic text-white mb-6 tracking-tight animate-in delay-300">
+                Enterprise-grade infrastructure for
+                <span class="not-italic text-transparent bg-clip-text bg-gradient-to-r from-purple-300 via-white to-indigo-300">mission-critical investigations.</span>
+            </h2>
+            <p class="text-lg text-slate-400 font-light max-w-md leading-relaxed mb-8 animate-in delay-400">
+                ShadowTrace processes billions of transactions to deliver real-time intelligence. Our platform is built for the demands of large-scale financial crime investigations.
+            </p>
+
+            <div class="flex items-center gap-2 text-sm text-slate-500 font-mono animate-in delay-500">
+                <iconify-icon icon="solar:server-square-linear" class="text-purple-400 text-lg"></iconify-icon>
+                <span class="">System Status: <span class="text-emerald-400">Operational</span></span>
+            </div>
+
+            <!-- Decorative Pattern -->
+            <div class="absolute -left-12 bottom-0 w-64 h-64 bg-purple-500/5 blur-[80px] -z-10 pointer-events-none"></div>
+        </div>
+
+                <div class="bg-white/5 backdrop-blur-md border border-white/10 rounded-[2rem] p-8 md:p-12 animate-in delay-500 hover:bg-white/[0.07] transition-colors duration-500 group relative overflow-hidden">
+            <!-- Subtle gradient overlay -->
+            <div class="absolute top-0 right-0 w-full h-full bg-gradient-to-bl from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
+
+            <div class="space-y-12 relative z-10">
+                <!-- Stat 1 -->
+                <div class="flex flex-col md:flex-row gap-6 md:items-start border-b border-white/5 pb-12 last:border-0 last:pb-0 group/item">
+                    <div class="w-full md:w-1/3 flex-shrink-0">
+                        <span class="text-5xl md:text-6xl font-newsreader italic text-white tracking-tight group-hover/item:text-purple-300 transition-colors duration-300">18B+</span>
+                    </div>
+                    <div class="w-full md:w-2/3">
+                        <h4 class="text-lg font-medium text-white mb-2 flex items-center gap-2">
+                            Transactions Indexed
+                            <iconify-icon icon="solar:graph-up-linear" class="text-slate-500 text-base opacity-0 group-hover/item:opacity-100 transition-opacity"></iconify-icon>
+                        </h4>
+                        <p class="text-sm text-slate-400 leading-relaxed font-light">
+                            Our indexed database spans major blockchains, enabling investigators to trace funds across networks with comprehensive historical coverage.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Stat 2 -->
+                <div class="flex flex-col md:flex-row gap-6 md:items-start border-b border-white/5 pb-12 last:border-0 last:pb-0 group/item">
+                     <div class="w-full md:w-1/3 flex-shrink-0">
+                        <span class="text-5xl md:text-6xl font-newsreader italic text-white tracking-tight group-hover/item:text-purple-300 transition-colors duration-300">&lt;2s</span>
+                    </div>
+                    <div class="w-full md:w-2/3">
+                        <h4 class="text-lg font-medium text-white mb-2 flex items-center gap-2">
+                            Alert Latency
+                            <iconify-icon icon="solar:bolt-linear" class="text-slate-500 text-base opacity-0 group-hover/item:opacity-100 transition-opacity"></iconify-icon>
+                        </h4>
+                        <p class="text-sm text-slate-400 leading-relaxed font-light">
+                            Real-time monitoring delivers alerts within seconds of on-chain activity, enabling rapid response to suspicious transactions.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Stat 3 -->
+                <div class="flex flex-col md:flex-row gap-6 md:items-start border-b border-white/5 pb-12 last:border-0 last:pb-0 group/item">
+                     <div class="w-full md:w-1/3 flex-shrink-0">
+                        <span class="text-5xl md:text-6xl font-newsreader italic text-white tracking-tight group-hover/item:text-purple-300 transition-colors duration-300">99.9%</span>
+                    </div>
+                    <div class="w-full md:w-2/3">
+                        <h4 class="text-lg font-medium text-white mb-2 flex items-center gap-2">
+                            Platform Uptime
+                            <iconify-icon icon="solar:shield-check-linear" class="text-slate-500 text-base opacity-0 group-hover/item:opacity-100 transition-opacity"></iconify-icon>
+                        </h4>
+                        <p class="text-sm text-slate-400 leading-relaxed font-light">
+                            Enterprise SLA guarantees ensure ShadowTrace is available when you need it. Critical investigations cannot wait for downtime.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Stat 4: Organisations -->
+                 <div class="flex flex-col md:flex-row gap-6 md:items-start group/item pt-2">
+                     <div class="w-full md:w-1/3 flex-shrink-0">
+                        <span class="text-5xl md:text-6xl font-newsreader italic text-white tracking-tight group-hover/item:text-purple-300 transition-colors duration-300">50+</span>
+                    </div>
+                    <div class="w-full md:w-2/3">
+                        <h4 class="text-lg font-medium text-white mb-3">Organisations Served</h4>
+                        <div class="flex flex-wrap gap-4 items-center">
+                            <!-- Category Icons -->
+                            <div class="h-9 w-16 flex items-center justify-start opacity-50 group-hover/item:opacity-100 transition-opacity duration-300">
+                                <iconify-icon icon="solar:shield-user-linear" width="24" height="24" class="text-white"></iconify-icon>
+                            </div>
+                            <div class="h-9 w-16 flex items-center justify-start opacity-50 group-hover/item:opacity-100 transition-opacity duration-300 delay-75">
+                                <iconify-icon icon="solar:bank-linear" width="24" height="24" class="text-white"></iconify-icon>
+                            </div>
+                            <div class="h-9 w-16 flex items-center justify-start opacity-50 group-hover/item:opacity-100 transition-opacity duration-300 delay-150">
+                                <iconify-icon icon="solar:buildings-linear" width="24" height="24" class="text-white"></iconify-icon>
+                            </div>
+                            <div class="h-9 w-16 flex items-center justify-start opacity-50 group-hover/item:opacity-100 transition-opacity duration-300 delay-200">
+                                <iconify-icon icon="solar:scale-linear" width="24" height="24" class="text-white"></iconify-icon>
+                            </div>
+                        </div>
+                        <p class="text-sm text-slate-400 leading-relaxed font-light mt-3">
+                            Law enforcement agencies, financial institutions, VASPs, and regulatory bodies across multiple jurisdictions trust ShadowTrace.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+            </div>
+        </div>
+
+        <!-- SECTION 07: FAQ -->
+        <div class="z-10 w-full max-w-7xl border-white/5 border-t mr-auto ml-auto pt-24 pb-24 relative">
+            <div class="text-[10px] animate-in delay-200 lg:left-0 text-white/20 tracking-widest font-mono absolute top-16 left-6">07 // FAQ</div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 z-10 relative gap-x-16 gap-y-16 px-6">
+                <div class="lg:sticky lg:top-32 lg:self-start">
+                    <h2 class="text-4xl md:text-5xl font-newsreader font-medium italic text-white mb-6 tracking-tight">
+                        Questions from
+                        <span class="not-italic text-transparent bg-clip-text bg-gradient-to-r from-purple-300 via-white to-indigo-300">procurement and security teams.</span>
+                    </h2>
+                    <p class="text-lg text-slate-400 font-light max-w-md leading-relaxed mb-8">
+                        We understand the rigour required when onboarding tools for sensitive investigations. Here are answers to common questions from compliance and security stakeholders.
+                    </p>
+                </div>
+
+                <div class="space-y-4">
+                    <div class="group border-b border-white/5 pb-6 faq-item" data-question="0">
+                        <div class="flex items-start justify-between cursor-pointer">
+                            <h3 class="text-lg text-white/90 font-medium group-hover:text-purple-300 transition-colors">What security certifications does ShadowTrace hold?</h3>
+                            <iconify-icon icon="solar:add-linear" class="text-slate-500 text-xl group-hover:text-white transition-colors"></iconify-icon>
+                        </div>
+                    </div>
+                    <div class="group border-b border-white/5 pb-6 faq-item" data-question="1">
+                        <div class="flex items-start justify-between cursor-pointer">
+                            <h3 class="text-lg text-white/90 font-medium group-hover:text-purple-300 transition-colors">How is investigation data protected and who can access it?</h3>
+                            <iconify-icon icon="solar:add-linear" class="text-slate-500 text-xl group-hover:text-white transition-colors"></iconify-icon>
+                        </div>
+                    </div>
+                    <div class="group border-b border-white/5 pb-6 faq-item" data-question="2">
+                        <div class="flex items-start justify-between cursor-pointer">
+                            <h3 class="text-lg text-white/90 font-medium group-hover:text-purple-300 transition-colors">Can ShadowTrace be deployed on-premises or in a private cloud?</h3>
+                            <iconify-icon icon="solar:add-linear" class="text-slate-500 text-xl group-hover:text-white transition-colors"></iconify-icon>
+                        </div>
+                    </div>
+                    <div class="group border-b border-white/5 pb-6 faq-item" data-question="3">
+                        <div class="flex items-start justify-between cursor-pointer">
+                            <h3 class="text-lg text-white/90 font-medium group-hover:text-purple-300 transition-colors">Does ShadowTrace integrate with existing case management systems?</h3>
+                            <iconify-icon icon="solar:add-linear" class="text-slate-500 text-xl group-hover:text-white transition-colors"></iconify-icon>
+                        </div>
+                    </div>
+                    <div class="group border-b border-white/5 pb-6 faq-item" data-question="4">
+                        <div class="flex items-start justify-between cursor-pointer">
+                            <h3 class="text-lg text-white/90 font-medium group-hover:text-purple-300 transition-colors">What audit logging and chain-of-custody features are available?</h3>
+                            <iconify-icon icon="solar:add-linear" class="text-slate-500 text-xl group-hover:text-white transition-colors"></iconify-icon>
+                        </div>
+                    </div>
+                    <div class="group border-b border-white/5 pb-6 faq-item" data-question="5">
+                        <div class="flex items-start justify-between cursor-pointer">
+                            <h3 class="text-lg text-white/90 font-medium group-hover:text-purple-300 transition-colors">How are risk scores calculated and can the methodology be audited?</h3>
+                            <iconify-icon icon="solar:add-linear" class="text-slate-500 text-xl group-hover:text-white transition-colors"></iconify-icon>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA Section -->
+        <div class="z-10 w-full max-w-7xl border-white/5 border-t mx-auto pt-12 pb-24 relative">
+            <div class="relative w-full bg-[#6E40C9] rounded-[2rem] overflow-hidden px-8 py-16 md:p-16 flex flex-col md:flex-row md:items-end justify-between gap-12 group">
+                <div class="relative z-10 max-w-2xl">
+                    <h2 class="text-4xl md:text-5xl font-newsreader font-medium text-white mb-6 tracking-tight leading-[1.1]">
+                        Ready to strengthen your crypto investigation capabilities?
+                    </h2>
+                    <p class="text-lg text-purple-100/80 font-light leading-relaxed max-w-lg">
+                        Schedule a demonstration with our team to see how ShadowTrace can support your financial crime investigations and compliance workflows.
+                    </p>
+                </div>
+
+                <div class="relative z-10 flex-none">
+                    <button class="group/btn relative overflow-hidden bg-transparent border border-white/30 text-white px-8 py-4 rounded-xl transition-all duration-300 hover:bg-white hover:text-[#6E40C9] hover:border-white" onclick="window.location.href='contact.html'">
+                        <div class="flex gap-8 gap-x-8 gap-y-8 items-center justify-between flex-none">
+                            <span class="text-sm font-medium tracking-wide">Request Demo</span>
+                            <iconify-icon icon="solar:arrow-right-up-linear" class="text-lg transition-transform duration-300 group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1"></iconify-icon>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="border-t border-white/5 bg-[#020205] relative z-20">
+            <div class="max-w-7xl mr-auto ml-auto pt-20 pr-6 pb-12 pl-6 relative">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20 relative z-10">
+                    <div class="space-y-6">
+                        <div class="flex items-center gap-2 mb-6">
+                            <img src="assets/ShadowTraceLogo.svg" alt="ShadowTrace" style="height: 22.4px;">
+                        </div>
+                        <p class="text-sm text-slate-500 font-light leading-relaxed">
+                            Blockchain intelligence for financial crime investigators.
+                        </p>
+                    </div>
+
+                    <div class="">
+                        <h4 class="text-sm text-white font-medium mb-6">Platform</h4>
+                        <ul class="space-y-4 text-sm text-slate-400 font-light">
+                            <li class=""><a href="platform.html" class="hover:text-purple-400 transition-colors">Features</a></li>
+                            <li class=""><a href="solutions.html" class="hover:text-purple-400 transition-colors">Solutions</a></li>
+                            <li class=""><a href="pricing.html" class="hover:text-purple-400 transition-colors">Pricing</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="">
+                        <h4 class="text-sm text-white font-medium mb-6">Company</h4>
+                        <ul class="space-y-4 text-sm text-slate-400 font-light">
+                            <li class=""><a href="about.html" class="hover:text-purple-400 transition-colors">About Us</a></li>
+                            <li class=""><a href="contact.html" class="hover:text-purple-400 transition-colors">Contact</a></li>
+                            <li class=""><a href="resources.html" class="hover:text-purple-400 transition-colors">Resources</a></li>
+                        </ul>
+                    </div>
+
+                    <div class="">
+                        <h4 class="text-sm text-white font-medium mb-6">Legal</h4>
+                        <ul class="space-y-4 text-sm text-slate-400 font-light">
+                            <li class=""><a href="privacy.html" class="hover:text-purple-400 transition-colors">Privacy Policy</a></li>
+                            <li class=""><a href="terms.html" class="hover:text-purple-400 transition-colors">Terms of Service</a></li>
+                            <li class=""><a href="security.html" class="hover:text-purple-400 transition-colors">Security</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="flex flex-col md:flex-row justify-between items-center gap-6 mt-16 pt-8 border-t border-white/5 text-[10px] text-slate-600 uppercase tracking-widest relative z-10">
+                    <span>© 2026 ShadowTrace Ltd. All rights reserved.</span>
+                    <div class="flex gap-6">
+                        <a href="privacy.html" class="hover:text-slate-400 transition-colors">Privacy Policy</a>
+                        <a href="terms.html" class="hover:text-slate-400 transition-colors">Terms of Service</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        
+    </main>
+
+    <script>
+        // Spotlight Effect Logic
+        const cards = document.querySelectorAll(".spotlight-card");
+        
+        document.addEventListener("mousemove", (e) => {
+            cards.forEach((card) => {
+                const rect = card.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                card.style.setProperty("--mouse-x", `${x}px`);
+                card.style.setProperty("--mouse-y", `${y}px`);
+            });
+        });
+
+        // Mobile Menu Logic
+        const menuBtn = document.getElementById('open-menu');
+        const closeBtn = document.getElementById('close-menu');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        function toggleMenu() {
+            if (mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.remove('hidden');
+                mobileMenu.classList.add('flex');
+                setTimeout(() => mobileMenu.classList.remove('opacity-0'), 10);
+            } else {
+                mobileMenu.classList.add('opacity-0');
+                setTimeout(() => {
+                    mobileMenu.classList.remove('flex');
+                    mobileMenu.classList.add('hidden');
+                }, 300);
+            }
+        }
+
+        menuBtn.addEventListener('click', toggleMenu);
+        closeBtn.addEventListener('click', toggleMenu);
+
+        // D3.js Chart Implementation
+        const drawChart = () => {
+            const container = document.getElementById('chart-container');
+            if (!container) return;
+            
+            container.innerHTML = ''; // Clear existing
+            
+            const width = container.clientWidth || 275;
+            const height = container.clientHeight || 166;
+            const margin = {top: 10, right: 0, bottom: 0, left: 0};
+
+            // Fake Data
+            const data = [
+                {x: 0, y: 50}, {x: 1, y: 55}, {x: 2, y: 45}, {x: 3, y: 60}, 
+                {x: 4, y: 58}, {x: 5, y: 70}, {x: 6, y: 65}, {x: 7, y: 80},
+                {x: 8, y: 75}, {x: 9, y: 95}, {x: 10, y: 100}
+            ];
+
+            const svg = d3.select("#chart-container")
+                .append("svg")
+                .attr("width", "100%")
+                .attr("height", "100%")
+                .attr("viewBox", `0 0 ${width} ${height}`)
+                .attr("preserveAspectRatio", "none");
+
+            // Scales
+            const x = d3.scaleLinear()
+                .domain(d3.extent(data, d => d.x))
+                .range([0, width]);
+
+            const y = d3.scaleLinear()
+                .domain([0, d3.max(data, d => d.y) * 1.2]) // Add headroom
+                .range([height, 0]);
+
+            // Gradients
+            const defs = svg.append("defs");
+            
+            const areaGradient = defs.append("linearGradient")
+                .attr("id", "area-gradient")
+                .attr("x1", "0%")
+                .attr("y1", "0%")
+                .attr("x2", "0%")
+                .attr("y2", "100%");
+
+            areaGradient.append("stop")
+                .attr("offset", "0%")
+                .attr("stop-color", "#a855f7")
+                .attr("stop-opacity", 0.3);
+
+            areaGradient.append("stop")
+                .attr("offset", "100%")
+                .attr("stop-color", "#a855f7")
+                .attr("stop-opacity", 0);
+
+            // Area
+            const area = d3.area()
+                .x(d => x(d.x))
+                .y0(height)
+                .y1(d => y(d.y))
+                .curve(d3.curveMonotoneX);
+
+            // Line
+            const line = d3.line()
+                .x(d => x(d.x))
+                .y(d => y(d.y))
+                .curve(d3.curveMonotoneX);
+
+            // Append Area
+            svg.append("path")
+                .datum(data)
+                .attr("class", "chart-area")
+                .attr("d", area);
+
+            // Append Line
+            const path = svg.append("path")
+                .datum(data)
+                .attr("class", "chart-path")
+                .attr("fill", "none")
+                .attr("d", line);
+            
+            // Animate Line
+            const totalLength = path.node().getTotalLength();
+            path
+                .attr("stroke-dasharray", totalLength + " " + totalLength)
+                .attr("stroke-dashoffset", totalLength)
+                .transition()
+                .duration(2000)
+                .ease(d3.easeCubicOut)
+                .attr("stroke-dashoffset", 0);
+        };
+
+        // Draw initially and on resize
+        window.addEventListener('load', drawChart);
+        window.addEventListener('resize', drawChart);
+    </script>
+
+    <!-- FAQ Modal -->
+    <div id="faq-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4">
+        <div class="fixed inset-0 bg-black/80 backdrop-blur-sm" id="modal-backdrop"></div>
+        <div class="relative bg-[#0A0A0F] border border-white/10 rounded-[2rem] max-w-2xl w-full p-8 md:p-12 max-h-[90vh] overflow-y-auto animate-in">
+            <button id="close-modal" class="absolute top-6 right-6 text-slate-400 hover:text-white transition-colors">
+                <iconify-icon icon="solar:close-circle-linear" class="text-2xl"></iconify-icon>
+            </button>
+            <h3 id="modal-question" class="text-2xl md:text-3xl font-newsreader font-medium text-white mb-6 pr-8"></h3>
+            <div id="modal-answer" class="text-slate-300 leading-relaxed space-y-4">
+                <!-- Answer content will be inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // FAQ Modal functionality
+        const faqItems = document.querySelectorAll('.faq-item');
+        const modal = document.getElementById('faq-modal');
+        const modalBackdrop = document.getElementById('modal-backdrop');
+        const closeModalBtn = document.getElementById('close-modal');
+        const modalQuestion = document.getElementById('modal-question');
+        const modalAnswer = document.getElementById('modal-answer');
+
+        const faqAnswers = {
+            0: {
+                question: "What security certifications does ShadowTrace hold?",
+                answer: [
+                    "ShadowTrace maintains SOC 2 Type II certification and operates in compliance with ISO 27001 standards. Our security practices are regularly audited by independent third parties to ensure we meet the stringent requirements expected by law enforcement and financial institutions.",
+                    "We also provide detailed security documentation and can participate in your organisation's vendor security assessment process. Enterprise clients have access to our full security policies and can request penetration test reports upon signing an NDA."
+                ]
+            },
+            1: {
+                question: "How is investigation data protected and who can access it?",
+                answer: [
+                    "All investigation data is encrypted at rest using AES-256 and in transit using TLS 1.3. Access is controlled through role-based access control (RBAC), and administrators can define granular permissions at the workspace, case, and user levels.",
+                    "ShadowTrace staff do not have access to customer investigation data. We maintain comprehensive audit logs of all data access events, which can be exported for your compliance records. Data residency options are available for organisations with specific jurisdictional requirements."
+                ]
+            },
+            2: {
+                question: "Can ShadowTrace be deployed on-premises or in a private cloud?",
+                answer: [
+                    "Yes. While ShadowTrace is offered as a cloud SaaS platform by default, we provide enterprise deployment options including private cloud instances (AWS, Azure, GCP) and on-premises installations for organisations with strict data sovereignty or air-gapped requirements.",
+                    "Enterprise deployments include dedicated infrastructure, custom data retention policies, and integration with your existing identity provider via SAML/SSO. Contact our enterprise team to discuss your deployment requirements."
+                ]
+            },
+            3: {
+                question: "Does ShadowTrace integrate with existing case management systems?",
+                answer: [
+                    "ShadowTrace offers a comprehensive REST API that enables integration with case management systems, SIEM/SOAR platforms, and internal databases. We support export to common formats including JSON, CSV, and PDF for evidence packages.",
+                    "We have pre-built integrations with several widely-used case management and ticketing systems. Our professional services team can assist with custom integrations to ensure ShadowTrace fits seamlessly into your existing workflow."
+                ]
+            },
+            4: {
+                question: "What audit logging and chain-of-custody features are available?",
+                answer: [
+                    "ShadowTrace maintains immutable audit logs of all investigator actions, including searches, graph manipulations, annotations, and report generation. Every action is timestamped and attributed to the authenticated user.",
+                    "Reports include full methodology documentation showing the exact steps taken to reach conclusions. This chain-of-custody approach ensures findings can be defended in court and reproduced by other analysts if required."
+                ]
+            },
+            5: {
+                question: "How are risk scores calculated and can the methodology be audited?",
+                answer: [
+                    "Risk scores are calculated using a transparent, rules-based methodology that considers factors such as direct exposure to flagged addresses, transaction patterns, counterparty risk, and behavioural anomalies. Each score includes a breakdown of contributing factors.",
+                    "Unlike black-box approaches, ShadowTrace provides full explainability for every risk assessment. Investigators can drill down into the evidence supporting each score, making it possible to justify findings to prosecutors, compliance officers, or regulators."
+                ]
+            }
+        };
+
+        function openModal(questionIndex) {
+            const faq = faqAnswers[questionIndex];
+            if (!faq) return;
+
+            modalQuestion.textContent = faq.question;
+            modalAnswer.innerHTML = faq.answer.map(para => `<p class="mb-4">${para}</p>`).join('');
+
+            // Prevent body scroll
+            const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+            document.body.style.overflow = 'hidden';
+            if (scrollbarWidth > 0) {
+                document.body.style.paddingRight = scrollbarWidth + 'px';
+            }
+
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            // Trigger animation after display
+            setTimeout(() => {
+                modal.classList.add('animate-in');
+            }, 10);
+        }
+
+        function closeModal() {
+            modal.classList.remove('animate-in');
+            modal.classList.add('animate-out');
+            setTimeout(() => {
+                modal.classList.remove('animate-out');
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+                // Restore body scroll
+                document.body.style.overflow = '';
+                document.body.style.paddingRight = '';
+            }, 200);
+        }
+
+        // Add click handlers to FAQ items
+        faqItems.forEach(item => {
+            item.addEventListener('click', (e) => {
+                const questionIndex = parseInt(item.getAttribute('data-question'));
+                openModal(questionIndex);
+            });
+        });
+
+        // Close modal handlers
+        closeModalBtn.addEventListener('click', closeModal);
+        modalBackdrop.addEventListener('click', closeModal);
+
+        // Close on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+                closeModal();
+            }
+        });
+    </script>
+
+</body>
+</html>
