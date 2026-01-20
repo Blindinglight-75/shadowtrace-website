@@ -5,7 +5,7 @@ const OpenAI = require('openai');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const VERSION = '1.0.3';
+const VERSION = '1.0.4';
 
 // Parse JSON bodies
 app.use(express.json({ limit: '10kb' }));
@@ -129,6 +129,10 @@ app.post('/api/chat', async (req, res) => {
         // Limit conversation history
         const recentMessages = messages.slice(-10);
 
+        console.log('Calling OpenAI API...');
+        console.log('API Key exists:', !!process.env.OPENAI_API_KEY);
+        console.log('API Key starts with:', process.env.OPENAI_API_KEY?.substring(0, 10));
+
         const completion = await openai.chat.completions.create({
             model: 'gpt-4o',
             messages: [
@@ -139,8 +143,10 @@ app.post('/api/chat', async (req, res) => {
             temperature: 0.7
         });
 
+        console.log('OpenAI response received');
         const reply = completion.choices[0]?.message?.content || 'I apologise, I couldn\'t generate a response.';
 
+        console.log('Sending reply to client');
         res.json({ reply });
 
     } catch (error) {
