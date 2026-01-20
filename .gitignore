@@ -6,3 +6,4 @@ node_modules/
 .vite/
 assets/*.js
 assets/*.css
+.env

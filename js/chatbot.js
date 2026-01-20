@@ -8,7 +8,7 @@
 
     // Configuration
     const CONFIG = {
-        apiUrl: 'http://localhost:3001', // Local dev - change to Railway URL for production
+        apiUrl: '', // Same-origin API (relative URLs)
         storageKey: 'shadowtrace_chat',
         leadCaptureThreshold: 4, // Show lead capture after this many exchanges
         maxStoredMessages: 50

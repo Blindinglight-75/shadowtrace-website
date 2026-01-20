@@ -2,11 +2,10 @@
   "name": "shadowtrace-website",
   "version": "1.0.0",
   "description": "ShadowTrace marketing website - blockchain intelligence platform",
-  "main": "index.html",
+  "main": "server.js",
   "scripts": {
-    "dev": "npx serve .",
-    "start": "npx serve .",
-    "build": "echo 'No build step required - static HTML site'"
+    "dev": "node server.js",
+    "start": "node server.js"
   },
   "keywords": [
     "shadowtrace",
@@ -18,8 +17,9 @@
   "author": "ShadowTrace Ltd",
   "license": "UNLICENSED",
   "private": true,
-  "devDependencies": {
-    "serve": "^14.2.1"
-  },
-  "dependencies": {}
+  "dependencies": {
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "openai": "^4.24.0"
+  }
 }
