@@ -5,7 +5,7 @@ const OpenAI = require('openai');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const VERSION = '1.0.1';
+const VERSION = '1.0.2';
 
 // Parse JSON bodies
 app.use(express.json({ limit: '10kb' }));
@@ -129,7 +129,7 @@ app.post('/api/chat', async (req, res) => {
         const recentMessages = messages.slice(-10);
 
         const completion = await openai.chat.completions.create({
-            model: 'gpt-4-turbo-preview',
+            model: 'gpt-4o',
             messages: [
                 { role: 'system', content: SYSTEM_PROMPT },
                 ...recentMessages
