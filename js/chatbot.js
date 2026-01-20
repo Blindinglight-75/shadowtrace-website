@@ -619,7 +619,7 @@
             }
 
             const data = await response.json();
-            state.messages.push({ role: 'assistant', content: data.message });
+            state.messages.push({ role: 'assistant', content: data.reply });
             saveConversation();
 
             // Check if should show lead capture
