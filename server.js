@@ -5,6 +5,7 @@ const OpenAI = require('openai');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+const VERSION = '1.0.1';
 
 // Parse JSON bodies
 app.use(express.json({ limit: '10kb' }));
@@ -94,7 +95,7 @@ function checkRateLimit(ip) {
 
 // Health check
 app.get('/health', (req, res) => {
-    res.json({ status: 'ok', timestamp: new Date().toISOString() });
+    res.json({ status: 'ok', version: VERSION, timestamp: new Date().toISOString() });
 });
 
 // Chat API endpoint
