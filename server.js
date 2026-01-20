@@ -5,7 +5,7 @@ const OpenAI = require('openai');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
-const VERSION = '1.0.2';
+const VERSION = '1.0.3';
 
 // Parse JSON bodies
 app.use(express.json({ limit: '10kb' }));
@@ -100,6 +100,7 @@ app.get('/health', (req, res) => {
 
 // Chat API endpoint
 app.post('/api/chat', async (req, res) => {
+    console.log('Chat request received');
     try {
         const ip = req.ip || req.connection.remoteAddress;
 
@@ -143,7 +144,13 @@ app.post('/api/chat', async (req, res) => {
         res.json({ reply });
 
     } catch (error) {
-        console.error('Chat API error:', error);
+        console.error('Chat API error:', error.message);
+        console.error('Error details:', JSON.stringify({
+            code: error.code,
+            status: error.status,
+            type: error.type,
+            message: error.message
+        }));
 
         if (error.code === 'insufficient_quota') {
             return res.status(503).json({ error: 'Service temporarily unavailable. Please try again later.' });
