@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Flexible pricing for blockchain investigations — from pilot programmes to enterprise deployments with real-time monitoring, explainable risk scoring, and evidence-grade reporting.">
-    <meta property="og:title" content="Pricing | ShadowTrace Blockchain Intelligence Platform">
-    <meta property="og:description" content="Flexible pricing for blockchain investigations — from pilot programmes to enterprise deployments with real-time monitoring, explainable risk scoring, and evidence-grade reporting.">
-    <title>Pricing | ShadowTrace Blockchain Intelligence Platform</title>
+    <meta property="og:title" content="Pricing | ShadowTrace — Built for How You Investigate">
+    <meta property="og:description" content="Transparent, seat-based pricing for crypto investigations. From pilot programmes to enterprise deployments — no six-figure minimums, no lock-in.">
+    <title>Pricing | ShadowTrace — Built for How You Investigate</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -84,26 +84,7 @@
             from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
         }
-        /* FAQ Accordion Transitions */
-        .accordion-content {
-            display: grid;
-            grid-template-rows: 0fr;
-            transition: grid-template-rows 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
-            opacity: 0;
-        }
-        .accordion-content > div {
-            overflow: hidden;
-        }
-        .accordion-open .accordion-content {
-            grid-template-rows: 1fr;
-            opacity: 1;
-        }
-        .accordion-icon {
-            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .accordion-open .accordion-icon {
-            transform: rotate(45deg);
-        }
+        /* FAQ items are always visible — no click-to-reveal */
     </style>
 </head>
 <body class="antialiased selection:bg-purple-500/30">
@@ -153,7 +134,7 @@
             <div class="flex gap-4 gap-x-4 gap-y-4 items-center">
                 <a href="https://portal.shadowtrace.ai" class="hidden md:block hover:text-white transition-colors text-xs font-medium text-white/60">Portal</a>
                 <button class="hidden md:block group hover:bg-white/10 transition-all text-xs font-medium text-white bg-white/5 border-white/10 border rounded-full pt-2 pr-4 pb-2 pl-4 relative" onclick="window.location.href='contact.html'" role="button">
-                    <span class="z-10 relative">Request Demo</span>
+                    <span class="z-10 relative">See how it works</span>
                     <div class="btn-beam"></div>
                 </button>
                 <!-- Hamburger Button -->
@@ -177,7 +158,7 @@
             </h1>
 
             <p class="text-lg text-slate-400 font-light max-w-xl mx-auto mb-10 leading-relaxed animate-in delay-300">
-                Pricing that scales with your investigative maturity. Whether you're evaluating blockchain intelligence for the first time or deploying across an enterprise, we offer flexible terms and procurement support at every stage.
+                Pricing that scales with your investigative maturity. From a single investigator evaluating the platform to enterprise deployment across multiple teams — with procurement support at every stage.
             </p>
 
             <!-- Procurement note -->
@@ -433,131 +414,51 @@
             </div>
         </div>
 
-        <!-- FAQ (Accordion) -->
+        <!-- FAQ (Open Display — no click-to-reveal) -->
         <div class="mb-20 border-t border-white/5 pt-16 relative">
             <div class="text-[10px] text-white/20 font-mono tracking-widest mb-12 absolute left-0 top-16 hidden md:block">04 // FAQ</div>
 
-            <div class="max-w-3xl mx-auto space-y-[1px] pt-8">
+            <div class="max-w-3xl mx-auto space-y-4 pt-8">
                 <h2 class="text-3xl font-newsreader italic text-white mb-12 text-center">Frequently asked questions</h2>
 
-                <!-- FAQ Item 1 -->
-                <div class="accordion-item group bg-white/[0.02] border border-white/5 first:rounded-t-lg overflow-hidden transition-all duration-300 hover:bg-white/[0.04]">
-                    <button class="w-full flex items-center justify-between p-6 text-left" onclick="toggleAccordion(this)">
-                        <h3 class="text-sm text-white/90 font-medium group-hover:text-purple-300 transition-colors pr-8">Do you support government and regulated procurement?</h3>
-                        <div class="relative w-4 h-4 flex items-center justify-center">
-                            <iconify-icon icon="solar:add-circle-linear" class="accordion-icon text-slate-500 text-lg transition-transform duration-300 group-hover:text-white absolute"></iconify-icon>
-                        </div>
-                    </button>
-                    <div class="accordion-content">
-                        <div class="px-6 pb-6 text-sm text-slate-400 font-light leading-relaxed max-w-2xl">
-                            <p>Yes. We work with government agencies, law enforcement bodies, and regulated financial institutions globally. We can support vendor registration, complete security questionnaires, and accommodate flexible invoicing (NET30/60/90) and multi-year contract structures. Contact our sales team to discuss your procurement requirements.</p>
-                        </div>
-                    </div>
+                <div class="bg-white/[0.02] border border-white/5 rounded-xl p-6">
+                    <h3 class="text-sm font-medium text-white mb-2">Do you support government and regulated procurement?</h3>
+                    <p class="text-sm text-slate-400 font-light leading-relaxed">Yes. We work with government agencies, law enforcement bodies, and regulated financial institutions globally. We can support vendor registration, complete security questionnaires, and accommodate flexible invoicing (NET30/60/90) and multi-year contract structures. Contact our sales team to discuss your procurement requirements.</p>
                 </div>
 
-                <!-- FAQ Item 2 -->
-                <div class="accordion-item group bg-white/[0.02] border border-white/5 overflow-hidden transition-all duration-300 hover:bg-white/[0.04]">
-                    <button class="w-full flex items-center justify-between p-6 text-left" onclick="toggleAccordion(this)">
-                        <h3 class="text-sm text-white/90 font-medium group-hover:text-purple-300 transition-colors pr-8">How do pilot programmes work?</h3>
-                         <div class="relative w-4 h-4 flex items-center justify-center">
-                            <iconify-icon icon="solar:add-circle-linear" class="accordion-icon text-slate-500 text-lg transition-transform duration-300 group-hover:text-white absolute"></iconify-icon>
-                        </div>
-                    </button>
-                    <div class="accordion-content">
-                        <div class="px-6 pb-6 text-sm text-slate-400 font-light leading-relaxed max-w-2xl">
-                            <p>Pilots are designed to prove value against your real operational requirements. We structure short-term engagements — typically 30 to 90 days — so you can evaluate ShadowTrace on live cases before committing. Successful pilots often convert to annual agreements with preferential terms.</p>
-                        </div>
-                    </div>
+                <div class="bg-white/[0.02] border border-white/5 rounded-xl p-6">
+                    <h3 class="text-sm font-medium text-white mb-2">How do pilot programmes work?</h3>
+                    <p class="text-sm text-slate-400 font-light leading-relaxed">Pilots are designed to prove value against your real operational requirements. We structure short-term engagements — typically 30 to 90 days — so you can evaluate ShadowTrace on live cases before committing. Successful pilots often convert to annual agreements with preferential terms.</p>
                 </div>
 
-                <!-- FAQ Item 3 -->
-                <div class="accordion-item group bg-white/[0.02] border border-white/5 overflow-hidden transition-all duration-300 hover:bg-white/[0.04]">
-                    <button class="w-full flex items-center justify-between p-6 text-left" onclick="toggleAccordion(this)">
-                        <h3 class="text-sm text-white/90 font-medium group-hover:text-purple-300 transition-colors pr-8">What deployment options are available?</h3>
-                         <div class="relative w-4 h-4 flex items-center justify-center">
-                            <iconify-icon icon="solar:add-circle-linear" class="accordion-icon text-slate-500 text-lg transition-transform duration-300 group-hover:text-white absolute"></iconify-icon>
-                        </div>
-                    </button>
-                    <div class="accordion-content">
-                        <div class="px-6 pb-6 text-sm text-slate-400 font-light leading-relaxed max-w-2xl">
-                            <p>Starter and Professional plans run on our secure cloud infrastructure. Enterprise customers can choose from cloud SaaS, private cloud deployment within your own AWS/Azure/GCP tenancy, or fully on-premises installation for air-gapped environments. Private deployments support custom data residency and identity provider integration.</p>
-                        </div>
-                    </div>
+                <div class="bg-white/[0.02] border border-white/5 rounded-xl p-6">
+                    <h3 class="text-sm font-medium text-white mb-2">What deployment options are available?</h3>
+                    <p class="text-sm text-slate-400 font-light leading-relaxed">Starter and Professional plans run on our secure cloud infrastructure. Enterprise customers can choose from cloud SaaS, private cloud deployment within your own AWS/Azure/GCP tenancy, or fully on-premises installation for air-gapped environments. Private deployments support custom data residency and identity provider integration.</p>
                 </div>
 
-                <!-- FAQ Item 4 -->
-                <div class="accordion-item group bg-white/[0.02] border border-white/5 overflow-hidden transition-all duration-300 hover:bg-white/[0.04]">
-                    <button class="w-full flex items-center justify-between p-6 text-left" onclick="toggleAccordion(this)">
-                        <h3 class="text-sm text-white/90 font-medium group-hover:text-purple-300 transition-colors pr-8">What security controls and certifications are in place?</h3>
-                         <div class="relative w-4 h-4 flex items-center justify-center">
-                            <iconify-icon icon="solar:add-circle-linear" class="accordion-icon text-slate-500 text-lg transition-transform duration-300 group-hover:text-white absolute"></iconify-icon>
-                        </div>
-                    </button>
-                    <div class="accordion-content">
-                        <div class="px-6 pb-6 text-sm text-slate-400 font-light leading-relaxed max-w-2xl">
-                            <p>ShadowTrace maintains SOC 2 Type II certification and operates in accordance with ISO 27001 standards. Our platform includes role-based access control (RBAC), comprehensive audit logging, encryption at rest and in transit, and configurable data retention policies. Enterprise plans add SSO/SAML integration. We can provide penetration test reports and completed security questionnaires upon request (NDA required).</p>
-                        </div>
-                    </div>
+                <div class="bg-white/[0.02] border border-white/5 rounded-xl p-6">
+                    <h3 class="text-sm font-medium text-white mb-2">What security controls and certifications are in place?</h3>
+                    <p class="text-sm text-slate-400 font-light leading-relaxed">ShadowTrace maintains SOC 2 Type II certification and operates in accordance with ISO 27001 standards. Our platform includes role-based access control (RBAC), comprehensive audit logging, encryption at rest and in transit, and configurable data retention policies. Enterprise plans add SSO/SAML integration. We can provide penetration test reports and completed security questionnaires upon request (NDA required).</p>
                 </div>
 
-                <!-- FAQ Item 5 -->
-                <div class="accordion-item group bg-white/[0.02] border border-white/5 overflow-hidden transition-all duration-300 hover:bg-white/[0.04]">
-                    <button class="w-full flex items-center justify-between p-6 text-left" onclick="toggleAccordion(this)">
-                        <h3 class="text-sm text-white/90 font-medium group-hover:text-purple-300 transition-colors pr-8">What support and SLAs are included?</h3>
-                         <div class="relative w-4 h-4 flex items-center justify-center">
-                            <iconify-icon icon="solar:add-circle-linear" class="accordion-icon text-slate-500 text-lg transition-transform duration-300 group-hover:text-white absolute"></iconify-icon>
-                        </div>
-                    </button>
-                    <div class="accordion-content">
-                        <div class="px-6 pb-6 text-sm text-slate-400 font-light leading-relaxed max-w-2xl">
-                            <p>All plans include email support during business hours and access to our documentation and knowledge base. Professional plans add priority support with faster response times. Enterprise agreements include defined SLA commitments covering uptime guarantees, incident response times, and dedicated account management.</p>
-                        </div>
-                    </div>
+                <div class="bg-white/[0.02] border border-white/5 rounded-xl p-6">
+                    <h3 class="text-sm font-medium text-white mb-2">What support and SLAs are included?</h3>
+                    <p class="text-sm text-slate-400 font-light leading-relaxed">All plans include email support during business hours and access to our documentation and knowledge base. Professional plans add priority support with faster response times. Enterprise agreements include defined SLA commitments covering uptime guarantees, incident response times, and dedicated account management.</p>
                 </div>
 
-                <!-- FAQ Item 6 -->
-                <div class="accordion-item group bg-white/[0.02] border border-white/5 overflow-hidden transition-all duration-300 hover:bg-white/[0.04]">
-                    <button class="w-full flex items-center justify-between p-6 text-left" onclick="toggleAccordion(this)">
-                        <h3 class="text-sm text-white/90 font-medium group-hover:text-purple-300 transition-colors pr-8">Is training included?</h3>
-                         <div class="relative w-4 h-4 flex items-center justify-center">
-                            <iconify-icon icon="solar:add-circle-linear" class="accordion-icon text-slate-500 text-lg transition-transform duration-300 group-hover:text-white absolute"></iconify-icon>
-                        </div>
-                    </button>
-                    <div class="accordion-content">
-                        <div class="px-6 pb-6 text-sm text-slate-400 font-light leading-relaxed max-w-2xl">
-                            <p>All plans include access to our documentation, knowledge base, and on-demand video tutorials. Professional and Enterprise plans include onboarding sessions with our team to ensure your investigators are productive quickly. Extended training programmes, formal certification courses, and on-site workshops are available as add-ons.</p>
-                        </div>
-                    </div>
+                <div class="bg-white/[0.02] border border-white/5 rounded-xl p-6">
+                    <h3 class="text-sm font-medium text-white mb-2">Is training included?</h3>
+                    <p class="text-sm text-slate-400 font-light leading-relaxed">All plans include access to our documentation, knowledge base, and on-demand video tutorials. Professional and Enterprise plans include onboarding sessions with our team to ensure your investigators are productive quickly. Extended training programmes, formal certification courses, and on-site workshops are available as add-ons.</p>
                 </div>
 
-                <!-- FAQ Item 7 -->
-                <div class="accordion-item group bg-white/[0.02] border border-white/5 overflow-hidden transition-all duration-300 hover:bg-white/[0.04]">
-                    <button class="w-full flex items-center justify-between p-6 text-left" onclick="toggleAccordion(this)">
-                        <h3 class="text-sm text-white/90 font-medium group-hover:text-purple-300 transition-colors pr-8">Can I add more investigator seats later?</h3>
-                         <div class="relative w-4 h-4 flex items-center justify-center">
-                            <iconify-icon icon="solar:add-circle-linear" class="accordion-icon text-slate-500 text-lg transition-transform duration-300 group-hover:text-white absolute"></iconify-icon>
-                        </div>
-                    </button>
-                    <div class="accordion-content">
-                        <div class="px-6 pb-6 text-sm text-slate-400 font-light leading-relaxed max-w-2xl">
-                            <p>Yes. You can add seats at any time as your team grows. Additional seats are pro-rated for the remainder of your contract term. If you outgrow your current tier, we can discuss upgrading to a plan that better fits your operational scale.</p>
-                        </div>
-                    </div>
+                <div class="bg-white/[0.02] border border-white/5 rounded-xl p-6">
+                    <h3 class="text-sm font-medium text-white mb-2">Can I add more investigator seats later?</h3>
+                    <p class="text-sm text-slate-400 font-light leading-relaxed">Yes. You can add seats at any time as your team grows. Additional seats are pro-rated for the remainder of your contract term. If you outgrow your current tier, we can discuss upgrading to a plan that better fits your operational scale.</p>
                 </div>
 
-                <!-- FAQ Item 8 -->
-                <div class="accordion-item group bg-white/[0.02] border border-white/5 last:rounded-b-lg overflow-hidden transition-all duration-300 hover:bg-white/[0.04]">
-                    <button class="w-full flex items-center justify-between p-6 text-left" onclick="toggleAccordion(this)">
-                        <h3 class="text-sm text-white/90 font-medium group-hover:text-purple-300 transition-colors pr-8">What currencies and payment methods do you accept?</h3>
-                         <div class="relative w-4 h-4 flex items-center justify-center">
-                            <iconify-icon icon="solar:add-circle-linear" class="accordion-icon text-slate-500 text-lg transition-transform duration-300 group-hover:text-white absolute"></iconify-icon>
-                        </div>
-                    </button>
-                    <div class="accordion-content">
-                        <div class="px-6 pb-6 text-sm text-slate-400 font-light leading-relaxed max-w-2xl">
-                            <p>We invoice in GBP, USD, and EUR. Payment can be made via bank transfer, card, or purchase order for qualifying organisations. We can accommodate most institutional payment workflows and provide documentation required for financial approvals.</p>
-                        </div>
-                    </div>
+                <div class="bg-white/[0.02] border border-white/5 rounded-xl p-6">
+                    <h3 class="text-sm font-medium text-white mb-2">What currencies and payment methods do you accept?</h3>
+                    <p class="text-sm text-slate-400 font-light leading-relaxed">We invoice in GBP, USD, and EUR. Payment can be made via bank transfer, card, or purchase order for qualifying organisations. We can accommodate most institutional payment workflows and provide documentation required for financial approvals.</p>
                 </div>
             </div>
         </div>
@@ -573,7 +474,7 @@
                         <img src="assets/ShadowTraceLogo.svg" alt="ShadowTrace" style="height: 22.4px;">
                     </div>
                     <p class="text-sm text-slate-500 font-light leading-relaxed">
-                        Blockchain intelligence for financial crime investigators.
+                        The crypto intelligence tool built for investigators. Turn evidence into action while it's still fresh.
                     </p>
                 </div>
                 <div>
@@ -589,7 +490,7 @@
                     <ul class="space-y-4 text-sm text-slate-400 font-light">
                         <li><a href="about.html" class="hover:text-purple-400 transition-colors">About Us</a></li>
                         <li><a href="resources.html" class="hover:text-purple-400 transition-colors">Resources</a></li>
-                        <li><a href="contact.html" class="hover:text-purple-400 transition-colors">Request Demo</a></li>
+                        <li><a href="contact.html" class="hover:text-purple-400 transition-colors">See How It Works</a></li>
                     </ul>
                 </div>
                 <div>
@@ -634,25 +535,7 @@
         menuBtn.addEventListener('click', toggleMenu);
         closeBtn.addEventListener('click', toggleMenu);
 
-        // Accordion Logic
-        function toggleAccordion(button) {
-            const item = button.closest('.accordion-item');
-            const isActive = item.classList.contains('accordion-open');
-
-            // Close all other items
-            document.querySelectorAll('.accordion-item').forEach(acc => {
-                if (acc !== item) {
-                    acc.classList.remove('accordion-open');
-                }
-            });
-
-            // Toggle clicked item
-            if (isActive) {
-                item.classList.remove('accordion-open');
-            } else {
-                item.classList.add('accordion-open');
-            }
-        }
+        // FAQ is open display — no accordion logic needed
     </script>
 
     <!-- Cookie Consent Banner -->

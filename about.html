@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us | ShadowTrace - Blockchain Intelligence</title>
-    <meta name="description" content="Learn about ShadowTrace's mission to bring transparency to blockchain transactions and empower investigators with the tools they need.">
+    <title>About Us | ShadowTrace — Closing the Speed Gap</title>
+    <meta name="description" content="ShadowTrace was built because criminals move fast and institutions move carefully. We close that gap so evidence doesn't disappear and cases don't go cold.">
     <meta name="keywords" content="ShadowTrace company, blockchain analytics team, crypto investigation company, about ShadowTrace">
     <link rel="canonical" href="https://shadowtrace.com/about">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -103,6 +103,20 @@
         <div class="grid-line"></div>
     </div>
 
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="fixed inset-0 z-[60] bg-[#020205]/90 backdrop-blur-xl hidden opacity-0 transition-opacity duration-300 flex-col items-center justify-center space-y-8">
+        <button id="close-menu" class="absolute top-6 right-6 text-white/60 hover:text-white">
+            <iconify-icon icon="solar:close-circle-linear" width="32" height="32"></iconify-icon>
+        </button>
+        <a href="platform.html" class="text-2xl font-newsreader italic text-white hover:text-purple-400 transition-colors">Platform</a>
+        <a href="solutions.html" class="text-2xl font-newsreader italic text-white hover:text-purple-400 transition-colors">Solutions</a>
+        <a href="pricing.html" class="text-2xl font-newsreader italic text-white hover:text-purple-400 transition-colors">Pricing</a>
+        <a href="resources.html" class="text-2xl font-newsreader italic text-white hover:text-purple-400 transition-colors">Resources</a>
+        <a href="compare.html" class="text-2xl font-newsreader italic text-white hover:text-purple-400 transition-colors">Compare</a>
+        <a href="https://portal.shadowtrace.ai" class="text-2xl font-newsreader italic text-white/60 hover:text-purple-400 transition-colors">Portal</a>
+        <a href="contact.html" class="text-lg font-medium text-white bg-purple-600 hover:bg-purple-500 px-6 py-3 rounded-full transition-colors mt-4">See how it works</a>
+    </div>
+
     <!-- Navbar -->
     <nav class="fixed top-0 left-0 right-0 z-50 border-b border-white/[0.06] bg-[#020205]/60 backdrop-blur-md animate-in">
         <div class="flex h-20 max-w-7xl mr-auto ml-auto pr-6 pl-6 items-center justify-between">
@@ -121,7 +135,7 @@
             <div class="flex gap-4 gap-x-4 gap-y-4 items-center">
                 <a href="https://portal.shadowtrace.ai" class="hidden md:block hover:text-white transition-colors text-xs font-medium text-white/60">Portal</a>
                 <button class="hidden md:block group hover:bg-white/10 transition-all text-xs font-medium text-white bg-white/5 border-white/10 border rounded-full pt-2 pr-4 pb-2 pl-4 relative" onclick="window.location.href='contact.html'" role="button">
-                    <span class="z-10 relative">Request Demo</span>
+                    <span class="z-10 relative">See how it works</span>
                     <div class="btn-beam"></div>
                 </button>
                 <button id="open-menu" class="md:hidden text-white/60 hover:text-white transition-colors">
@@ -140,11 +154,11 @@
             </div>
 
             <h1 class="text-4xl md:text-5xl lg:text-6xl font-newsreader font-medium italic text-white mb-6 tracking-tight leading-[1.1]">
-                Bringing transparency to <span class="text-purple-400">blockchain</span>
+                Built to close the <span class="text-purple-400">speed gap</span>
             </h1>
 
             <p class="text-lg text-slate-400 font-light leading-relaxed max-w-2xl mx-auto">
-                We build tools that help investigators, compliance teams, and regulators understand what's happening on public blockchains.
+                Criminal groups move fast because they're built for advantage. Institutions move carefully because they're built for process. That gap is where evidence disappears and cases go cold. We exist to close it.
             </p>
         </div>
     </section>
@@ -159,13 +173,13 @@
                     </h2>
                     <div class="space-y-4 text-slate-400 font-light leading-relaxed">
                         <p>
-                            Blockchain technology promised transparency, but the reality is more complex. Pseudonymous addresses, cross-chain bridges, and privacy protocols create layers of obfuscation that can be exploited by bad actors.
+                            Crypto-enabled crime is growing at over 300% year-on-year. Criminals exploit pseudonymous addresses, cross-chain bridges, and privacy protocols to move stolen funds faster than institutions can respond. By the time evidence packages are assembled, the money has often disappeared.
                         </p>
                         <p>
-                            We believe that investigators shouldn't need to be blockchain experts to follow the money. Our mission is to make blockchain intelligence accessible, actionable, and evidence-grade.
+                            We believe investigators shouldn't need to be blockchain experts to follow the money. ShadowTrace was built to give the people on the front line — detectives, compliance officers, regulators — the speed to act while evidence is still fresh and the rigour to make it stand up in court.
                         </p>
                         <p>
-                            ShadowTrace exists to give the people protecting our financial systems the tools they need to do their jobs effectively.
+                            Our mission: close the gap between how fast crime moves and how fast institutions can respond. Every feature we build is measured against one question — does this help an investigator get to the truth faster?
                         </p>
                     </div>
                 </div>
@@ -228,34 +242,34 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Team Member Placeholder 1 -->
+                <!-- Stephen Leathem -->
                 <div class="bg-white/[0.02] border border-white/5 rounded-xl p-6 text-center hover:border-white/10 transition-colors">
                     <div class="w-24 h-24 rounded-full bg-gradient-to-br from-purple-500/20 to-indigo-500/20 mx-auto mb-4 flex items-center justify-center">
                         <iconify-icon icon="solar:user-circle-linear" class="text-purple-400 text-4xl"></iconify-icon>
                     </div>
-                    <div class="text-sm font-medium text-white mb-1">[Name]</div>
+                    <div class="text-sm font-medium text-white mb-1">Stephen Leathem</div>
                     <div class="text-xs text-purple-400 mb-3">Chief Executive Officer</div>
-                    <p class="text-xs text-slate-500">Background in financial crime investigation and technology leadership.</p>
+                    <p class="text-xs text-slate-500">Enterprise architect translating advanced AI and blockchain analytics into operational tools for law enforcement.</p>
                 </div>
 
-                <!-- Team Member Placeholder 2 -->
+                <!-- Paul Leathem -->
                 <div class="bg-white/[0.02] border border-white/5 rounded-xl p-6 text-center hover:border-white/10 transition-colors">
                     <div class="w-24 h-24 rounded-full bg-gradient-to-br from-purple-500/20 to-indigo-500/20 mx-auto mb-4 flex items-center justify-center">
                         <iconify-icon icon="solar:user-circle-linear" class="text-purple-400 text-4xl"></iconify-icon>
                     </div>
-                    <div class="text-sm font-medium text-white mb-1">[Name]</div>
+                    <div class="text-sm font-medium text-white mb-1">Paul Leathem</div>
                     <div class="text-xs text-purple-400 mb-3">Chief Technology Officer</div>
-                    <p class="text-xs text-slate-500">Expertise in distributed systems, blockchain protocols, and data engineering.</p>
+                    <p class="text-xs text-slate-500">Expertise in distributed systems, blockchain protocols, and data engineering. Leads platform architecture and AI capability development.</p>
                 </div>
 
-                <!-- Team Member Placeholder 3 -->
+                <!-- Owen Lamont -->
                 <div class="bg-white/[0.02] border border-white/5 rounded-xl p-6 text-center hover:border-white/10 transition-colors">
                     <div class="w-24 h-24 rounded-full bg-gradient-to-br from-purple-500/20 to-indigo-500/20 mx-auto mb-4 flex items-center justify-center">
                         <iconify-icon icon="solar:user-circle-linear" class="text-purple-400 text-4xl"></iconify-icon>
                     </div>
-                    <div class="text-sm font-medium text-white mb-1">[Name]</div>
-                    <div class="text-xs text-purple-400 mb-3">Head of Product</div>
-                    <p class="text-xs text-slate-500">Experience building investigation tools for law enforcement and compliance teams.</p>
+                    <div class="text-sm font-medium text-white mb-1">Owen Lamont</div>
+                    <div class="text-xs text-purple-400 mb-3">Commercial Operations</div>
+                    <p class="text-xs text-slate-500">Former CEO Virgin Media Ireland & Scotland. Past President NI Chamber of Commerce. Brings decades of commercial leadership and enterprise go-to-market experience.</p>
                 </div>
             </div>
 
@@ -328,14 +342,14 @@
     <section class="py-16 px-6 relative z-10">
         <div class="max-w-4xl mx-auto text-center animate-in delay-400">
             <h2 class="text-3xl md:text-4xl font-newsreader font-medium italic text-white mb-4">
-                Want to learn more?
+                See ShadowTrace in action.
             </h2>
             <p class="text-slate-400 font-light mb-8 max-w-xl mx-auto">
-                Get in touch to discuss how ShadowTrace can support your organisation.
+                See how investigators are turning crypto evidence into actionable leads, live seizures, and successful prosecutions — while evidence is fresh.
             </p>
             <div class="flex flex-wrap justify-center gap-4">
                 <a href="contact.html" class="inline-flex items-center gap-2 px-6 py-3 bg-white text-black rounded-full text-sm font-semibold hover:bg-slate-200 transition-colors">
-                    Request Demo
+                    See how it works
                     <iconify-icon icon="solar:arrow-right-linear" class="text-lg"></iconify-icon>
                 </a>
                 <a href="mailto:hello@shadowtrace.com" class="inline-flex items-center gap-2 px-6 py-3 border border-white/10 rounded-full text-sm font-medium text-white/80 hover:bg-white/5 transition-colors">
@@ -355,7 +369,7 @@
                         <img src="assets/ShadowTraceLogo.svg" alt="ShadowTrace" style="height: 22.4px;">
                     </div>
                     <p class="text-sm text-slate-500 font-light leading-relaxed">
-                        Blockchain intelligence for financial crime investigators.
+                        The crypto intelligence tool built for investigators. Turn evidence into action while it's still fresh.
                     </p>
                 </div>
                 <div>
@@ -371,7 +385,7 @@
                     <ul class="space-y-4 text-sm text-slate-400 font-light">
                         <li><a href="about.html" class="hover:text-purple-400 transition-colors">About Us</a></li>
                         <li><a href="resources.html" class="hover:text-purple-400 transition-colors">Resources</a></li>
-                        <li><a href="contact.html" class="hover:text-purple-400 transition-colors">Request Demo</a></li>
+                        <li><a href="contact.html" class="hover:text-purple-400 transition-colors">See How It Works</a></li>
                     </ul>
                 </div>
                 <div>
@@ -430,6 +444,30 @@
 
         // Check consent on page load
         checkCookieConsent();
+    </script>
+
+    <!-- Mobile Menu Logic -->
+    <script>
+        const menuBtn = document.getElementById('open-menu');
+        const closeBtn = document.getElementById('close-menu');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        function toggleMenu() {
+            if (mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.remove('hidden');
+                mobileMenu.classList.add('flex');
+                setTimeout(() => mobileMenu.classList.remove('opacity-0'), 10);
+            } else {
+                mobileMenu.classList.add('opacity-0');
+                setTimeout(() => {
+                    mobileMenu.classList.remove('flex');
+                    mobileMenu.classList.add('hidden');
+                }, 300);
+            }
+        }
+
+        menuBtn.addEventListener('click', toggleMenu);
+        closeBtn.addEventListener('click', toggleMenu);
     </script>
 
     <!-- Chatbot Widget -->

@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Request a Demo | ShadowTrace</title>
-    <meta name="description" content="Request a personalised demo of ShadowTrace. See how our blockchain intelligence platform can support your investigations and compliance workflows.">
+    <title>See How It Works | ShadowTrace</title>
+    <meta name="description" content="See how investigators are turning crypto evidence into actionable leads, live seizures, and successful prosecutions — while evidence is fresh.">
     <meta name="keywords" content="blockchain demo, crypto investigation demo, AML compliance demo, blockchain analytics trial">
     <link rel="canonical" href="https://shadowtrace.com/contact">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -103,6 +103,20 @@
         <div class="grid-line"></div>
     </div>
 
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="fixed inset-0 z-[60] bg-[#020205]/90 backdrop-blur-xl hidden opacity-0 transition-opacity duration-300 flex-col items-center justify-center space-y-8">
+        <button id="close-menu" class="absolute top-6 right-6 text-white/60 hover:text-white">
+            <iconify-icon icon="solar:close-circle-linear" width="32" height="32"></iconify-icon>
+        </button>
+        <a href="platform.html" class="text-2xl font-newsreader italic text-white hover:text-purple-400 transition-colors">Platform</a>
+        <a href="solutions.html" class="text-2xl font-newsreader italic text-white hover:text-purple-400 transition-colors">Solutions</a>
+        <a href="pricing.html" class="text-2xl font-newsreader italic text-white hover:text-purple-400 transition-colors">Pricing</a>
+        <a href="resources.html" class="text-2xl font-newsreader italic text-white hover:text-purple-400 transition-colors">Resources</a>
+        <a href="compare.html" class="text-2xl font-newsreader italic text-white hover:text-purple-400 transition-colors">Compare</a>
+        <a href="https://portal.shadowtrace.ai" class="text-2xl font-newsreader italic text-white/60 hover:text-purple-400 transition-colors">Portal</a>
+        <a href="contact.html" class="text-lg font-medium text-white bg-purple-600 hover:bg-purple-500 px-6 py-3 rounded-full transition-colors mt-4">See how it works</a>
+    </div>
+
     <!-- Navbar -->
     <nav class="fixed top-0 left-0 right-0 z-50 border-b border-white/[0.06] bg-[#020205]/60 backdrop-blur-md animate-in">
         <div class="flex h-20 max-w-7xl mr-auto ml-auto pr-6 pl-6 items-center justify-between">
@@ -121,7 +135,7 @@
             <div class="flex gap-4 gap-x-4 gap-y-4 items-center">
                 <a href="https://portal.shadowtrace.ai" class="hidden md:block hover:text-white transition-colors text-xs font-medium text-white/60">Portal</a>
                 <button class="hidden md:block group hover:bg-white/10 transition-all text-xs font-medium text-white bg-white/5 border-white/10 border rounded-full pt-2 pr-4 pb-2 pl-4 relative" onclick="window.location.href='contact.html'" role="button">
-                    <span class="z-10 relative">Request Demo</span>
+                    <span class="z-10 relative">See how it works</span>
                     <div class="btn-beam"></div>
                 </button>
                 <button id="open-menu" class="md:hidden text-white/60 hover:text-white transition-colors">
@@ -144,11 +158,11 @@
                     </div>
 
                     <h1 class="text-4xl md:text-5xl lg:text-6xl font-newsreader font-medium italic text-white mb-6 tracking-tight leading-[1.1]">
-                        Request a <span class="text-purple-400">Demo</span>
+                        See how <span class="text-purple-400">it works</span>
                     </h1>
 
                     <p class="text-lg text-slate-400 font-light leading-relaxed mb-10 max-w-lg">
-                        See how ShadowTrace can accelerate your blockchain investigations and strengthen your compliance programme. Our team will walk you through the platform tailored to your specific use case.
+                        See how investigators are turning crypto evidence into actionable leads, live seizures, and successful prosecutions — while evidence is fresh. We'll walk you through the platform for your specific use case.
                     </p>
 
                     <!-- Benefits -->
@@ -198,36 +212,20 @@
                 <!-- Right: Form -->
                 <div class="animate-in delay-200">
                     <div class="bg-white/[0.02] border border-white/5 rounded-2xl p-8">
-                        <form class="space-y-5">
-                            <div class="grid grid-cols-2 gap-4">
-                                <div class="space-y-1.5">
-                                    <label class="text-xs font-medium text-slate-300">First Name *</label>
-                                    <input type="text" required class="w-full bg-[#0a0a0c] border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-600 focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/20 transition-all" placeholder="Jane">
-                                </div>
-                                <div class="space-y-1.5">
-                                    <label class="text-xs font-medium text-slate-300">Last Name *</label>
-                                    <input type="text" required class="w-full bg-[#0a0a0c] border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-600 focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/20 transition-all" placeholder="Smith">
-                                </div>
+                        <form id="contact-form" class="space-y-5">
+                            <div class="space-y-1.5">
+                                <label class="text-xs font-medium text-slate-300">Name *</label>
+                                <input type="text" name="name" required class="w-full bg-[#0a0a0c] border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-600 focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/20 transition-all" placeholder="Your name">
                             </div>
 
                             <div class="space-y-1.5">
                                 <label class="text-xs font-medium text-slate-300">Work Email *</label>
-                                <input type="email" required class="w-full bg-[#0a0a0c] border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-600 focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/20 transition-all" placeholder="jane@organisation.com">
-                            </div>
-
-                            <div class="space-y-1.5">
-                                <label class="text-xs font-medium text-slate-300">Organisation *</label>
-                                <input type="text" required class="w-full bg-[#0a0a0c] border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-600 focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/20 transition-all" placeholder="Organisation name">
-                            </div>
-
-                            <div class="space-y-1.5">
-                                <label class="text-xs font-medium text-slate-300">Job Title</label>
-                                <input type="text" class="w-full bg-[#0a0a0c] border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-600 focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/20 transition-all" placeholder="e.g. Head of Compliance">
+                                <input type="email" name="email" required class="w-full bg-[#0a0a0c] border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-600 focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/20 transition-all" placeholder="you@organisation.com">
                             </div>
 
                             <div class="space-y-1.5">
                                 <label class="text-xs font-medium text-slate-300">Organisation Type *</label>
-                                <select required class="w-full bg-[#0a0a0c] border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/20 transition-all appearance-none cursor-pointer">
+                                <select name="orgType" required class="w-full bg-[#0a0a0c] border border-white/10 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/20 transition-all appearance-none cursor-pointer">
                                     <option value="" class="bg-[#0a0a0c]">Select type...</option>
                                     <option value="law-enforcement" class="bg-[#0a0a0c]">Law Enforcement Agency</option>
                                     <option value="regulator" class="bg-[#0a0a0c]">Regulator</option>
@@ -239,33 +237,26 @@
                                 </select>
                             </div>
 
-                            <div class="space-y-1.5">
-                                <label class="text-xs font-medium text-slate-300">How can we help?</label>
-                                <textarea rows="3" class="w-full bg-[#0a0a0c] border border-white/10 rounded-xl px-4 py-3 text-sm text-white placeholder-slate-600 focus:outline-none focus:border-purple-500/50 focus:ring-1 focus:ring-purple-500/20 transition-all resize-none" placeholder="Tell us about your use case or any specific requirements..."></textarea>
-                            </div>
-
-                            <div class="flex items-start gap-3 pt-2">
-                                <div class="relative mt-0.5">
-                                    <input type="checkbox" id="privacy" required class="peer sr-only">
-                                    <div class="w-4 h-4 border border-white/20 rounded bg-transparent peer-checked:bg-purple-500 peer-checked:border-purple-500 transition-all cursor-pointer" onclick="this.previousElementSibling.click()"></div>
-                                    <iconify-icon icon="solar:check-read-linear" class="text-white text-[10px] absolute inset-0 m-auto opacity-0 peer-checked:opacity-100 transition-opacity pointer-events-none"></iconify-icon>
-                                </div>
-                                <label for="privacy" class="text-xs text-slate-400 cursor-pointer">
-                                    I agree to the <a href="#" class="text-purple-400 hover:underline">Privacy Policy</a> and consent to being contacted about ShadowTrace products and services.
-                                </label>
-                            </div>
-
-                            <button type="submit" class="w-full group relative overflow-hidden rounded-xl bg-white text-black font-semibold text-sm py-3.5 hover:bg-slate-200 transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-[0_0_25px_rgba(255,255,255,0.2)]">
+                            <button type="submit" id="submit-btn" class="w-full group relative overflow-hidden rounded-xl bg-white text-black font-semibold text-sm py-3.5 hover:bg-slate-200 transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-[0_0_25px_rgba(255,255,255,0.2)]">
                                 <span class="relative z-10 flex items-center justify-center gap-2">
-                                    Request Demo
+                                    See how it works
                                     <iconify-icon icon="solar:arrow-right-linear" class="text-lg transition-transform group-hover:translate-x-1"></iconify-icon>
                                 </span>
                             </button>
 
                             <p class="text-center text-[10px] text-slate-600">
-                                We typically respond within 1 business day
+                                No commitment. We typically respond within 1 business day.
                             </p>
                         </form>
+
+                        <!-- Success confirmation (hidden by default) -->
+                        <div id="form-success" class="hidden text-center py-8">
+                            <div class="w-16 h-16 rounded-full bg-green-500/20 flex items-center justify-center mx-auto mb-4">
+                                <iconify-icon icon="solar:check-circle-bold" class="text-green-400 text-3xl"></iconify-icon>
+                            </div>
+                            <h3 class="text-xl font-newsreader italic text-white mb-2">You're in</h3>
+                            <p class="text-sm text-slate-400 font-light">We'll be in touch shortly to schedule your walkthrough.</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -315,7 +306,7 @@
                         <img src="assets/ShadowTraceLogo.svg" alt="ShadowTrace" style="height: 22.4px;">
                     </div>
                     <p class="text-sm text-slate-500 font-light leading-relaxed">
-                        Blockchain intelligence for financial crime investigators.
+                        The crypto intelligence tool built for investigators. Turn evidence into action while it's still fresh.
                     </p>
                 </div>
                 <div>
@@ -331,7 +322,7 @@
                     <ul class="space-y-4 text-sm text-slate-400 font-light">
                         <li><a href="about.html" class="hover:text-purple-400 transition-colors">About Us</a></li>
                         <li><a href="resources.html" class="hover:text-purple-400 transition-colors">Resources</a></li>
-                        <li><a href="contact.html" class="hover:text-purple-400 transition-colors">Request Demo</a></li>
+                        <li><a href="contact.html" class="hover:text-purple-400 transition-colors">See How It Works</a></li>
                     </ul>
                 </div>
                 <div>
@@ -390,6 +381,69 @@
 
         // Check consent on page load
         checkCookieConsent();
+    </script>
+
+    <!-- Contact Form Submission -->
+    <script>
+        const contactForm = document.getElementById('contact-form');
+        const formSuccess = document.getElementById('form-success');
+        const submitBtn = document.getElementById('submit-btn');
+
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const name = contactForm.querySelector('[name="name"]').value;
+            const email = contactForm.querySelector('[name="email"]').value;
+            const orgType = contactForm.querySelector('[name="orgType"]').value;
+
+            // Disable button while submitting
+            submitBtn.disabled = true;
+            submitBtn.querySelector('span').textContent = 'Submitting...';
+
+            try {
+                await fetch('/api/lead', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        name,
+                        email,
+                        orgType,
+                        pageUrl: window.location.href
+                    })
+                });
+            } catch (err) {
+                // Still show success — lead capture should not block UX
+                console.log('Lead submission note:', err);
+            }
+
+            // Show success state immediately
+            contactForm.classList.add('hidden');
+            formSuccess.classList.remove('hidden');
+        });
+    </script>
+
+    <!-- Mobile Menu Logic -->
+    <script>
+        const menuBtn = document.getElementById('open-menu');
+        const closeBtn = document.getElementById('close-menu');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        function toggleMenu() {
+            if (mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.remove('hidden');
+                mobileMenu.classList.add('flex');
+                setTimeout(() => mobileMenu.classList.remove('opacity-0'), 10);
+            } else {
+                mobileMenu.classList.add('opacity-0');
+                setTimeout(() => {
+                    mobileMenu.classList.remove('flex');
+                    mobileMenu.classList.add('hidden');
+                }, 300);
+            }
+        }
+
+        menuBtn.addEventListener('click', toggleMenu);
+        closeBtn.addEventListener('click', toggleMenu);
     </script>
 
     <!-- Chatbot Widget -->
