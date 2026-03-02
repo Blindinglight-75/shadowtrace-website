@@ -221,23 +221,24 @@ app.post('/api/lead', async (req, res) => {
     }
 });
 
-// Serve static files (HTML, CSS, JS, assets)
-app.use(express.static(path.join(__dirname), {
+// Serve static files from /public only (never expose server-side files)
+const publicDir = path.join(__dirname, 'public');
+app.use(express.static(publicDir, {
     extensions: ['html'],
     index: 'index.html'
 }));
 
-// Fallback to index.html for SPA-like behavior (optional)
+// Fallback for clean URLs — serve HTML from /public
 app.get('*', (req, res) => {
     // If it looks like a file request, send 404
     if (req.path.includes('.')) {
-        return res.status(404).sendFile(path.join(__dirname, '404.html'));
+        return res.status(404).sendFile(path.join(publicDir, '404.html'));
     }
-    // Otherwise try to serve the HTML file
-    const htmlPath = path.join(__dirname, req.path + '.html');
+    // Otherwise try to serve the HTML file from /public
+    const htmlPath = path.join(publicDir, req.path + '.html');
     res.sendFile(htmlPath, err => {
         if (err) {
-            res.status(404).sendFile(path.join(__dirname, '404.html'));
+            res.status(404).sendFile(path.join(publicDir, '404.html'));
         }
     });
 });
