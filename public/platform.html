@@ -203,6 +203,7 @@
         </button>
         <a href="platform.html" class="text-2xl font-newsreader italic text-purple-400 transition-colors">Platform</a>
         <a href="solutions.html" class="text-2xl font-newsreader italic text-white hover:text-purple-400 transition-colors">Solutions</a>
+        <a href="why-shadowtrace.html" class="text-2xl font-newsreader italic text-white hover:text-purple-400 transition-colors">Why ShadowTrace</a>
         <a href="resources.html" class="text-2xl font-newsreader italic text-white hover:text-purple-400 transition-colors">Resources</a>
         <a href="about.html" class="text-2xl font-newsreader italic text-white hover:text-purple-400 transition-colors">About Us</a>
         <a href="https://portal.shadowtrace.ai" class="text-2xl font-newsreader italic text-white hover:text-purple-400 transition-colors">Portal</a>
@@ -217,6 +218,7 @@
 
             <div class="hidden md:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
                 <a href="platform.html" class="hover:text-white transition-colors text-xs font-medium text-white">Platform</a>
+                <a href="why-shadowtrace.html" class="hover:text-white transition-colors text-xs font-medium text-white/60">Why ShadowTrace</a>
                 <a href="solutions.html" class="hover:text-white transition-colors text-xs font-medium text-white/60">Solutions</a>
                 <a href="resources.html" class="hover:text-white transition-colors text-xs font-medium text-white/60">Resources</a>
                 <a href="about.html" class="hover:text-white transition-colors text-xs font-medium text-white/60">About Us</a>
@@ -566,9 +568,71 @@
             </div>
         </div>
 
-        <!-- SECTION 05: SECURITY & COMPLIANCE -->
+        <!-- SECTION 05: SEE IT IN ACTION -->
+        <div class="border-white/5 border-t pt-24 pb-24 relative z-10 w-full max-w-7xl mx-auto">
+            <div class="text-[10px] animate-in delay-200 lg:left-0 text-white/20 tracking-widest font-mono absolute top-16 left-6">05 // SEE IT IN ACTION</div>
+
+            <div class="mb-16 text-center animate-in delay-300">
+                <h2 class="text-3xl md:text-4xl font-newsreader font-medium italic text-white">From first address to court-ready evidence</h2>
+                <p class="text-slate-400 text-sm mt-4 max-w-2xl mx-auto">Four steps. One platform. Every investigation follows the same proven workflow — from discovery to disclosure.</p>
+            </div>
+
+            <!-- Step Tabs -->
+            <div class="grid grid-cols-1 lg:grid-cols-4 gap-6 mb-12 animate-in delay-400">
+                <!-- Step 1 -->
+                <button class="walkthrough-tab active-tab text-left p-6 rounded-2xl border border-purple-500/30 bg-purple-500/5 transition-all" data-step="1">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-8 h-8 rounded-full bg-purple-500/20 border border-purple-500/30 flex items-center justify-center text-xs text-purple-400 font-medium">1</div>
+                        <span class="text-xs text-purple-400 font-medium uppercase tracking-wider">Discover &amp; Triage</span>
+                    </div>
+                    <p class="text-sm text-slate-400 font-light leading-relaxed">Paste a wallet address or transaction hash. ShadowTrace instantly assesses risk, surfaces connections, and prioritises investigative leads — so you know where to focus within minutes.</p>
+                </button>
+
+                <!-- Step 2 -->
+                <button class="walkthrough-tab text-left p-6 rounded-2xl border border-white/10 bg-white/[0.02] hover:border-white/20 transition-all" data-step="2">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-8 h-8 rounded-full bg-white/10 border border-white/10 flex items-center justify-center text-xs text-slate-400 font-medium">2</div>
+                        <span class="text-xs text-slate-400 font-medium uppercase tracking-wider">Investigate &amp; Trace</span>
+                    </div>
+                    <p class="text-sm text-slate-400 font-light leading-relaxed">Follow the money across 40+ blockchain networks with a visual graph. Trace through bridges, mixers, and peel chains. Every hop is logged automatically for your audit trail.</p>
+                </button>
+
+                <!-- Step 3 -->
+                <button class="walkthrough-tab text-left p-6 rounded-2xl border border-white/10 bg-white/[0.02] hover:border-white/20 transition-all" data-step="3">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-8 h-8 rounded-full bg-white/10 border border-white/10 flex items-center justify-center text-xs text-slate-400 font-medium">3</div>
+                        <span class="text-xs text-slate-400 font-medium uppercase tracking-wider">Score &amp; Explain</span>
+                    </div>
+                    <p class="text-sm text-slate-400 font-light leading-relaxed">Every risk score comes with a clear, multi-factor explanation — direct exposure, behavioural patterns, counterparty risk. No black boxes. Scores that stand up when challenged.</p>
+                </button>
+
+                <!-- Step 4 -->
+                <button class="walkthrough-tab text-left p-6 rounded-2xl border border-white/10 bg-white/[0.02] hover:border-white/20 transition-all" data-step="4">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-8 h-8 rounded-full bg-white/10 border border-white/10 flex items-center justify-center text-xs text-slate-400 font-medium">4</div>
+                        <span class="text-xs text-slate-400 font-medium uppercase tracking-wider">Report &amp; Export</span>
+                    </div>
+                    <p class="text-sm text-slate-400 font-light leading-relaxed">Generate court-ready evidence packages with full methodology documentation, timestamped screenshots, and reproducible analysis — ready for prosecution, disclosure, or partner agencies.</p>
+                </button>
+            </div>
+
+            <!-- Preview Area -->
+            <div class="animate-in delay-500">
+                <div id="walkthrough-preview" class="rounded-2xl border border-white/10 bg-white/[0.02] aspect-[16/9] flex flex-col items-center justify-center gap-4 relative overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-b from-purple-500/5 to-transparent pointer-events-none"></div>
+                    <div class="relative z-10 flex flex-col items-center gap-4">
+                        <div class="w-16 h-16 rounded-2xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center">
+                            <iconify-icon id="walkthrough-icon" icon="solar:magnifer-bold-duotone" class="text-purple-400 text-3xl"></iconify-icon>
+                        </div>
+                        <span id="walkthrough-label" class="text-sm text-slate-500 font-light">Platform preview coming soon</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 06: SECURITY & COMPLIANCE -->
         <div class="border-white/5 border-t pt-24 pb-32 relative z-10 w-full max-w-7xl mx-auto">
-            <div class="absolute left-6 lg:left-0 top-24 text-white/20 text-[10px] font-mono tracking-widest animate-in delay-200">05 // SECURITY & GOVERNANCE</div>
+            <div class="absolute left-6 lg:left-0 top-24 text-white/20 text-[10px] font-mono tracking-widest animate-in delay-200">06 // SECURITY & GOVERNANCE</div>
 
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                 <div class="flex flex-col justify-center h-full">
@@ -648,7 +712,7 @@
 
         <!-- SECTION 06: INTEGRATIONS -->
         <div class="border-white/5 border-t pt-24 pb-32 relative z-10 w-full max-w-7xl mx-auto">
-            <div class="text-[10px] animate-in delay-200 lg:left-0 text-white/20 tracking-widest font-mono absolute top-16 left-6">06 // INTEGRATIONS</div>
+            <div class="text-[10px] animate-in delay-200 lg:left-0 text-white/20 tracking-widest font-mono absolute top-16 left-6">07 // INTEGRATIONS</div>
 
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center px-6 relative z-10">
                 <div class="lg:col-span-5 space-y-8">
@@ -755,7 +819,7 @@
 
         <!-- SECTION 07: FAQ -->
         <div class="border-white/5 border-t pt-24 pb-16 relative z-10 w-full max-w-7xl mx-auto">
-            <div class="text-[10px] animate-in delay-200 lg:left-0 text-white/20 tracking-widest font-mono absolute top-16 left-6">07 // FAQ</div>
+            <div class="text-[10px] animate-in delay-200 lg:left-0 text-white/20 tracking-widest font-mono absolute top-16 left-6">08 // FAQ</div>
 
             <div class="mb-16 text-center animate-in delay-300">
                 <h2 class="text-3xl md:text-4xl font-newsreader font-medium italic text-white">Questions from security and procurement</h2>
@@ -855,6 +919,7 @@
                         <ul class="space-y-4 text-sm text-slate-400 font-light">
                             <li><a href="platform.html" class="hover:text-purple-400 transition-colors">Platform Overview</a></li>
                             <li><a href="solutions.html" class="hover:text-purple-400 transition-colors">Solutions by Sector</a></li>
+                            <li><a href="why-shadowtrace.html" class="hover:text-purple-400 transition-colors">Why ShadowTrace</a></li>
                         </ul>
                     </div>
 
@@ -864,6 +929,7 @@
                             <li><a href="about.html" class="hover:text-purple-400 transition-colors">About Us</a></li>
                             <li><a href="resources.html" class="hover:text-purple-400 transition-colors">Resources</a></li>
                             <li><a href="contact.html" class="hover:text-purple-400 transition-colors">See How It Works</a></li>
+                            <li><a href="case-study-operation-atlas.html" class="hover:text-purple-400 transition-colors">Case Studies</a></li>
                         </ul>
                     </div>
 
@@ -1004,6 +1070,44 @@
 
         // Check consent on page load
         checkCookieConsent();
+    </script>
+
+    <!-- Walkthrough Tab Logic -->
+    <script>
+        const walkthroughTabs = document.querySelectorAll('.walkthrough-tab');
+        const walkthroughIcon = document.getElementById('walkthrough-icon');
+        const walkthroughLabel = document.getElementById('walkthrough-label');
+
+        const stepData = {
+            1: { icon: 'solar:magnifer-bold-duotone', label: 'Platform preview coming soon' },
+            2: { icon: 'solar:graph-new-bold-duotone', label: 'Platform preview coming soon' },
+            3: { icon: 'solar:shield-warning-bold-duotone', label: 'Platform preview coming soon' },
+            4: { icon: 'solar:document-text-bold-duotone', label: 'Platform preview coming soon' }
+        };
+
+        walkthroughTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                walkthroughTabs.forEach(t => {
+                    t.classList.remove('active-tab', 'border-purple-500/30', 'bg-purple-500/5');
+                    t.classList.add('border-white/10', 'bg-white/[0.02]');
+                    t.querySelector('div > div').classList.remove('bg-purple-500/20', 'border-purple-500/30', 'text-purple-400');
+                    t.querySelector('div > div').classList.add('bg-white/10', 'border-white/10', 'text-slate-400');
+                    t.querySelector('div > span').classList.remove('text-purple-400');
+                    t.querySelector('div > span').classList.add('text-slate-400');
+                });
+
+                tab.classList.add('active-tab', 'border-purple-500/30', 'bg-purple-500/5');
+                tab.classList.remove('border-white/10', 'bg-white/[0.02]');
+                tab.querySelector('div > div').classList.add('bg-purple-500/20', 'border-purple-500/30', 'text-purple-400');
+                tab.querySelector('div > div').classList.remove('bg-white/10', 'border-white/10', 'text-slate-400');
+                tab.querySelector('div > span').classList.add('text-purple-400');
+                tab.querySelector('div > span').classList.remove('text-slate-400');
+
+                const step = tab.dataset.step;
+                if (walkthroughIcon) walkthroughIcon.setAttribute('icon', stepData[step].icon);
+                if (walkthroughLabel) walkthroughLabel.textContent = stepData[step].label;
+            });
+        });
     </script>
 
     <!-- Chatbot Widget -->

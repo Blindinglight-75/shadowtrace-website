@@ -55,6 +55,36 @@
         <priority>0.6</priority>
     </url>
     <url>
+        <loc>https://shadowtrace.ai/why-shadowtrace</loc>
+        <lastmod>2026-03-03</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://shadowtrace.ai/case-study-operation-atlas</loc>
+        <lastmod>2026-03-03</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://shadowtrace.ai/blog-first-24-hours-crypto-seizure</loc>
+        <lastmod>2026-03-03</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://shadowtrace.ai/blog-chain-hopping-patterns</loc>
+        <lastmod>2026-03-03</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://shadowtrace.ai/blog-blockchain-evidence-prosecutors</loc>
+        <lastmod>2026-03-03</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.6</priority>
+    </url>
+    <url>
         <loc>https://shadowtrace.ai/privacy</loc>
         <lastmod>2026-01-19</lastmod>
         <changefreq>yearly</changefreq>
