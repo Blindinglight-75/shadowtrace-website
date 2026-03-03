@@ -76,7 +76,7 @@ router.post('/', async (req, res) => {
         }
 
         res.json({
-            message: assistantMessage,
+            reply: assistantMessage,
             usage: completion.usage
         });
 
