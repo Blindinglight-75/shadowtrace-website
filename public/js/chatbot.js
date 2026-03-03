@@ -607,10 +607,12 @@
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
-                    messages: state.messages.map(m => ({
-                        role: m.role,
-                        content: m.content
-                    }))
+                    messages: state.messages
+                        .filter(m => m.content)
+                        .map(m => ({
+                            role: m.role,
+                            content: m.content
+                        }))
                 })
             });
 
